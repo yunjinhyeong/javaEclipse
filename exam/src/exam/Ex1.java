@@ -10,7 +10,7 @@ public class Ex1 {
 	public static void main(String[] args) {
 		System.out.println("===프로그램 시작===");
 		
-		// DB연결 테스트
+		// DB연결 테스트 test
 
 		// DB 접속정보
 		String dbUrl = "jdbc:mysql://localhost:3306/sakila?useUnicode=true&characterEncoding=utf8&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Asia/Seoul";
