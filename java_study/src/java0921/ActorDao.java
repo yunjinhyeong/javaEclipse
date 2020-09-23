@@ -100,6 +100,42 @@ public class ActorDao {
 		return actorVo;
 	}// getActors()
 	
+	public ActorVo getActorByFirstName(String firstName) {
+		ActorVo actorVo = null; // 어떤 특정값만 가져오니깐 위랑 다름
+
+		// SELECT문 실행에 필요한 JDBC 객체 3가지
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null; // select문에만 존재
+
+		String sql = "";
+
+		try {
+			// getConnection함수 실행해서 con 가져오기
+			con = getConnection();
+			// 3단계. sql문장객체 준비
+			sql = "SELECT * FROM actor WHERE first_name = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, firstName);
+			// 실행 후 SELECT 결과를 ResultSet으로 받음
+			rs = pstmt.executeQuery(); // SELECT문 수행시 executeQuery() 호출
+
+			// 4단계. ResultSet 데이터 꺼내서 사용 //next: 행을 옮김
+			if (rs.next()) {
+				actorVo = new ActorVo();
+				actorVo.setActorId(rs.getInt("actor_id"));
+				actorVo.setFirstName(rs.getString("first_name"));
+				actorVo.setLastName(rs.getString("last_name"));
+				actorVo.setLastUpdate(rs.getTimestamp("last_update"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return actorVo;
+	}// getActors()
+	
+	
 	// insert문
 	public int addActor(ActorVo actorVo) {// insert문
 		
@@ -113,8 +149,7 @@ public class ActorDao {
 			con = getConnection();
 			
 			// sql문 준비
-			sql = "INSERT INTO actor (first_name, last_name, last_update) VALUES (?, ?, now())";			
-			
+			sql = "INSERT INTO actor (first_name, last_name, last_update) VALUES (?, ?, now())";
 			// 3단계. sql문장객체 준비
 			pstmt = con.prepareStatement(sql);
 			// 값 설정
@@ -139,18 +174,36 @@ public class ActorDao {
 		}
 		System.out.println("요소의 개수: " + list.size());
 		System.out.println("==================");
+		
+		//샘플데이터 2개준비
+		ActorVo actorVo3 = new ActorVo();
+		actorVo3.setFirstName("길동");
+		actorVo3.setLastName("홍");
+//		
+		ActorVo actorVo4 = new ActorVo("사임당", "신");
+//		
+//		// insert테스트
+//		actorDao.addActor(actorVo3);
+//		actorDao.addActor(actorVo4);
 
+		ActorVo actorVoDb1 = actorDao.getActorByFirstName(actorVo3.getFirstName());
+		ActorVo actorVoDb2 = actorDao.getActorByFirstName(actorVo4.getFirstName());
+		
+		System.out.println("==================");
+		System.out.println(actorVoDb1.toString());
+		System.out.println(actorVoDb2);
+		
 		// 하나만 선택한 셀렉트 실행
-		ActorVo actorVo1 = actorDao.getActorById(203);
-		System.out.println("actorVo1: " + actorVo1);
-
-		ActorVo actorVo2 = actorDao.getActorById(204);
-		System.out.println("actorVo2: " + actorVo2);
-
-		if (actorVo2 == null) {
-
-		} else {
-
-		}
+//		ActorVo actorVo1 = actorDao.getActorById(203);
+//		System.out.println("actorVo1: " + actorVo1);
+//
+//		ActorVo actorVo2 = actorDao.getActorById(204);
+//		System.out.println("actorVo2: " + actorVo2);
+//
+//		if (actorVo2 == null) {
+//
+//		} else {
+//
+//		}
 	}
 }

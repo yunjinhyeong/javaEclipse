@@ -9,6 +9,17 @@ public class ActorVo {
 	private String firstName; 
 	private String lastName;
 	private Timestamp lastUpdate;
+	
+	public ActorVo() {
+		super();
+	}
+	
+	public ActorVo(String firstName, String lastName) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
+	
 	public int getActorId() {
 		return actorId;
 	}
