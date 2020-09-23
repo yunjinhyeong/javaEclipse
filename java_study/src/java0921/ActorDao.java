@@ -165,6 +165,38 @@ public class ActorDao {
 		}	
 		return count;
 	}
+	
+	public int deleteActorByFirstName(String firstName) {
+		int count = 0;
+		// DELETE문 수행하기
+		
+		String sql = "";
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			con = getConnection();
+			
+			// sql문 준비
+			sql  = "DELETE FROM actor ";
+			sql += "WHERE first_name = ? ";
+			
+			// 3단계. sql문장객체 준비
+			pstmt = con.prepareStatement(sql);
+			// 값 설정
+			pstmt.setString(1, firstName);
+			
+			// sql문장 실행
+			count = pstmt.executeUpdate(); // INSERT,UPDATE,DELETE문장 실행시 호출
+			
+			System.out.println(count + "개 행이 삭제됨.");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return count;
+	} // deleteActorByFirstName()
+	
 
 	public static void main(String[] args) {
 		ActorDao actorDao = new ActorDao();
@@ -179,20 +211,24 @@ public class ActorDao {
 		ActorVo actorVo3 = new ActorVo();
 		actorVo3.setFirstName("길동");
 		actorVo3.setLastName("홍");
-//		
+		
 		ActorVo actorVo4 = new ActorVo("사임당", "신");
-//		
-//		// insert테스트
-//		actorDao.addActor(actorVo3);
-//		actorDao.addActor(actorVo4);
+		
+		// insert테스트
+		actorDao.addActor(actorVo3);
+		actorDao.addActor(actorVo4);
 
 		ActorVo actorVoDb1 = actorDao.getActorByFirstName(actorVo3.getFirstName());
 		ActorVo actorVoDb2 = actorDao.getActorByFirstName(actorVo4.getFirstName());
 		
-		System.out.println("==================");
+		System.out.println("======== insert 결과 확인 ==========");
 		System.out.println(actorVoDb1.toString());
 		System.out.println(actorVoDb2);
 		
+		
+		System.out.println("======== delete 테스트 ==========");
+		actorDao.deleteActorByFirstName(actorVo3.getFirstName());
+		actorDao.deleteActorByFirstName(actorVo4.getFirstName());
 		// 하나만 선택한 셀렉트 실행
 //		ActorVo actorVo1 = actorDao.getActorById(203);
 //		System.out.println("actorVo1: " + actorVo1);
