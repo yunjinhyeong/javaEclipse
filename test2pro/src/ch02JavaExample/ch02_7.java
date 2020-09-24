@@ -1,3 +1,4 @@
+package ch02JavaExample;
 
 public class ch02_7 {
 

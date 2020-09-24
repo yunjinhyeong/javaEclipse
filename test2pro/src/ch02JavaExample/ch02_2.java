@@ -1,3 +1,4 @@
+package ch02JavaExample;
 
 public class ch02_2 {
 
@@ -12,7 +13,5 @@ public class ch02_2 {
 		System.out.println((int)2.9 + 1.8);
 		System.out.println((int)(2.9 + 1.8));
 		System.out.println((int)2.9 + (int)1.8);
-		
 	}
-
 }

@@ -1,4 +1,6 @@
-import java.util.*;
+package ch02JavaExample;
+
+import java.util.Scanner;
 
 public class ch02_10 {
 
