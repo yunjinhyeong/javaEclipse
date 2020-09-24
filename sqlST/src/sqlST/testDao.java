@@ -100,7 +100,7 @@ public class testDao {
 
 	// 특정id에 해당하는 회원 1명 가져오기
 	public testVo getMember(String id) {
-		testVo testvo = new testVo();
+		testVo testvo = null; // = new testVo(); 안해주고 null해주는건 null값이 들어올때도 있으니깐
 		PreparedStatement pstmt = null;
 		Connection con = null;
 		ResultSet rs = null;
@@ -111,7 +111,7 @@ public class testDao {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
-			while (rs.next()) {
+			if (rs.next()) { // 실무에선 while보단 if 어차피 왜냐면 한번만 실행되니깐
 				testvo = new testVo();
 				testvo.setId(rs.getString("id"));
 				testvo.setPasswd(rs.getString("passwd"));
@@ -157,7 +157,7 @@ public class testDao {
 	public void deleteMemberByID(String id) {
 		PreparedStatement pstmt = null;
 		Connection con = null;
-		String sql = "";
+		String sql = "";		
 		try {
 			con = getConnection();
 			sql = "delete from member where id = ?";
