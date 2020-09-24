@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class testDao {
-	String sql = "";
-	Connection con = null;
-	PreparedStatement pstmt = null;
-	ResultSet rs = null;
+	String sql;
+	Connection con;
+	PreparedStatement pstmt;
+	ResultSet rs;
 	
 	public Connection getConnection() throws Exception {
 		String dbUrl = "jdbc:mysql://localhost:3306/jspdb?useUnicode=true&characterEncoding=utf8&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Asia/Seoul";
@@ -20,7 +20,7 @@ public class testDao {
 	}
 	// 회원정보 1명 insert하기
 	public void insertMember(testVo testvo) {
-		try {
+		try { // alt + shift + z
 			con = getConnection();
 			sql = "insert into member (id, passwd, name, reg_date) values (?, ?, ?, now())";
 			pstmt = con.prepareStatement(sql);
