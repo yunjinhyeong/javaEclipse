@@ -3,7 +3,7 @@ package exam;
 import java.sql.*;
 
 
-public class exTest1 {
+public class DBDoitAgainSeleteTest {
 
 	public static void main(String[] args) {
 		// select¹®

@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 
-public class Ex5 {
+public class DBDeleteTest {
 
 	public static void main(String[] args) {
 		// DELETE¹®

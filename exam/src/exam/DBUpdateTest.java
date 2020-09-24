@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 
-public class Ex4 {
+public class DBUpdateTest {
 
 	public static void main(String[] args) {
 		// update¹®

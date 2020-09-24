@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
 
-public class Ex3 {
+public class DBSelectTest {
 
 	public static void main(String[] args) {
 		// select¹®

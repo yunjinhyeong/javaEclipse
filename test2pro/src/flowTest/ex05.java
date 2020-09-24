@@ -11,7 +11,7 @@ public class ex05 {
 		int a3 = sc.nextInt();
 		
 		if ( (a1+a2 < a3) || (a2+a2 < a1) || (a1+a3 < a2))
-			System.out.println("삼각형 안됩입니다");
+			System.out.println("삼각형 안됩니다");
 		else
 			System.out.println("삼각형");
 	

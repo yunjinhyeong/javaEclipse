@@ -29,8 +29,9 @@ public class testDao {
 			pstmt.setString(3, testvo.getName());
 			pstmt.executeUpdate();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			// try블록에서 만든 객체를 정리하는 작업을 주로 함
 		}
 	}
 	// 전체 회원목록 가져오기

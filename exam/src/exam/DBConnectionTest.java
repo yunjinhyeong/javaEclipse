@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 // DB연결_테스트
-public class Ex1 {
+public class DBConnectionTest {
 
 	public static void main(String[] args) {
 		System.out.println("===프로그램 시작===");
