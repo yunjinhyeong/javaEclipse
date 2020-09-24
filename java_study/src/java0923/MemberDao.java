@@ -1,202 +1,276 @@
 package java0923;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import java0921.ActorVo;
-
 public class MemberDao {
-	// 중복부분 호출한 놈에게 토스하기
-	public Connection getConnection() throws Exception {
-		// DB정보
+	
+	private Connection getConnection() throws Exception {
+		// DB접속정보
 		String dbUrl = "jdbc:mysql://localhost:3306/jspdb?useUnicode=true&characterEncoding=utf8&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Asia/Seoul";
 		String dbId = "myid";
 		String dbPwd = "mypwd";
-		// 셋팅
+		
 		Connection con = null;
+		
 		// 1단계. DB드라이버 클래스 로딩
 		Class.forName("com.mysql.cj.jdbc.Driver");
-		// 2단계. DB에 연결 시도. 연결 후 Connection객체를 리턴함.
+		// 2단계. DB에 연결 시도. 연결후 Connection객체를 리턴함.
 		con = DriverManager.getConnection(dbUrl, dbId, dbPwd);
 		return con;
+	} // getConnection()
+	
+	private void close(Connection con, PreparedStatement pstmt) {
+		close(con, pstmt, null);
 	}
-
-	// 전체 회원목록 가져오기
-	public List<MemberVo> getMember() {
-		List<MemberVo> list = new ArrayList<>();
-		Connection con=null;
-		PreparedStatement pstmt=null;
-		String sql=null;
-		ResultSet rs = null;
-		
+	
+	private void close(Connection con, PreparedStatement pstmt, ResultSet rs) {
 		try {
-			con = getConnection();
-			sql = "SELECT * FROM member";
-			pstmt = con.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				MemberVo memberVo = new MemberVo();
-				memberVo.setId(rs.getInt("id"));
-				memberVo.setPasswd(rs.getString("passwd"));
-				memberVo.setName(rs.getString("name"));
-				memberVo.setReg_date(rs.getTimestamp("reg_date"));
-			
-				list.add(memberVo);
+			if (rs != null) {
+				rs.close();
 			}
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		return list;
-	}
+		try {
+			if (pstmt != null) {
+				pstmt.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		try {
+			if (con != null) {
+				con.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	} // close()
+	
 
-	// 특정id에 해당하는 회원 1명 가져오기
-	public MemberVo getMemberById(int memberId) {
-		MemberVo memberVo = null;
+	// 회원정보 1명 insert하기
+	public void addMember(MemberVo memberVo) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		String sql = "";
-		ResultSet rs = null;
 		
 		try {
 			con = getConnection();
+			
+			String sql = "";
+			sql += "INSERT INTO member (id, passwd, name, reg_date) ";
+			sql += "VALUES (?, ?, ?, now()) ";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, memberVo.getId());
+			pstmt.setString(2, memberVo.getPasswd());
+			pstmt.setString(3, memberVo.getName());
+			
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			// 예외 발생여부에 관계없이 무조건 정리작업 수행함.
+			// try블록에서 만든 객체를 정리하는 작업을 주로 함
+			close(con, pstmt);
+		}
+	} // addMember()
+	
+	
+	// 전체 회원목록 가져오기
+	public List<MemberVo> getAllMembers() {
+		List<MemberVo> list = new ArrayList<>();
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "";
+		
+		try {
+			con = getConnection();
+			
+			sql = "SELECT * FROM member ORDER BY id";
+			pstmt = con.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				MemberVo memberVo = new MemberVo();
+				memberVo.setId(rs.getString("id"));
+				memberVo.setPasswd(rs.getString("passwd"));
+				memberVo.setName(rs.getString("name"));
+				memberVo.setRegDate(rs.getTimestamp("reg_date"));
+				
+				list.add(memberVo);
+			} // while
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(con, pstmt, rs);
+		}
+		return list;
+	} // getAllMembers()
+	
+	
+	// 특정id에 해당하는 회원 1명 가져오기
+	public MemberVo getMemberById(String id) {
+		MemberVo memberVo = null;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "";
+		
+		try {
+			con = getConnection();
+			
 			sql = "SELECT * FROM member WHERE id = ?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, memberId);
+			pstmt.setString(1, id);
+			
 			rs = pstmt.executeQuery();
 			
 			if (rs.next()) {
 				memberVo = new MemberVo();
-				memberVo.setId(rs.getInt("id"));
+				memberVo.setId(rs.getString("id"));
 				memberVo.setPasswd(rs.getString("passwd"));
 				memberVo.setName(rs.getString("name"));
-				memberVo.setReg_date(rs.getTimestamp("reg_date"));
-			}
-			
+				memberVo.setRegDate(rs.getTimestamp("reg_date"));
+			} // if
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			close(con, pstmt, rs);
 		}
 		return memberVo;
-	}
-
-	// 회원정보 1명 insert 하기
-	public int addMember(MemberVo memberVo) {
-		int count = 0;
-		Connection con = null;
-		PreparedStatement pstmt = null;		
-		String sql="";
-		
-		try {
-			con = getConnection();
-			sql = "INSERT INTO member (id, passwd, name, reg_date) VALUES (?, ?, ?, now())";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, memberVo.getId());
-			pstmt.setString(2, memberVo.getPasswd());
-			pstmt.setString(3, memberVo.getName());
-			count = pstmt.executeUpdate();
-			System.out.println(count + "개 행 추가 됨");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return count;
-	}
+	} // getMemberById()
 	
-
 	// 특정id에 해당하는 회원의 이름 수정하기
-	public void updateByName(MemberVo memberVo) {
+	public void update(MemberVo memberVo) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		String sql = "";
 		
 		try {
 			con = getConnection();
-			sql = "UPDATE member SET name = ? WHERE id = ?";
+			
+			String sql = "";
+			sql += "UPDATE member ";
+			sql += "SET name = ? ";
+			sql += "WHERE id = ? ";
+			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, memberVo.getName());
-			pstmt.setInt(2, memberVo.getId());
+			pstmt.setString(2, memberVo.getId());
+			
 			pstmt.executeUpdate();
+			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			// 예외 발생여부에 관계없이 무조건 정리작업 수행함.
+			// try블록에서 만든 객체를 정리하는 작업을 주로 함
+			close(con, pstmt);
 		}
-	}
-
+	} // addMember()
+	
 	// 특정id에 해당하는 회원 1명 삭제하기
-	public int deleteMemberById(int id) {
-		int count = 0;
+	public void deleteById(String id) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		String sql = "";
 		
 		try {
 			con = getConnection();
-			sql = "DELETE FROM member WHERE id = ?";
+			
+			String sql = "";
+			sql += "DELETE FROM member WHERE id = ? ";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, id);
-			count = pstmt.executeUpdate();
-			System.out.println(count + "개 행이 삭제됨.");
+			pstmt.setString(1, id);
+			
+			pstmt.executeUpdate();
+			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			close(con, pstmt);
 		}
-		return count;
-	}
-
+	} // deleteById()
+	
+	
 	// 모든 회원 삭제하기
-	public int deleteMemberAll() {
-		int count = 0;
+	public void deleteAll() {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		String sql = "";
+		
 		try {
 			con = getConnection();
-			sql = "DELETE FROM member";
+			
+			String sql = "";
+			sql += "DELETE FROM member ";
 			pstmt = con.prepareStatement(sql);
-			count = pstmt.executeUpdate();
-			System.out.println("모든 맴버 삭제됨");
+			
+			pstmt.executeUpdate();
+			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			close(con, pstmt);
 		}
-		return count;
-	}
-
+	} // deleteAll()
+	
+	
 	public static void main(String[] args) {
-		System.out.println("============== 전체 회원목록 가져오기 출력 =============");
+		
+		// MemberDao 객체 준비
 		MemberDao memberDao = new MemberDao();
-		List<MemberVo> list = memberDao.getMember();
-		for(MemberVo member : list) {
-			System.out.println(member.toString());
+		
+		memberDao.deleteAll();
+		
+		System.out.println("======== insert 테스트 =========");
+		
+		for (int i=0; i<5; i++) {
+			MemberVo memberVo = new MemberVo("aaa"+i, "1234", "홍길동"+i);
+			memberDao.addMember(memberVo);
 		}
-		System.out.println("맴버의 수 : " + list.size());
 		
-		System.out.println("============== 회원정보 1명 insert 하기 =============");
-		//샘플데이터
-		MemberVo sampleMan = new MemberVo(3,"qet","qet");		
-		//insert 테스트
-		memberDao.addMember(sampleMan);
-		System.out.println(sampleMan);
+		List<MemberVo> list = memberDao.getAllMembers();
+		for (MemberVo memberVo : list) {
+			System.out.println(memberVo);
+		}
 		
-		System.out.println("============== 특정id에 해당하는 회원 1명 가져오기 =============");
+		System.out.println("======== getMemberById 테스트 =========");
 		
-		MemberVo memberVo1 = memberDao.getMemberById(sampleMan.getId());
-		System.out.println("member id : "+ memberVo1);
+		MemberVo memberVo = memberDao.getMemberById("aaa0");
+		System.out.println(memberVo);
 		
-		System.out.println("============== 특정id에 해당하는 회원의 이름 수정하기 =============");
-		sampleMan.setName("길동");
-		memberDao.updateByName(sampleMan);
-		System.out.println(sampleMan);
+		System.out.println("======== update 테스트 =========");
 		
-		System.out.println("============== 특정id에 해당하는 회원 1명 삭제하기 =============");
-		memberDao.deleteMemberById(sampleMan.getId());
+		memberVo.setName("이순신"); // 수정될 이름값 설정
+		memberDao.update(memberVo);
+		
+		MemberVo getMemberVo = memberDao.getMemberById("aaa0");
+		System.out.println(getMemberVo);
+		
+		System.out.println("======== deleteById 테스트 =========");
+		
+//		memberDao.deleteById("aaa0");
+//		
+//		MemberVo getMemberVo2 = memberDao.getMemberById("aaa0");
+//		System.out.println(getMemberVo2);
+		
+	} // main
 	
-		System.out.println("============== 모든 회원 삭제하기 =============");
-		memberDao.deleteMemberAll();
-
-	
-	}
-
 }
+
+
+
+
+
+
