@@ -105,7 +105,6 @@ public class MemberManager extends JFrame {
 			tfId.setText("");
 			showAllMembers();
 		});
-
 		// 인터페이스가 가지는 추상메소드가 1개일 경우
 		// 람다식으로 축약해서 표현이 가능함.
 		btnAdd.addActionListener((event) -> {
@@ -115,7 +114,7 @@ public class MemberManager extends JFrame {
 			String name = tfName.getText().trim();
 
 			if (id.length() == 0 || passwd.length() == 0 || name.length() == 0) {
-				JOptionPane.showMessageDialog(MemberManager.this, "필수사항을 입력하세요."); // MemberManager한거랑 안한거
+				JOptionPane.showMessageDialog(MemberManager.this, "필수사항을 입력하세요.");
 				return;
 			}
 
