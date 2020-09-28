@@ -8,12 +8,12 @@
 </head>
 <body>
 	<!-- http://localhost:80/jsp_study/jsp1/examForm1.jsp -->
-	<h1>examForm1.jsp 페이지</h1>
+	<h1>examForm2.jsp 페이지</h1>
 	<hr>
 	<!-- action="examProcess.jsp"은 examProcess.jsp요청한다라는 듯  -->
-	<form action="examProcess.jsp" method="get"><!-- method의 post는 값이 안보이게 함 get은 보임 -->
-		숫자를 입력:
-		<input type="number" name="num" min="0" max="100"><!-- name은 key다 -->
+	<form action="examProcess2.jsp" method="post"><!-- method의 post는 값이 안보이게 함 get은 보임 -->
+		이름 : <input type="text" name="name"><br><!-- name은 key다 -->
+		나이 : <input type="number" name="age" min="0" max="150"><br>
 		<input type="submit" value="전송">
 	</form>
 </body>
