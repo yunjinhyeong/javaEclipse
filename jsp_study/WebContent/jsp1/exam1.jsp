@@ -8,7 +8,6 @@
 	WAS 웹어플리케이션 서버 = 와스 = 웹 컨테이너
 */
 String str = "문자열";
-
 Date date = new Date();
 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd a hh:mm:ss");
 String strDate = sdf.format(date);
