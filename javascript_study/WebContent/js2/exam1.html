@@ -10,17 +10,36 @@
 	}
 
 	#btn2 {
-		background-color: fuchsia;
+		background-color: teal;
 	}
 </style>
 
 <body>
 
 	<input id="btn1" type="button" value="버튼" onclick="alert('우아아앙')" name="">
-	
+	<br>
 	<input id="btn2" type="button" value="버튼2">
-
+	<br>
+	<input id="btn3" type="button" value="버튼3">
+	<br>
+	<input id="btn4" type="button" value="버튼4">
+	<br>
+	<input type="button" value="버튼5" id="btn5">
+	<br>
+	<input type="text" name="na" onchange="func1();">
+	<br>
+	<input type="text" name="na2" onkeyup="func2();">
+	
 <script>
+	function func1() {
+		alert('입력값이 변경 됐을때');
+	}
+	function func2() {
+		alert('키 눌렀다 땠을때');
+	}
+	
+
+
 	// GUI(Graphic User Interface) : 그래픽기반 유저 인터페이스
 	// 이벤트 : 사용자 또는 프로그램 자체적으로 발생시키는 사건.
 	//				발생하면 특정 대상에 신호를 줌.
@@ -29,11 +48,36 @@
 	// 이벤트 소스 : 이벤트가 발생된 대상 (버튼 등)
 	//						이벤트 핸들러를 등록하는 대상이 된다.
 	// document는 브라우저가 로딩한 문서정보를 가진 문서객체이다.
-	var btn2 = document.getElementById('btn2');
-	console.log(typeof btn2);
 	
+	// 이벤트 종류
+	// click  dblclick
+	// mousedown  mouseup  mouseover(들어오면)  mouseout(나가면)  mousemove(영역위에서 계속 움직일때)  dragndrop(드래그하는동안)
+	// keydown keypress keyup
+	// focus blur select change
+	
+	function funcDblclick() {
+		alert('btn3 더블클릭');
+	}
+	
+	var valueDblclick = function() {
+		alert('btn3 더블클릭');
+	}
+	
+	var btn2 = document.getElementById('btn2');
+	console.log(typeof btn2);	
 	btn2.addEventListener('click', () => {
-		alert('메시지');
+		alert('btn2 클릭');
+	});
+	
+// 	var btn3 = document.querySelector('#btn3');
+	btn3.addEventListener('dblclick', valueDblclick); // funcDblclick() 이거는 호출하는거임
+	
+// 	var btn4 = document.querySelector('#btn4');
+// 	btn4.addEventListener('dblclick', funcDblclick); 
+	
+// 	var btn4 = document.querySelector('#btn4');
+	btn4.addEventListener('dblclick', () => {
+		alert('btn4 더블클릭');
 	});
 </script>
 </body>
