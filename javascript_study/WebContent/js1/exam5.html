@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	
+
+<script>
+	/* 함수: 자주쓰는 실행문들을 기능단위로 정의한것.
+					필요할때 함수 이름을 호출해서 사용함.
+					
+		자바스크립트에서 함수정의는 브라우저에 의해
+		최우선적으로 메모리에 로딩된다.
+	*/
+	function star() {
+		console.log(`*****************`);
+	} // 문법상 ()안에 자료형 안써야됨
+	
+	function printNum(num){
+		console.log(num);
+	}
+	function getStar() {
+		return '*별*';
+	}
+	function sum(a, b) {
+		return a+b;
+	}
+	star();
+	printNum(10);
+	let str = getStar();
+	console.log(str);
+	let result = sum(1,2);
+	console.log(result);
+</script>
+</body>
+</html>
