@@ -7,7 +7,7 @@
 <body>
 <div id="app">
 	<form action="a.jsp" method="post" name="frm">
-		아이디: <input type="text" name="id"><br>
+		아이디: <input type="text" name="id" ><br>
 		패스워드: <input type="password" name="passwd"><br>
 		주민번호: <input type="text" name="jumin1" onkeyup="ju1()">
 				 - <input type="text" name="jumin1" onkeyup="ju2()"><br>
@@ -53,15 +53,24 @@
 		}
 	}
 	function ju1() {
-		var jumin1 = frm.jumin1.value;
-		// jumin1의 value값의 길이가 6자면 포커스를 jumin2로 입력
-		if(jumin1.lengh == 6){
+// 		var jum1 = frm.jumin1.value;
+// 		// jumin1의 value값의 길이가 6자면 포커스를 jumin2로 입력
+// 		if(6 == jum1.length){
+// 			frm.jumin2.focus();
+// 			return;
+// 		}
+		if(frm.jumin1.value.length == 6){
 			frm.jumin2.focus();
 			return;
 		}
 	}
 	function ju2() {
+		var jum2 = frm.jumin2.value;
 		// jumin2의 value값 길이가 7자면 name속성이 ta로 포커스 이동
+		if(7==jum2.length){
+			frm.ta.focus();
+			return;
+		}
 	}
 </script>
 </body>
