@@ -3,6 +3,10 @@
 
 [자바 MySQL 연동](https://github.com/yunjinhyeong/javaEclipse/tree/master/java_study/src/java0923)
 
+[javascript 공부](https://github.com/yunjinhyeong/javaEclipse/tree/master/javascript_study)
+
+[jsp 공부](https://github.com/yunjinhyeong/javaEclipse/tree/master/jsp_study)
+
 
 ## MySQL 설정
 #### C:\ProgramData\MySQL\MySQL Server 5.7\my.ini에서

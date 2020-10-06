@@ -1,1 +1,1 @@
-# 제목6
+# javascript 공부
