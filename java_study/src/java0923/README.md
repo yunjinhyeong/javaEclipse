@@ -1,1 +1,1 @@
-# 자바 MySQL 연동
+# MemberManager.java
