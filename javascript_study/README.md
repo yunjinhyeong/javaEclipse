@@ -71,3 +71,45 @@ $('div').text('<h1>text method</h1>');
 $('div').html('<h2>html method</h2>');
 ```
 ![uninnerh1](img/uninnerh1.png)
+#### * 모든 div 불러오는데 #app 빼고
+```
+$('div').not('#app').text('<h2>text method</h2>');
+```
+![exceptIdname](img/exceptIdname.png)
+#### html 또는 text (index, oldHtml)
+```
+$('h1').html((index, oldHtml) => {
+	return index + oldHtml + '★';
+});
+```
+![indexoldhtml](img/indexoldhtml.png)
+#### setInterval 함수 사용
+```
+let intervalId;
+$('#btnStart').on('click', function () {
+	// setInterval(함수정의, 밀리초)  1초 = 1000밀리초
+	intervalId = setInterval(function () {
+ 		// $('div#app > img:first').appendTo('div#app');
+		$('div#app > img').first().appendTo('div#app');
+	}, 500);
+	// 시작버튼이 this가 됨
+	$(this).prop('disabled', true);
+	$('#btnStop').prop('disabled', false);
+});
+	
+$('#btnStop').on('click', function () {
+	clearInterval(intervalId);
+	// 중지버튼이 this가 됨
+	$(this).prop('disabled', true);
+	$('#btnStart').prop('disabled', false);
+});
+```
+![setInterval](img/setInterval.png)
+#### mouseover 함수 사용
+#### 마우스가 올라갈때마다 ★이 생긴다. 
+```
+$('h1').not('div#app').on('mouseover', function () {
+	$(this).append('★');
+});
+```
+![mouseover](img/mouseover.png)

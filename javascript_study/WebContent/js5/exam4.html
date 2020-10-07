@@ -20,15 +20,33 @@
 <script src="../js/jquery-3.5.1.js"></script>
 <script>
 	$('#btn').on('click', () => {
-		// text() html()는 예를들어 <h1>가나</h1> 가 있다면 가나 를 가져옴
-		let str = $('h1').text();
-		console.log('text() : ' + str);
+		// text()   html()
 		
-		str = $('h1').html();
-		console.log('html() : ' + str);
+// 		let str = $('h1').text();
+// 		console.log('text() : ' + str);
+		
+// 		str = $('h1').html();
+// 		console.log('html() : ' + str);
+		
 		
 // 		$('div').text('<h1>text method</h1>'); // <h1></h1>까지 내용 들어가짐
-		$('div').html('<h2>html method</h2>'); // <h1></h1>은 빼고 내용 들어가짐
+// 		$('div').not('#app').html('<h2>html method</h2>'); // <h1></h1>은 빼고 내용 들어가짐
+		
+// 		$('div').not('#app').text('<h2>text method</h2>');
+// 		$('div').not('#app').html('<h2>html method</h2>');
+		
+// 		$('div').not('#app').html((index) => {
+// 			return '<h2>html method - ' + index + '</h2>';
+// 		});
+		
+// 		$('h1').html((index, oldHtml) => {
+// 			return '<h2>html method - ' + index +" !! "+ oldHtml + '</h2>';
+// 		});
+
+
+		$('h1').html((index, oldHtml) => {
+			return index + oldHtml + '★';
+		});
 		
 	});
 </script>

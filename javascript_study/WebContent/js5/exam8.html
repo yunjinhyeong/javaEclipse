@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+
+</style>
+</head>
+<body>
+
+<div id="app">
+	<h1>100</h1>
+	<textarea rows="5" cols="70"></textarea>
+</div>
+<script src="../js/jquery-3.5.1.js"></script>
+<script>
+	// 키보드 이벤트 종류
+	// keydown keypress keyup
+	$('textarea').on('input', function () {
+		let str = $(this).val().trim();
+		console.log(str);
+		
+// 		let remainLength = 100 - str.length;
+// 		$('h1').text(remainLength);
+		
+		if(remainLength >= 0){
+			$('h1').css('color','blue');
+		} else {
+			$('h1').css('color','red');
+		}
+		
+// 		if(remainLength <= 0){
+			
+// 		}
+		
+	}); // bind
+</script>
+</body>
+</html>
+
+
+
+
