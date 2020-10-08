@@ -1,6 +1,5 @@
 package java0922;
 
-
 abstract class Animal /* extends Object */ {
 	// 멤버변수(필드)
 	int age;
@@ -18,6 +17,7 @@ abstract class Animal /* extends Object */ {
 interface Robot {
 	
 	void guardAndRecord(); // 집지키고 녹화하기 추상메소드
+	
 }
 
 
@@ -142,7 +142,7 @@ public class Ex1 {
 		Vet vet = new Vet();
 		Puppy poodle = new Puppy();
 		
-		vet.giveShot(poodle);
+		vet.giveShot(poodle); //3살 암컷 강아지가 멍멍 짖는다
 		
 		Cat cat = new Cat();
 		vet.giveShot(cat);
@@ -150,11 +150,11 @@ public class Ex1 {
 		Duck duck = new Duck();
 		vet.giveShot(duck);
 		
-		///////
-		
+		// Robot 클래스에꺼만 사용가능
 		Robot puppyRobot = new Puppy();
 		puppyRobot.guardAndRecord();
-		
+	
+		System.out.println("//////////////////////");
 		Animal ani = (Animal) puppyRobot;
 		ani.speak();
 		
