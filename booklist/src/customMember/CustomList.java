@@ -30,8 +30,7 @@ public class CustomList {
 		custom = new Custom[5];
 		for ( int i=0 ; i<custom.length ; i++ ) {
 			custom[i] = new Custom();
-		}
-			
+		}			
 	}
 	
 	public void selectManagerList() {

@@ -6,13 +6,6 @@ public class Custom {
 	private String address;
 	private String phone;
 	
-	public Custom(int custid, String name, String address, String phone) {
-		this.custid = custid;
-		this.name = name;
-		this.address = address;
-		this.phone = phone;
-	}
-	
 	public Custom() {
 		// TODO Auto-generated constructor stub
 	}
