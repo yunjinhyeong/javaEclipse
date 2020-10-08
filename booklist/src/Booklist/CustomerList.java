@@ -1,6 +1,5 @@
 package Booklist;
 
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -18,7 +17,7 @@ public class CustomerList
 	public void getCon() 
 	{
 		//url은 연결 문자열이다! 
-		String url = "jdbc:oracle:thin:@10.100.103.3:1521:xe";
+		String url = "jdbc:oracle:thin:@localhost:1521/xe";
 		String userid = "madang"; // c##추가
 		String pwd = "madang"; // c##추가
 

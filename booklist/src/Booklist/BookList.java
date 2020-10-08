@@ -9,23 +9,25 @@ import java.sql.Statement;
 
 public class BookList 
 {
-	//0.멤버변수를 만들껀데... 종류가 4종류가 있다
-	//①변수
-	int bookid;
-	String bookname;
-	String publisher;
-	int price;
+//	//0.멤버변수를 만들껀데... 종류가 4종류가 있다
+//	//①변수
+//	int bookid;
+//	String bookname;
+//	String publisher;
+//	int price;
 	
-	//②배열
-	int bookid_arr[];
-	String bookname_arr[];
-	String publisher_arr[];
-	int price_arr[];
-	
-	//③객체
-	Book book1;
+//	//②배열
+//	int bookid_arr[];
+//	String bookname_arr[];
+//	String publisher_arr[];
+//	int price_arr[];
+//	
+//	//③객체
+//	Book book1;
 	
 	//④객체배열
+//	Book book1_arr[] = new Book[10];
+	Book book1_arr[];
 	
 	//1.멤버변수
 	Connection con=null; // 멤버변수
@@ -36,14 +38,21 @@ public class BookList
 	public BookList()
 	{
 		//2번 배열용 초기화
-		bookid_arr = new int[10];
-		bookname_arr = new String[10];
-		publisher_arr = new String[10];
-		price_arr = new int[10];
+//		bookid_arr = new int[10];
+//		bookname_arr = new String[10];
+//		publisher_arr = new String[10];
+//		price_arr = new int[10];
+//		
+//		//3번 객체용 초기화 cf)객체생성을 메소드(selectBookList)에서
+//		book1 = new Book();//1]일반적인 방법
 		
-		//3번 객체용 초기화
-		book1 = new Book();
+		//4번 객체배열용 초기화
+		book1_arr = new Book[10];
 		
+		for(int i=0; i<book1_arr.length; ++i)
+		{
+			book1_arr[i] = new Book();
+		}
 		
 	}
 
@@ -51,7 +60,7 @@ public class BookList
 	public void getCon() 
 	{
 		//url은 연결 문자열이다! 
-		String url = "jdbc:oracle:thin:@10.100.103.3:1521:xe";
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String userid = "madang"; // c##추가
 		String pwd = "madang"; // c##추가
 
@@ -117,13 +126,28 @@ public class BookList
 //				index++;
 				
 				//③객체
-				book1.bookid = rs.getInt(1);
-				book1.bookname = rs.getString(2);
-				book1.publisher = rs.getString(3);
-				book1.price = rs.getInt(4); 
+//				book1.bookid = rs.getInt(1);
+//				book1.bookname = rs.getString(2);
+//				book1.publisher = rs.getString(3);
+//				book1.price = rs.getInt(4); 
 				
+				//메소드를 통한 값 배정(초기화)
+//				book1.setBookid(rs.getInt(1));
+//				book1.setBookname(rs.getString(2));
+//				book1.setPublisher(rs.getString(3));
+//				book1.setPrice(rs.getInt(4));
 				
-
+//				book1 = new Book(rs.getInt(1),
+//								 rs.getString(2),
+//								 rs.getString(3),
+//								 rs.getInt(4));
+				
+				//④객체배열
+				book1_arr[index].setBookid(rs.getInt(1));
+				book1_arr[index].setBookname(rs.getString(2));
+				book1_arr[index].setPublisher(rs.getString(3));
+				book1_arr[index].setPrice(rs.getInt(4));
+				index++;
 			}
 			
 //			con.close();//db연결을 닫음!
@@ -134,29 +158,29 @@ public class BookList
 	}
 	
 	//3.메소드 - 화면 출력 메소드 1번 <변수>용
-	public void printBook()
-	{
-		System.out.println(bookid + "\t" 
-				 + bookname + "\t"
-				 + publisher + "\t"
-				 + price + "\t"
-				 );
-	}
+//	public void printBook()
+//	{
+//		System.out.println(bookid + "\t" 
+//				 + bookname + "\t"
+//				 + publisher + "\t"
+//				 + price + "\t"
+//				 );
+//	}
 
-	//3.메소드 - 화면 출력 메소드 2번 <배열>용
-	public void printBook_arr()
-	{
-		for(int i=0; i<bookid_arr.length; ++i)
-		{
-			System.out.println(bookid_arr[i] + "\t" 
-					 + bookname_arr[i] + "\t"
-					 + publisher_arr[i] + "\t"
-					 + price_arr[i] + "\t"
-					 );
-		}
-	}
+//	//3.메소드 - 화면 출력 메소드 2번 <배열>용
+//	public void printBook_arr()
+//	{
+//		for(int i=0; i<bookid_arr.length; ++i)
+//		{
+//			System.out.println(bookid_arr[i] + "\t" 
+//					 + bookname_arr[i] + "\t"
+//					 + publisher_arr[i] + "\t"
+//					 + price_arr[i] + "\t"
+//					 );
+//		}
+//	}
 	
-//	//3.메소드 - 화면 출력 메소드 3번 <객체>용 -> Book 클래스 안으로 옮긴다
+	//3.메소드 - 화면 출력 메소드 3번 <객체>용 -> Book 클래스 안으로 옮긴다
 //		public void printBook_object()
 //		{
 //			System.out.println(book1.bookid + "\t" 
