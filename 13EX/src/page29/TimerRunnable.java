@@ -16,7 +16,7 @@ public class TimerRunnable implements Runnable {
 			timerLabel.setText(Integer.toString(n));
 			n++;
 			try {
-				Thread.sleep(100); // 1초 동안 잠을 잔다.
+				Thread.sleep(1000); // 1초 동안 잠을 잔다.
 			} catch(InterruptedException e) {
 				return; // 예외가 발생하면 스레드 종료
 			}
