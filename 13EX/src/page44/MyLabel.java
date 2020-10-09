@@ -15,7 +15,7 @@ public class MyLabel extends JLabel {
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		g.setColor(Color.MAGENTA); // 색 소문자로해봐
+		g.setColor(Color.magenta);
 		int width = (int)(((double)(this.getWidth()))
 				/maxBarSize*barSize);
 		if(width==0) return;
@@ -25,22 +25,22 @@ public class MyLabel extends JLabel {
 	synchronized void fill() {
 		if(barSize == maxBarSize) {
 			try {
-				wait();
+				wait(); // 스레드를 재운다
 			} catch(InterruptedException e) {return;}
 		}
 		barSize++;
 		repaint(); // 바 다시 그리기
-		notify();
+		notify(); // 스레드를 깨운다
 	}
 	synchronized void consume() {
 		if(barSize==0) {
 			try {
-				wait();
+				wait(); // 스레드를 재운다
 			} catch (InterruptedException e) {return;}
 		}
 		barSize--;
 		repaint(); // 바 다시 그리기
-		notify();
+		notify(); // 스레드를 깨운다
 	}
 }
 
