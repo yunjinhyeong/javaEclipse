@@ -30,7 +30,7 @@
 		// setInterval(함수정의, 밀리초)  1초 = 1000밀리초
 		intervalId = setInterval(function () {
 // 			$('div#app > img:first').appendTo('div#app');
-			$('div#app > img').first().appendTo('div#app');
+			$('div#app > img').first().append('div#app');
 		}, 500);
 		// 시작버튼이 this가 됨
 		$(this).prop('disabled', true);

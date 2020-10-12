@@ -113,3 +113,52 @@ $('h1').not('div#app').on('mouseover', function () {
 });
 ```
 ![mouseover](img/mouseover.png)
+#### exam9
+```
+<script>
+	// a  클릭   css()   background-color  blue
+	$('a').on('click', function (e) {	// 선택한 h1을 중복쓰지말고 this로 선택 jQuery에서 JS는 event target으로 해야됨
+		$(this).css('background-color','blue');
+		
+		// 현재 태그요소의 기본기능 막기(a태그는 하이퍼링크 기능 막기)
+		e.preventDefault();
+		// 이벤트 전파 막기 (태그가 포함관계로 겹쳐있을 경우)
+		e.stopPropagation();
+		return false; // 기본기능과 이벤트전파 모두 막기
+	});
+	// h1 클릭   css()   background-color  red
+	$('h1').on('click', function () {	// 선택한 h1을 중복쓰지말고 this로 선택 jQuery에서 JS는 event target으로 해야됨
+		$(this).css('background-color','red');
+	});
+</script>
+```
+![exam9](img/exam9.png)
+#### exam10 mouseover, mouseout
+![unhover](img/unhover.png)
+![hover](img/hover.png)
+```
+<script>
+	// 1번 방법 : 대상.mouseover(함수정의).mouseout(함수정의);
+	$('img.img1').mouseover(function () {
+		$(this).attr('src', '../imgs/2.jpg');
+	}).mouseout(function () {
+		$(this).attr('src', '../imgs/1.jpg');
+	});
+
+	// 2번 방법 : 대상.on({});
+	$('img.img1').on({
+		mouseover: function () {
+			$(this).attr('src', '../imgs/2.jpg');
+		},
+		mouseout: function () {
+			$(this).attr('src', '../imgs/1.jpg');
+		}
+	});
+</script>
+<style>
+/* 방법 3 */
+img.img1:hover {
+	content: url("../imgs/2.jpg");
+}
+</style>
+```
