@@ -1,6 +1,6 @@
 # jQuery
 ### jQuery적용하기
-- 이미지처럼 넣기(jQuery홈페이지에서 다운로드)
+- 이미지처럼 넣기(jQuery홈페이지에서 다운로드)<br>
 ![jQuery적용하기](img/addjQuery.png)
 - 코드 넣기
 ```
