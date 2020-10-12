@@ -1,5 +1,5 @@
-# member
-#### joinForm
+# JSP를 활용하여 회원정보값 입력받아 오기
+#### (1) [joinForm 코드](https://github.com/yunjinhyeong/javaEclipse/blob/master/jsp_study/WebContent/member/joinForm.jsp)
 ```
 <body>
 	<h1>회원가입</h1>
@@ -17,8 +17,8 @@
 </body>
 ```
 ![joinForm](imgs/joinForm.png)
-#### joinForm정보를 joinProjess로 받아들이기
-- 맨 윗부분에 <%@page import="com.exam.vo.MemberVo"%> import먼저해준다.
+#### (2) [joinProjess 코드(joinForm정보를 joinProjess로 받아들이기)](https://github.com/yunjinhyeong/javaEclipse/blob/master/jsp_study/WebContent/member/joinProcess.jsp)
+- 맨 윗부분에 Dao, Vo사용을 위해 <%@page import="com.exam.vo.MemberVo"%> 와 <%@page import="com.exam.dao.MemberDao"%> 을 import먼저해준다.
 - RegDate를 사용하기 위해 이어서 <%@page import="java.sql.Timestamp"%>도 import해준다.
 ```
 <%
@@ -38,5 +38,28 @@ memberVo.setEmail(request.getParameter("email"));
 
 //회원가입(날짜시간) 정보 설정
 memberVo.setRegDate(new Timestamp(System.currentTimeMillis()));
+
+//DAO 객체 준비
+MemberDao memberDao = new MemberDao();
+
+//회원가입 처리 수행
+memberDao.addMember(memberVo);
 %>
 ```
+#### * 위 코드에서 html관련 코드만 다 지우고 아래 script만 넣어 실행
+```
+<script>
+	alert('회원가입 성공!');
+	location.href = 'loginForm.jsp';
+</script>
+```
+> loginForm.jsp으로 이동해 새로고침해도 안전하다.
+![joinLogin](imgs/joinLogin.png)
+
+#### (3) joinForm에 정보입력 후 joinProjess로 잘 받아들여지는지 workbench로 확인하기
+- joinForm에 정보입력<br>
+![insertJoinForm](imgs/insertJoinForm.png)
+- joinProjess 입력결과<br>
+![insertResult](imgs/insertResult.png)
+- workbench로 확인<br>
+![workbenchResult](imgs/workbenchResult.png)

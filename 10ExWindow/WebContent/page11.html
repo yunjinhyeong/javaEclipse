@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	function load(URL) {
+		newWin = window.open(URL, "myWin", "left=300,top=300,width=400,height=300");
+	}
+	function closeWindow() {
+		if(newWin==null || newWin.closed) // 윈도우가 열리지 않았거나 닫힌 경우
+			return; // 윈도우가 없는 경우 그냥 리턴
+		else
+			newWin.close(); // 열어 놓은 윈도우 닫기
+	}
+</script>
+</head>
+<body>
+<h3>window의 close()로 윈도우 닫기</h3>
+<hr>
+	<a href="javascript:load('http://www.graceland.com')">
+			새 엘리스 프로슬리 홈 페이지</a>	<br>
+	<a href="javascript:window.close()">
+			현재 윈도우 닫기</a>	<br>
+	<a href="javascript:closeNewWindow()">
+			새 윈도우 닫기</a>	<br>
+</body>
+</html>

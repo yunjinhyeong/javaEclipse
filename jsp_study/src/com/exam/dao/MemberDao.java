@@ -85,7 +85,7 @@ public class MemberDao {
 
 			String sql = "";
 			sql += "INSERT INTO member (id, passwd, name, age, gender, email, reg_date) ";
-			sql += "VALUES (?, ?, ?, ?, ?, ?, now()) ";
+			sql += "VALUES (?, ?, ?, ?, ?, ?, ?) ";
 
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, memberVo.getId());
@@ -94,6 +94,7 @@ public class MemberDao {
 			pstmt.setInt(4, memberVo.getAge());
 			pstmt.setString(5, memberVo.getGender());
 			pstmt.setString(6, memberVo.getEmail());
+			pstmt.setTimestamp(7, memberVo.getRegDate());
 
 			pstmt.executeUpdate();
 
