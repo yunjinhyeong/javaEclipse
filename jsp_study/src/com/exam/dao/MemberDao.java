@@ -84,13 +84,16 @@ public class MemberDao {
 			con = getConnection();
 
 			String sql = "";
-			sql += "INSERT INTO member (id, passwd, name, reg_date) ";
-			sql += "VALUES (?, ?, ?, now()) ";
+			sql += "INSERT INTO member (id, passwd, name, age, gender, email, reg_date) ";
+			sql += "VALUES (?, ?, ?, ?, ?, ?, now()) ";
 
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, memberVo.getId());
 			pstmt.setString(2, memberVo.getPasswd());
 			pstmt.setString(3, memberVo.getName());
+			pstmt.setInt(4, memberVo.getAge());
+			pstmt.setString(5, memberVo.getGender());
+			pstmt.setString(6, memberVo.getEmail());
 
 			pstmt.executeUpdate();
 
@@ -126,6 +129,9 @@ public class MemberDao {
 				memberVo.setId(rs.getString("id"));
 				memberVo.setPasswd(rs.getString("passwd"));
 				memberVo.setName(rs.getString("name"));
+				memberVo.setAge(rs.getInt("age"));
+				memberVo.setGender(rs.getString("gender"));
+				memberVo.setEmail(rs.getString("email"));
 				memberVo.setRegDate(rs.getTimestamp("reg_date"));
 
 				list.add(memberVo);
@@ -162,6 +168,9 @@ public class MemberDao {
 				memberVo.setId(rs.getString("id"));
 				memberVo.setPasswd(rs.getString("passwd"));
 				memberVo.setName(rs.getString("name"));
+				memberVo.setAge(rs.getInt("age"));
+				memberVo.setGender(rs.getString("gender"));
+				memberVo.setEmail(rs.getString("email"));
 				memberVo.setRegDate(rs.getTimestamp("reg_date"));
 			} // if
 		} catch (Exception e) {
@@ -253,7 +262,7 @@ public class MemberDao {
 		System.out.println("======== insert Å×½ºÆ® =========");
 
 		for (int i = 0; i < 5; i++) {
-			MemberVo memberVo = new MemberVo("aaa" + i, "1234", "È«±æµ¿" + i);
+			MemberVo memberVo = new MemberVo("aaa" + i, "1234", "È«±æµ¿" + i,11+i,"man","korea"+i+"@naver.com");
 			memberDao.addMember(memberVo);
 		}
 
