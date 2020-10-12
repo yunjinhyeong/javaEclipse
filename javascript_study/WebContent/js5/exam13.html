@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+div.box {
+	width: 50px;
+	height: 50px;
+	background-color: orange;
+	cursor: pointer;
+}
+</style>
+</head>
+<body>
+<div id="app">
+	<div class="box"></div>
+</div>
+<script src="../js/jquery-3.5.1.js"></script>
+<script>
+	// block는 width height 자유지정가능
+	// inline은 width height 자유지정 못함 * image는 block요소
+	// inline-block 는 두 성격 다 가짐
+	$('div.box').click(function () {
+		let width = $(this).css('width'); // .css('width',200) 이면 setter인데 .css('width')면 getter가 된다.
+		let height = $(this).css('height');
+
+		console.log('typeof width = ' + typeof width);
+		console.log('width = ' + width + ', height = ' + height);
+		
+		width = parseInt(width)+50;
+		height = parseInt(height)+50;
+		console.log('parseInt() 처리 후 typeof width = ' + typeof width);
+		
+// 		$(this).css({ width:width, height:height });
+		// 제이쿼리 간단한 애니메이션 효과 함수 animate()
+		// animate() 함수는 CSS 속성을 값으로 넣어주면 적용됨
+		$(this).animate({ width: width, height: height });
+	});
+</script>
+</body>
+</html>
+
+
+
+

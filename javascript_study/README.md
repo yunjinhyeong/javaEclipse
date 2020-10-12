@@ -1,4 +1,11 @@
 # jQuery
+### jQuery적용하기
+- 이미지 넣기
+![jQuery적용하기](img/addjQuery.png)
+- 코드 넣기
+```
+<script src="../js/jquery-3.5.1.js"></script>
+```
 ### [$('태그명[속성="값"]')](https://github.com/yunjinhyeong/javaEclipse/blob/master/javascript_study/WebContent/js5/exam3.html)
 - $('태그명[속성^="값"]')	^은 시작값은 모두한다 라는뜻
 - $('태그명[속성$="값"]')	$은 끝값이 그거여야 된다라는 뜻
@@ -162,7 +169,7 @@ img.img1:hover {
 }
 </style>
 ```
-### [serialize() 쿼리 스트링으로 폼태그 안의 내용 가져오기]()
+### [serialize() 쿼리 스트링으로 폼태그 안의 내용 가져오기](https://github.com/yunjinhyeong/javaEclipse/blob/master/javascript_study/WebContent/js5/exam11.html)
 ```
 <script>
 	$('#myForm').submit(function () {
@@ -183,3 +190,25 @@ img.img1:hover {
 	});
 </script>
 ```
+![serialize](img/serialize.png)
+### [제이쿼리 간단한 화면효과 함수 ex)toggle](https://github.com/yunjinhyeong/javaEclipse/blob/master/javascript_study/WebContent/js5/exam12.html)
+```
+<script>
+	// 제이쿼리 간단한 화면효과 함수
+	// show()        hide()      toggle()--> 나타나 있으면 안나타나게 안나타나있으면 나타나게
+	// slideDown()   slideUp()   slideToggle()
+	// fadeIn()      fadeOut()   fadeToggle()
+	
+	// 제이쿼리에서 현재태그요소 기준으로 다른 태그요소를 탐색하는 함수
+	// next() 형제관계에서 바로 다음요소
+	// prev() 형제관계에서 바로 이전요소
+	// find() 포함하고 있는 자식 또는 자손요소를 찾기
+	// closest() 자신을 포함하고 있는 부모 또는 조상요소를 찾기
+	
+	
+	$('h1').click(function () {
+		$(this).next().fadeToggle();
+	});
+</script>
+```
+![fadeToggle](img/fadeToggle.png)
