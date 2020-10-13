@@ -5,9 +5,9 @@
 <title>Insert title here</title>
 <script>
 	function load(URL) {
-		newWin = window.open(URL, "myWin", "left=300,top=300,width=400,height=300");
+		newWin = open(URL, "myWin", "left=300,top=300,width=400,height=300");
 	}
-	function closeWindow() {
+	function closeNewWindow() {
 		if(newWin==null || newWin.closed) // 윈도우가 열리지 않았거나 닫힌 경우
 			return; // 윈도우가 없는 경우 그냥 리턴
 		else
@@ -20,7 +20,7 @@
 <hr>
 	<a href="javascript:load('http://www.graceland.com')">
 			새 엘리스 프로슬리 홈 페이지</a>	<br>
-	<a href="javascript:window.close()">
+	<a href="javascript:close()">
 			현재 윈도우 닫기</a>	<br>
 	<a href="javascript:closeNewWindow()">
 			새 윈도우 닫기</a>	<br>

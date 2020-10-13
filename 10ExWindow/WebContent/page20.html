@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>웹 페이지의 자동 스크롤</title>
+<script>
+function startScroll(interval) {
+	setInterval("autoScroll()", interval);
+}
+function autoScroll() {
+	window.scrollBy(0,10); // 10픽셀 위로 이동
+}
+</script>
+</head>
+<body onload="startScroll(1000)">
+<h3>자동 스크롤 페이지</h3>
+<hr>
+<h3>꿈길(이동순)</h3>
+꿈길에<br>
+발자취가 있다면<br>
+발자취가 있다면<br>
+발자취가 있다면<br>
+발자취가 있다면<br><br>
+발자취가 있다면<br>
+발자취가 있다면<br>
+발자취가 있다면<br>
+발자취가 있다면<br><br>
+발자취가 있다면<br>
+발자취가 있다면<br>
+발자취가 있다면<br>
+
+
+</body>
+</html>
