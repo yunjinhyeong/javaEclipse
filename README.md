@@ -7,6 +7,7 @@
 
 [jsp 공부](https://github.com/yunjinhyeong/javaEclipse/tree/master/jsp_study)
 
+[web 공부](https://github.com/yunjinhyeong/web)
 
 ## MySQL 설정
 #### C:\ProgramData\MySQL\MySQL Server 5.7\my.ini에서
