@@ -1,6 +1,6 @@
-<%@page import="java.sql.Timestamp"%>
-<%@page import="com.exam.dao.MemberDao"%>
-<%@page import="com.exam.vo.MemberVo"%>
+<%@ page import="java.sql.Timestamp"%>
+<%@ page import="com.exam.dao.MemberDao"%>
+<%@ page import="com.exam.vo.MemberVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -8,7 +8,7 @@
 request.setCharacterEncoding("utf-8");
 
 //VO객체 준비
-MemberVo memberVo = new MemberVo();
+MemberVo memberVo = new MemberVo(); // 요걸 src>com.exam에 만들어야되나
 
 //파라미터 찾기
 memberVo.setId(request.getParameter("id"));
