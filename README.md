@@ -9,6 +9,8 @@
 
 [web 공부](https://github.com/yunjinhyeong/web)
 
+[android 공부](https://github.com/yunjinhyeong/MyApplication)
+
 ## MySQL 설정
 #### C:\ProgramData\MySQL\MySQL Server 5.7\my.ini에서
 - [client] default-character-set=utf8

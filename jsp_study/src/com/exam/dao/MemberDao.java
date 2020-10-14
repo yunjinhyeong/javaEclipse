@@ -106,6 +106,48 @@ public class MemberDao {
 			close(con, pstmt);
 		}
 	} // addMember()
+	
+	// 로그인 확인
+	// check가 -1 이면 없는 아이디
+	// check가 0 이면 패스워드 틀림
+	// check가 1 이면 아이디, 패스워드 일치
+	public int userCheck(String id, String passwd) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql="";
+		
+		int check = -1; // 없는 아이디 상태값으로 초기화
+		
+		try {
+			con = getConnection();
+			sql="SELECT passwd "
+					+ "FROM member "
+					+ "WHERE id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			// rs에 데이터(행) 있으면
+			//			패스워드 비교 맞으면 check = 1 틀리면 check = 0
+			// rs에 데이터(행) 없으면 check = -1
+			if(rs.next()) {
+				if(passwd.equals(rs.getString("passwd"))) {
+					check = 1;
+					
+				} else {
+					check = 0;
+				}
+				
+			} else {
+				check = -1;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(con, pstmt, rs);
+		}
+		return check;
+	} //userCheck()
 
 	// 전체 회원목록 가져오기
 	public List<MemberVo> getAllMembers() {
