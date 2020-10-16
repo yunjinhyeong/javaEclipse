@@ -22,7 +22,8 @@ memberVo.setEmail(request.getParameter("email"));
 memberVo.setRegDate(new Timestamp(System.currentTimeMillis()));
 
 //DAO 객체 준비
-MemberDao memberDao = new MemberDao();
+// MemberDao memberDao = new MemberDao();
+MemberDao memberDao = MemberDao.getInstance();
 
 //회원가입 처리 수행
 memberDao.addMember(memberVo);

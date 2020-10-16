@@ -22,7 +22,8 @@ memberVo.setAge(Integer.parseInt(request.getParameter("age")));
 memberVo.setGender(request.getParameter("gender"));
 memberVo.setEmail(request.getParameter("email"));
 // DAO 객체 준비
-MemberDao memberDao = new MemberDao();
+// MemberDao memberDao = new MemberDao();
+MemberDao memberDao = MemberDao.getInstance();
 // 회원수정
 memberDao.update(memberVo);
 // 회원수정 완료되면 main.jsp로 바로 이동

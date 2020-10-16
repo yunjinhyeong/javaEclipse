@@ -11,7 +11,19 @@ import java.util.List;
 import com.exam.vo.MemberVo;
 
 public class MemberDao {
-
+	
+	// 싱클톤 패턴 설계
+	private static MemberDao instance = new MemberDao();
+	
+	// 이걸로 외부접근
+	public static MemberDao getInstance() {
+		return instance;
+	}
+	
+	// 외부접근 원천봉쇄 private함
+	private MemberDao() {		
+	}
+	
 	private Connection getConnection() throws Exception {
 		// 헤로쿠 MySQL DB
 		// &useUnicode=true&characterEncoding=utf8&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Asia/Seoul";

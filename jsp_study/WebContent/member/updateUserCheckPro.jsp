@@ -21,7 +21,8 @@ request.setCharacterEncoding("utf-8");
 // 파라미터값 passwd 가져오기
 String passwd = request.getParameter("passwd"); // getParameter 안의 "passwd" 이건 name의 속성임
 // DAO 객체 준비
-MemberDao memberDao = new MemberDao();
+// MemberDao memberDao = new MemberDao();
+MemberDao memberDao = MemberDao.getInstance();
 
 int check = memberDao.userCheck(id, passwd);
 
