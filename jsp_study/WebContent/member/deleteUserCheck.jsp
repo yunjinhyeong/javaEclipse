@@ -22,8 +22,7 @@ if (id == null) {
 		아이디: <input type="text" value="<%=id %>" readonly><br>
 		패스워드: <input type="password" name="passwd"><br>
 		<input type="submit" value="패스워드 확인">
-	</form>
-	
+	</form>	
 <script src="../js/jquery-3.5.1.js"></script>
 <script>
 	$('form#frm').submit(function (e) {

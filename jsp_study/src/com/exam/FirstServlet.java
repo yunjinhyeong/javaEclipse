@@ -17,7 +17,7 @@ public class FirstServlet extends HttpServlet {
 
 	@Override // @ 에노테이션 컴파일러가 보는 주석
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
+
 		// 응답문서는 html이면서 유니코드로 설정
 		response.setContentType("text/html; charset=UTF-8");
 		// 브라우저로 출력하는 객체 참조 받기

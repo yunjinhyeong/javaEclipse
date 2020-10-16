@@ -19,7 +19,6 @@ String passwd = (String) session.getAttribute("passwd");
 MemberDao memberDao = MemberDao.getInstance();
 //패스워드 일치여부 확인
 int check = memberDao.userCheck(id, passwd);
-
 if(check ==0) { // 패스워드 불일치 check == 0
 	%>
 	<script>
@@ -30,7 +29,6 @@ if(check ==0) { // 패스워드 불일치 check == 0
 	return;
 }
 if(check == 1) { // 패스워드 일치시 check == 1
-	
 }
 // 회원정보 삭제하기
 memberDao.deleteById(id);
