@@ -224,7 +224,7 @@ public class MemberDao {
 		return memberVo;
 	} // getMemberById()
 
-	// 특정id에 해당하는 회원의 이름 수정하기
+	// 특정id에 해당하는 회원의 이름 수정하기                id에 해당되는 이름 나이 성별 이메일 수정하기
 	public void update(MemberVo memberVo) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -234,12 +234,15 @@ public class MemberDao {
 
 			String sql = "";
 			sql += "UPDATE member ";
-			sql += "SET name = ? ";
+			sql += "SET name = ?, age = ?, gender = ?, email = ? ";
 			sql += "WHERE id = ? ";
 
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, memberVo.getName());
-			pstmt.setString(2, memberVo.getId());
+			pstmt.setInt(2, memberVo.getAge());
+			pstmt.setString(3, memberVo.getGender());
+			pstmt.setString(4, memberVo.getEmail());
+			pstmt.setString(5, memberVo.getId());
 
 			pstmt.executeUpdate();
 
