@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <!-- 위에 코드로 인해 response charset utf-8 적용됨 그러니 setCharacterEncoding로 utf-8 해줌 -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,7 +32,7 @@
 				<td colspan="2">
 					<input type="submit" value="글쓰기">
 					<input type="reset" value="다시쓰기">
-					<input type="button" value="글목록">
+					<input type="button" value="글목록" onclick="location.href='list.jsp'">
 				</td>
 			</tr>
 		</table>

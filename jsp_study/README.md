@@ -1,4 +1,4 @@
-# JSP를 활용하여 회원정보값 입력받아 오기
+## WebContent-member JSP를 활용하여 회원정보값 입력받아 오기
 #### (1) [joinForm 코드](https://github.com/yunjinhyeong/javaEclipse/blob/master/jsp_study/WebContent/member/joinForm.jsp)
 ```
 <body>
@@ -63,3 +63,9 @@ memberDao.addMember(memberVo);
 ![insertResult](imgs/insertResult.png)
 - workbench로 확인<br>
 ![workbenchResult](imgs/workbenchResult.png)
+
+## WebContent - board
+#### writeForm.jsp
+![writeForm](imgs/writeForm.png)
+#### writeForm.jsp 에서 글쓰기 후 content.jsp로 넘어간다.
+![content](imgs/content.png)
