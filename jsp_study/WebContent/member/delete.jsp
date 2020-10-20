@@ -12,14 +12,14 @@ if (id == null) {
 // post 파라미터값 한글처리
 request.setCharacterEncoding("utf-8");
 // 파라미터값 passwd 가져오기
-// String passwd = request.getParameter("passwd");
-String passwd = (String) session.getAttribute("passwd");
+String passwd = request.getParameter("passwd");
+// String passwd = (String) session.getAttribute("passwd");
 // DAO 객체 준비
 // MemberDao memberDao = new MemberDao();
 MemberDao memberDao = MemberDao.getInstance();
 //패스워드 일치여부 확인
 int check = memberDao.userCheck(id, passwd);
-if(check ==0) { // 패스워드 불일치 check == 0
+if(check == 0) { // 패스워드 불일치 check == 0
 	%>
 	<script>
 		alert('패스워드 틀림');

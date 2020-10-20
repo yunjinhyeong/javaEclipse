@@ -35,6 +35,5 @@ if (id.equals("admin")) {
 	<%
 }
 %>
-
 </body>
 </html>

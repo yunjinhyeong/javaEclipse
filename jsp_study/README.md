@@ -1,4 +1,4 @@
-## WebContent-member JSP를 활용하여 회원정보값 입력받아 오기
+## WebContent-member
 #### (1) [joinForm 코드](https://github.com/yunjinhyeong/javaEclipse/blob/master/jsp_study/WebContent/member/joinForm.jsp)
 ```
 <body>
@@ -64,6 +64,36 @@ memberDao.addMember(memberVo);
 - workbench로 확인<br>
 ![workbenchResult](imgs/workbenchResult.png)
 
+#### (4) 회원들만 접근 가능한 페이지로 만드는 코드
+```
+<%
+	// 세션값 가져오기
+String id = (String)session.getAttribute("id");
+// 세션값이 없으면 loginForm.jsp로 이동
+if(id==null){
+	%>
+	<script>
+		alert('로그인 후 접근 가능한 페이지 입니다.');
+		location.href = 'loginForm.jsp';
+	</script>
+	<%
+	return;
+}
+%>
+```
+#### (5) 로그아웃시 모든 세션 지우는 코드
+```
+<%
+session.invalidate(); // 모든 세션 지우기
+%>
+```
+#### (6) location.href VS // response.sendRedirect
+> location.href 그냥 이동
+> sendRedirect 가진 정보 전부 폐기처분
+#### (7) JS에서 확인창 띄워 boolean값 받아오기
+```
+let isDelete = confirm('정말 탈퇴하시겠습니까?');
+```
 ## WebContent - board
 #### writeForm.jsp
 ![writeForm](imgs/writeForm.png)
