@@ -27,7 +27,7 @@ if (id == null) {
 <script>
 	$('form#frm').submit(function (e) {
 		let isDelete = confirm('정말 탈퇴하시겠습니까?'); // true/false 리턴
-		if (!isDeleter) { // isDelete == false
+		if (!isDelete) { // isDelete == false
 			// 1. 기본기능 막기
 // 			e.preventDefault();
 // 			return;
