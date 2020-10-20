@@ -97,5 +97,13 @@ let isDelete = confirm('정말 탈퇴하시겠습니까?');
 ## WebContent - board
 #### writeForm.jsp
 ![writeForm](imgs/writeForm.png)
-#### writeForm.jsp 에서 글쓰기 후 content.jsp로 넘어간다.
+#### IP 값 RegDate 값 저장하기
+```
+boardVo.setIp(request.getRemoteAddr());
+boardVo.setRegDate(new Timestamp(System.currentTimeMillis()));
+```
+#### writeForm.jsp 에서 글쓰기 버튼 누르면 content.jsp로 넘어간다.
+#### writeForm.jsp 에서 글목록 버튼 누르면 list.jsp로 넘어간다.
+![list](imgs/list.png)
+#### list.jsp 에서 제목을 누르면 content.jsp로 넘어간다.
 ![content](imgs/content.png)

@@ -5,14 +5,11 @@
 <%
 	// 파라미터값 int num, String pageNum 가져오기
 	int num = Integer.parseInt(request.getParameter("num")); // 글번호
-	String pageNum = request.getParameter("pageNum"); // 페이지번호
-
+	String pageNum = request.getParameter("pageNum"); // 페이지번호       writePro에서받아온게 아니라 list에서 받아옴
 	// DAO 객체 준비
-	BoardDao boardDao = BoardDao.getInstance();
-	
+	BoardDao boardDao = BoardDao.getInstance();	
 	// 조회수 1 증가하기
-	boardDao.updateReadcount(num);
-	
+	boardDao.updateReadcount(num);	
 	// 글번호에 해당하는 글 한개 가져오기
 	BoardVo boardVo = boardDao.getBoardByNum(num);
 %>
