@@ -1,24 +1,14 @@
 <%@page import="com.exam.dao.MemberDao"%>
+<%@page import="org.apache.catalina.filters.SetCharacterEncodingFilter"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-// post 파라미터값 한글처리
 request.setCharacterEncoding("utf-8");
-
-// 폼 파라미터값 가져오기 id passwd 가져오기
-String id = request.getParameter("id") == null ? "" : request.getParameter("id").trim();
+String id = request.getParameter("id");
 String passwd = request.getParameter("passwd");
-
-// DAO 객체 준비
-// MemberDao memberDao = new MemberDao();
 MemberDao memberDao = MemberDao.getInstance();
-
-// 로그인 확인 메소드 호출 userCheck(id, passwd);
 int check = memberDao.userCheck(id, passwd);
-//check == 1   로그인 인증   main.jsp
-//check == 0   '패스워드 틀림'  뒤로이동
-//check == -1  '아이디 없음'    뒤로이동
-if(check == 1) {
+if(check == 1){
 	session.setAttribute("id", id); // 이게 있어야 세션으로 로그인 후 접근 가능한 페이지설정가능
 	%>
 	<script>
@@ -33,7 +23,7 @@ if(check == 1) {
 		history.back();
 	</script>
 	<%
-} else { // check == -1
+} else {
 	%>
 	<script>
 		alert('아이디 없음');
@@ -42,3 +32,14 @@ if(check == 1) {
 	<%
 }
 %>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>loginProcess</title>
+</head>
+<body>
+
+</body>
+</html>

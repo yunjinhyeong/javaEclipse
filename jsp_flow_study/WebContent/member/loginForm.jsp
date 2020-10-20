@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>스터디 - 로그인</title>
+<title>loginForm</title>
 </head>
 <body>
 	<h1>로그인</h1>
