@@ -46,6 +46,7 @@ a.active {
 	<h1>글목록(전체글갯수: <%=count %>)</h1>
 	<hr>
 	<h3><a href="writeForm.jsp">글쓰기</a></h3>
+	<h3><a href="fileWriteForm.jsp">파일 글쓰기</a></h3>
 	<table border="1">
 		<thead>
 			<tr>
@@ -59,7 +60,17 @@ a.active {
 				%>
 				<tr>
 					<td><%=boardVo.getNum() %></td>
-					<td><a href="content.jsp?num=<%=boardVo.getNum() %>&pageNum=<%=pageNum%>"><%=boardVo.getSubject() %></a></td>
+					<td>
+						<%
+						if(boardVo.getReLev() > 0) { // 답글이면
+							%>
+							<img alt="들여쓰기 아이콘" src="../images/level.gif" width="<%=boardVo.getReLev() * 15 %>" height="10px">
+							<img alt="대댓글 아이콘" src="../images/icon_re.gif">
+							<%
+						}
+						%>
+						<a href="content.jsp?num=<%=boardVo.getNum() %>&pageNum=<%=pageNum%>"><%=boardVo.getSubject() %></a>
+					</td>
 					<td><%=boardVo.getName() %></td>
 					<td><%=boardVo.getRegDate() %></td>
 					<td><%=boardVo.getReadcount() %></td>

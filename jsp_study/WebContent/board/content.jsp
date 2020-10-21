@@ -40,6 +40,28 @@ table {
 			<th>글제목</th><td colspan="3"><%=boardVo.getSubject() %></td>
 		</tr>
 		<tr>
+			<th>파일</th>
+			<td colspan="3">
+				<%
+				if (boardVo.getFile() != null) {
+					String filename = boardVo.getFile();
+					%>
+					<a href="../upload/<%=filename %>"><%=filename %></a>
+					<%
+					// 그림일때 그림도 보여주는 코드
+					if(filename.endsWith(".jpg") || filename.endsWith(".gif") 
+							|| filename.endsWith(".png") || filename.endsWith(".jpeg")) {
+						%>
+						<br>
+						<img alt="" src="../upload/<%=filename %>" width="100" height="100">
+						<%
+						
+					}
+				}
+				%>
+			</td>
+		</tr>
+		<tr>
 			<th>글내용</th><td colspan="3"><pre><%=boardVo.getContent() %></pre></td>
 		</tr>
 		<tr>
