@@ -172,7 +172,7 @@ public class BoardDao {
 		
 		try {
 			con = JdbcUtils.getConnection();
-			sql="select * from board order by re_ref desc, re_seq asc limit ?, ?;";
+			sql="select * from board order by num desc limit ?, ?;";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, pageSize);
@@ -287,63 +287,6 @@ public class BoardDao {
 				JdbcUtils.close(con, pstmt);
 			}
 		} // deleteBoard()
-		
-		public boolean updateAndAddReply(BoardVo boardVo) {
-			Connection con = null;
-			PreparedStatement pstmt = null;			
-			String sql = "";
-			
-			try {
-				con = JdbcUtils.getConnection();
-				con.setAutoCommit(false);	// 오토 커밋을 수동으로 바꾼다
-				sql  = "UPDATE board ";
-				sql += "SET re_seq = re_seq + 1 ";
-				sql += "WHERE re_ref = ? ";
-				sql += "AND re_seq > ? ";
-				
-				pstmt = con.prepareStatement(sql);
-				pstmt.setInt(1, boardVo.getReRef());
-				pstmt.setInt(2, boardVo.getReSeq());
-				pstmt.executeUpdate();
-				// update문장을 가진 pstmt 객체 닫기
-				pstmt.close(); // 재활용이 안되서 다시 쓰고 해야됨
-				
-				sql = "INSERT INTO board (num, name, passwd, subject, content, readcount, reg_date, ip, file, re_ref, re_lev, re_seq) ";
-				sql += "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
-				
-				pstmt = con.prepareStatement(sql);
-				pstmt.setInt(1, boardVo.getNum());
-				pstmt.setString(2, boardVo.getName());
-				pstmt.setString(3, boardVo.getPasswd());
-				pstmt.setString(4, boardVo.getSubject());
-				pstmt.setString(5, boardVo.getContent());
-				pstmt.setInt(6, boardVo.getReadcount());
-				pstmt.setTimestamp(7, boardVo.getRegDate());
-				pstmt.setString(8, boardVo.getIp());
-				pstmt.setString(9, boardVo.getFile());
-				pstmt.setInt(10, boardVo.getReRef());     // 같은 그룹
-				pstmt.setInt(11, boardVo.getReLev() + 1); // 답글쓰는 대상글의 들여쓰기 + 1
-				pstmt.setInt(12, boardVo.getReSeq() + 1); // 답글쓰는 대상글의 그룹내 순번 + 1
-				// insert문 실행
-				pstmt.executeUpdate();				
-				
-				con.commit(); // 여기서 부턴 돌이킬 수 없다.
-				
-				con.setAutoCommit(true); // 기본값인 true로 수정
-				
-				return true; // 이래도 finally은 실행한다.
-			} catch (Exception e) {
-				e.printStackTrace();
-				try {
-					con.rollback(); // 문제 발생시 이전으로 돌린다.
-				} catch (SQLException e1) {
-					e1.printStackTrace();
-				} // 문제 발생시 이전으로 돌린다.
-				return false;
-			} finally {
-				JdbcUtils.close(con, pstmt);
-			}
-		} // updateAndAddReply()
 	
 	public static void main(String[] args) {
 		BoardDao boardDao = BoardDao.getInstance();

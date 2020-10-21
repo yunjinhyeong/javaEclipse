@@ -22,7 +22,8 @@ BoardVo boardVo = boardDao.getBoardByNum(num);
 	<h1>게시판 글수정</h1>
 	<hr>
 	<form action="updatePro.jsp" method="post">
-		<input type="hidden" name="num" value="<%=num %>">
+		<input type="hidden" name="pageNum" value="<%=pageNum %>">
+		<input type="hidden" name="num" value="<%=num %>">		
 		<table border="1">
 			<tr>
 				<td>작성자</td>

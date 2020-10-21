@@ -7,6 +7,8 @@
 request.setCharacterEncoding("utf-8");
 // VO 객체 준비
 BoardVo boardVo = new BoardVo();
+// 파라미터값 pageNum 가져오기
+String pageNum = request.getParameter("pageNum");
 // 파라미터값 찾아서 VO에 저장
 boardVo.setNum(Integer.parseInt(request.getParameter("num")));
 boardVo.setName(request.getParameter("name"));
@@ -17,12 +19,11 @@ boardVo.setContent(request.getParameter("content"));
 BoardDao boardDao = BoardDao.getInstance();
 //본인이 글작성자인지 패스워드 검증
 boolean isPasswdOk = boardDao.isPasswdOk(boardVo.getNum(), boardVo.getPasswd());
-
 if(isPasswdOk) {
 	// 글내용 수정하기
 	boardDao.updateBoard(boardVo);
 	// 수정한 내용 확인하기 위해 상세보기 페이지인 content.jsp로 이동
-	response.sendRedirect("content.jsp?num="+boardVo.getNum());
+	response.sendRedirect("content.jsp?num="+boardVo.getNum()+"&pageNum="+pageNum);
 } else {
 	%>
 	<script>

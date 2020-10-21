@@ -16,7 +16,7 @@ if(id==null){
 <html>
 <head>
 <meta charset="UTF-8">
-<title>main</title>
+<title>main</title>vc.
 </head>
 <body>
 	<h1>메인페이지</h1>
