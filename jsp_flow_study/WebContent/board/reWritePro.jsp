@@ -5,20 +5,21 @@
     pageEncoding="UTF-8"%>
 <%
 request.setCharacterEncoding("utf-8");
+String pageNum = request.getParameter("pageNum");
 BoardVo boardVo = new BoardVo();
 boardVo.setName(request.getParameter("name"));
 boardVo.setPasswd(request.getParameter("passwd"));
 boardVo.setSubject(request.getParameter("subject"));
 boardVo.setContent(request.getParameter("content"));
+boardVo.setReRef(Integer.parseInt(request.getParameter("reRef")));
+boardVo.setReLev(Integer.parseInt(request.getParameter("reLev")));
+boardVo.setReSeq(Integer.parseInt(request.getParameter("reSeq")));
 BoardDao boardDao = BoardDao.getInstance();
 int nextNum = boardDao.getNextNum();
 boardVo.setNum(nextNum);
 boardVo.setIp(request.getRemoteAddr());
 boardVo.setRegDate(new Timestamp(System.currentTimeMillis()));
-boardVo.setReadcount(0); // 처음 글 만드는데 당연히 조회수 0
-boardVo.setReRef(nextNum); // 주글일때 num이랑 re_ref랑 같아야지
-boardVo.setReLev(0); // 주글인데 들여쓰기 레벨이 필요없지
-boardVo.setReSeq(0); // 주글인데 당연히 그 그룹내 우선순위 0번째
-boardDao.addBoard(boardVo); // insert해줘야지
-response.sendRedirect("content.jsp?num="+boardVo.getNum()); // 글의 상세보기니 num이 기준인건 당연
+boardVo.setReadcount(0);
+boardDao.updateAndAddReply(boardVo);
+response.sendRedirect("content.jsp?num="+boardVo.getNum()+"&pageNum="+pageNum);
 %>

@@ -24,7 +24,6 @@ if(count > 0) { boardList = boardDao.getBoards(startRow, pageSize); }
 	<h1>글목록 전체글갯수: <%=count %></h1>
 	<hr>
 	<h3><a href="writeForm.jsp">글쓰기</a></h3>
-	<h3><a href="fileWriteForm.jsp">파일 글쓰기</a></h3>
 	<table border="1">
 		<thead>
 			<tr>
@@ -77,9 +76,9 @@ if(count > 0) { boardList = boardDao.getBoards(startRow, pageSize); }
 		int pageCount = (count/pageSize) + (count % pageSize == 0 ? 0 : 1 );
 		// 한 화면에 보여줄 페이지버튼 갯수
 		int pageBlock = 5;
-		// (0.2)*5+1=2
+		// (0)*5+1=1
 		int startPage = ((pageNum / pageBlock) - (pageNum % pageBlock == 0 ? 1 : 0 )) * pageBlock + 1;
-		// end = 6
+		// end = 4
 		int endPage = startPage + pageBlock - 1;
 		if(endPage > pageCount) {
 			endPage = pageCount;

@@ -105,5 +105,47 @@ boardVo.setRegDate(new Timestamp(System.currentTimeMillis()));
 #### writeForm.jsp 에서 글쓰기 버튼 누르면 content.jsp로 넘어간다.
 #### writeForm.jsp 에서 글목록 버튼 누르면 list.jsp로 넘어간다.
 ![list](imgs/list.png)
+#### list.jsp [이전] 1~5 [다음] 코드
+```
+<%
+	if(count>0) {
+		// 전체 페이지 갯수 (전체/10)+(전체%10==0?0:1)  ex) 22
+		int pageCount = (count/pageSize) + (count % pageSize == 0 ? 0 : 1 );
+		// 한 화면에 보여줄 페이지버튼 갯수
+		int pageBlock = 5;
+		// (0)*5+1=1
+		int startPage = ((pageNum / pageBlock) - (pageNum % pageBlock == 0 ? 1 : 0 )) * pageBlock + 1;
+		// end = 4
+		int endPage = startPage + pageBlock - 1;
+		if(endPage > pageCount) {
+			endPage = pageCount;
+		}
+		// [이전]
+		if(startPage > pageBlock) {
+			%>
+			<a href="list.jsp?paegNum=<%=startPage - pageBlock %>">[이전]</a>
+			<%
+		}
+		// 1~5 출력
+		for(int i=startPage ; i<=endPage ; i++) {
+			if(i == pageNum) {
+				%>
+				<a href="list.jsp?pageNum=<%=i%>" class="active">[<%=i %>]</a>
+				<%
+			} else {
+				%>
+				<a href="list.jsp?pageNum=<%=i%>">[<%=i %>]</a>
+				<%
+			}
+		}
+		// [다음]
+		if(endPage < pageCount) {
+			%>
+			<a href="list.jsp?pageNum=<%=startPage + pageBlock%>">[다음]</a>
+			<%
+		}
+	}
+%>
+```
 #### list.jsp 에서 제목을 누르면 content.jsp로 넘어간다.
 ![content](imgs/content.png)
