@@ -54,14 +54,14 @@ table {
 						%>
 						<br>
 						<img alt="" src="../upload/<%=filename %>" width="100" height="100">
-						<%
-						
+						<%						
 					}
 				}
 				%>
 			</td>
 		</tr>
 		<tr>
+		<!-- pre는 입력한 내용 그대로 보여줌 스페이스나 탭이나 앤터나 ... -->
 			<th>글내용</th><td colspan="3"><pre><%=boardVo.getContent() %></pre></td>
 		</tr>
 		<tr>

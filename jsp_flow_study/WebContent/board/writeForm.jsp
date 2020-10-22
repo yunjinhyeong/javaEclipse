@@ -4,9 +4,33 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>게시판 글쓰기</title>
 </head>
 <body>
-	
+	<h1>게시판 글쓰기</h1>
+	<hr>
+	<form action="wirtePro.jsp" method="post">
+		<table border="1">
+			<tr>
+				<td>작성자</td><td><input type="text" name="name" required></td>
+			</tr>
+			<tr>
+				<td>패스워드</td><td><input type="password" name="passwd" required></td>
+			</tr>
+			<tr>
+				<td>제목</td><td><input type="text" name="subject" required></td>
+			</tr>
+			<tr>
+				<td>내용</td><td><textarea rows="13" cols="40" name="content" required></textarea></td></td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<input type="submit" value="글쓰기">
+					<input type="reset" value="다시쓰기">
+					<input type="button" value="글목록" onclick="location.href='list.jsp'">
+				</td>
+			</tr>
+		</table>
+	</form>
 </body>
 </html>

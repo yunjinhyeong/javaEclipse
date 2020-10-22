@@ -13,8 +13,8 @@ public class BoardVo {
 	private String ip;
 	private String file;
 	private int reRef; // 그룹번호, 주글번호는 그룹번혹가 됨
-	private int reLev; // 들여쓰기 레벨
-	private int reSeq; // 그룹 내에서의 순번
+	private int reLev; // 들여쓰기 레벨 1이면 들여쓰기 1번
+	private int reSeq; // 그룹 내에서의 순번 0이 제로순위
 	public int getNum() {
 		return num;
 	}
