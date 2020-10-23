@@ -6,6 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
 public class JdbcUtils {
 	public static Connection getConnection() throws Exception {
 		// 헤로쿠 MySQL DB
@@ -26,17 +30,26 @@ public class JdbcUtils {
 //		INSERT INTO actor (first_name, last_name, last_update)
 //		VALUES ('길동', '홍', now());
 
-		// DB접속정보
-		String dbUrl = "jdbc:mysql://localhost:3306/jspdb?useUnicode=true&characterEncoding=utf8&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Asia/Seoul";
-		String dbId = "myid";
-		String dbPwd = "mypwd";
-		
 		Connection con = null;
 		
-		// 1단계. DB드라이버 클래스 로딩
-		Class.forName("com.mysql.cj.jdbc.Driver");
+		// ================================================================= Dao main함수 실행 할때 씀 --- 톰켓땜시
+		// DB접속정보
+//		String dbUrl = "jdbc:mysql://localhost:3306/jspdb?useUnicode=true&characterEncoding=utf8&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Asia/Seoul";
+//		String dbId = "myid";
+//		String dbPwd = "mypwd";
+//		
+//		
+//		
+//		// 1단계. DB드라이버 클래스 로딩
+//		Class.forName("com.mysql.cj.jdbc.Driver");
 		// 2단계. DB에 연결 시도. 연결후 Connection객체를 리턴함.
-		con = DriverManager.getConnection(dbUrl, dbId, dbPwd);
+//		con = DriverManager.getConnection(dbUrl, dbId, dbPwd);
+		// =================================================================
+		
+		// Connection Pool 방식 - 커넥션 한개 빌려오기	
+		Context context = new InitialContext();
+		DataSource ds = (DataSource) context.lookup("java:comp/env/jdbc/jspdb");  // context.xml의 name속성값
+		con = ds.getConnection(); // 커넥션 한개 빌려오기
 		return con;
 	} // getConnection()
 	

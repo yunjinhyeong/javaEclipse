@@ -163,3 +163,25 @@ if (isPasswdOK) {
 		}
 	}
 ```
+#### Connection Pool 적용하는방법
+![poolStep1](imgs/poolStep1.png)
+![poolStep2](imgs/poolStep2.png)
+![poolStep3](imgs/poolStep3.png)
+![poolStep4](imgs/poolStep4.png)
+```
+<Context>
+	<Resource
+	 name="jdbc/jspdb"
+	 auth="Container"
+	 type="javax.sql.DataSource"
+	 driverClassName="com.mysql.cj.jdbc.Driver"
+	 url="jdbc:mysql://localhost:3306/jspdb?useUnicode=true&amp;characterEncoding=utf8&amp;allowPublicKeyRetrieval=true&amp;useSSL=false&amp;serverTimezone=Asia/Seoul"
+	 username="myid"
+	 password="mypwd"
+	/>
+</Context>
+```
+1. name="jdbc/jspdb" 은 /뒤에 DB스키마 이름을 쓰는게 관례다
+2. type="javax.sql.DataSource" 이 책임지고 아래 driverClassName url 작업 수행
+3. ※ XML 문장에서 &을 넣고 싶으면 &amp; 라고 쓴다 아님 빨간줄
+![insertAnd](imgs/insertAnd.png)

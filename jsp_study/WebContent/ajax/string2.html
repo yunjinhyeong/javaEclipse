@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+section {
+	border: 1px solid red;
+}
+</style>
+</head>
+<body>
+<div id="app">
+	<form id="frm">
+		<input type="text" name="name" placeholder="이름을 입력하시오"><br>
+		<input type="text" name="age" placeholder="나이을 입력하시오">
+	</form>
+	<input type="button" value="버튼" id="btn">
+	<section></section>
+</div>
+<script src="../js/jquery-3.5.1.js"></script>
+<script>
+	$('#btn').click(function () {
+		
+		var str = $('#frm').serialize(); // 데이터 직렬화해서 쿼리스트링으로 가져옴
+		console.log(str);
+		
+		$.ajax({
+			url: 'string2.jsp',
+			data: str,
+			success: function (data) { // data라고 앞에 data랑 전혀 다른거임 이건 이름 내 맘대로 지정하는거임
+				console.log(typeof data);
+				console.log(data.trim());
+				
+				$('section').append('<h2>'+data.trim()+'</h2>');
+			}
+		});
+	});
+</script>
+</body>
+</html>
