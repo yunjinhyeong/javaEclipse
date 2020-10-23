@@ -23,7 +23,7 @@ if(count > 0) { boardList = boardDao.getBoards(startRow, pageSize); }
 <body>
 	<h1>글목록 전체글갯수: <%=count %></h1>
 	<hr>
-	<h3><a href="writeForm.jsp">글쓰기</a></h3>
+	<h3><a href="writeForm.jsp?pageNum=<%=pageNum %>">글쓰기</a></h3>
 	<table border="1">
 		<thead>
 			<tr>

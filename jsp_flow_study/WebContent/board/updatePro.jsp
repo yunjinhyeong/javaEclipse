@@ -8,6 +8,7 @@ request.setCharacterEncoding("utf-8");
 // 파라미터값 pageNum 가져오기
 String pageNum = request.getParameter("pageNum");
 %>
+<!-- jsp액션태그 -->
 <jsp:useBean id="boardVo" class="com.exam.vo.BoardVo"/>
 <%
 // String pageNum = request.getParameter("pageNum");

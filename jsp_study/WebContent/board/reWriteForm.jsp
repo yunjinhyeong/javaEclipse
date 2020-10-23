@@ -6,7 +6,7 @@ String reRef = request.getParameter("reRef"); // 답글을 쓰는 대상글에 �
 String reLev = request.getParameter("reLev"); // 
 String reSeq = request.getParameter("reSeq"); // 
 String pageNum = request.getParameter("pageNum");
-%>    
+%>
 <!DOCTYPE html>
 <html>
 <head>

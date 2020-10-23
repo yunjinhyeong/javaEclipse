@@ -1,3 +1,5 @@
+<%@page import="java.io.File"%>
+<%@page import="com.exam.vo.BoardVo"%>
 <%@page import="com.exam.dao.BoardDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -14,6 +16,16 @@ BoardDao boardDao = BoardDao.getInstance();
 boolean isPasswdOK = boardDao.isPasswdOk(num, passwd);
 // 글 패스워드 일치하면 글삭제하고 글목록으로 이동
 if (isPasswdOK) {
+	// 글번호에 해당하는 글내용 가져오기(첨부파일 정보 확인 위해서)
+	BoardVo boardVo = boardDao.getBoardByNum(num);
+	String filename = boardVo.getFile();
+	if (boardVo.getFile() != null) { // 첨부파일 있으면
+		String realPath = application.getRealPath("/upload");
+		File file = new File(realPath, filename);
+		if(file.exists()) {
+			file.delete();
+		}
+	}
 	boardDao.deleteBoardByNum(num);
 	response.sendRedirect("list.jsp?pageNum="+pageNum);
 } else {

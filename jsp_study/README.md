@@ -149,3 +149,17 @@ boardVo.setRegDate(new Timestamp(System.currentTimeMillis()));
 ```
 #### list.jsp 에서 제목을 누르면 content.jsp로 넘어간다.
 ![content](imgs/content.png)
+#### 삭제시 첨부파일도 삭제하는 코드
+```
+if (isPasswdOK) {
+	// 글번호에 해당하는 글내용 가져오기(첨부파일 정보 확인 위해서)
+	BoardVo boardVo = boardDao.getBoardByNum(num);
+	String filename = boardVo.getFile();
+	if (boardVo.getFile() != null) { // 첨부파일 있으면
+		String realPath = application.getRealPath("/upload");
+		File file = new File(realPath, filename);
+		if(file.exists()) {
+			file.delete();
+		}
+	}
+```
