@@ -6,17 +6,23 @@
 <%
 //post 파라미터값 한글처리
 request.setCharacterEncoding("utf-8");
+// VO객체 준비
+// MemberVo memberVo = new MemberVo();
+%>
+<!-- 액션태그 useBean으로 VO 객체 준비하기 useBean은 Vo기본생성자가 있어야 쓸수 있다. -->
+<jsp:useBean id="memberVo" class="com.exam.vo.MemberVo"/>
+<%
+// 파라미터 찾기
+// memberVo.setId(request.getParameter("id"));
+// memberVo.setPasswd(request.getParameter("passwd"));
+// memberVo.setName(request.getParameter("name"));
+// memberVo.setAge(Integer.parseInt(request.getParameter("age")));
+// memberVo.setGender(request.getParameter("gender"));
+// memberVo.setEmail(request.getParameter("email"));
+%>
+<jsp:setProperty property="*" name="memberVo"/> <!-- 한방에 setter 호출 -->
 
-//VO객체 준비
-MemberVo memberVo = new MemberVo();
-//파라미터 찾기
-memberVo.setId(request.getParameter("id"));
-memberVo.setPasswd(request.getParameter("passwd"));
-memberVo.setName(request.getParameter("name"));
-memberVo.setAge(Integer.parseInt(request.getParameter("age")));
-memberVo.setGender(request.getParameter("gender"));
-memberVo.setEmail(request.getParameter("email"));
-
+<%
 //회원가입(날짜시간) 정보 설정
 memberVo.setRegDate(new Timestamp(System.currentTimeMillis()));
 

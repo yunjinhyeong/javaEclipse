@@ -31,7 +31,7 @@ MultipartRequest multi = new MultipartRequest(
 // BoardVo 객체준비
 BoardVo boardVo = new BoardVo();
 //파라미터값 가져와서 VO에 저장. MultipartRequest 로부터 찾음.
-boardVo.setName(multi.getParameter("name")); // 원래는 multi request다 허나 enctype="multipart/form-data" 로 전송받았기에...
+boardVo.setName(multi.getParameter("name")); // 원래는 request다 허나 enctype="multipart/form-data" 로 전송받았기에...
 boardVo.setPasswd(multi.getParameter("passwd"));
 boardVo.setSubject(multi.getParameter("subject"));
 boardVo.setContent(multi.getParameter("content"));

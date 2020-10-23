@@ -6,14 +6,20 @@
 <%
 request.setCharacterEncoding("utf-8");
 String pageNum = request.getParameter("pageNum");
-BoardVo boardVo = new BoardVo();
-boardVo.setName(request.getParameter("name"));
-boardVo.setPasswd(request.getParameter("passwd"));
-boardVo.setSubject(request.getParameter("subject"));
-boardVo.setContent(request.getParameter("content"));
-boardVo.setReRef(Integer.parseInt(request.getParameter("reRef")));
-boardVo.setReLev(Integer.parseInt(request.getParameter("reLev")));
-boardVo.setReSeq(Integer.parseInt(request.getParameter("reSeq")));
+// BoardVo boardVo = new BoardVo();
+%>
+<jsp:useBean id="boardVo" class="com.exam.vo.BoardVo"/>
+<%
+// boardVo.setName(request.getParameter("name"));
+// boardVo.setPasswd(request.getParameter("passwd"));
+// boardVo.setSubject(request.getParameter("subject"));
+// boardVo.setContent(request.getParameter("content"));
+// boardVo.setReRef(Integer.parseInt(request.getParameter("reRef")));
+// boardVo.setReLev(Integer.parseInt(request.getParameter("reLev")));
+// boardVo.setReSeq(Integer.parseInt(request.getParameter("reSeq")));
+%>
+<jsp:setProperty property="*" name="boardVo"/>
+<%
 BoardDao boardDao = BoardDao.getInstance();
 int nextNum = boardDao.getNextNum();
 boardVo.setNum(nextNum);

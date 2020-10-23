@@ -58,7 +58,7 @@ BoardVo boardVo = boardDao.getBoardByNum(num);
 				<input type="button" value="글수정" onclick="location.href='updateForm.jsp?num=<%=num%>&pageNum=<%=pageNum%>'">
 				<input type="button" value="글삭제" onclick="location.href='deleteForm.jsp?num=<%=num%>&pageNum=<%=pageNum%>'">
 				<input type="button" value="답글쓰기" onclick="location.href='reWriteForm.jsp?reRef=<%=boardVo.getReRef() %>&reLev=<%=boardVo.getReLev() %>&reSeq=<%=boardVo.getReSeq() %>&pageNum=<%=pageNum %>'">
-				<input type="button" value="글목록" onclick="location.href='list.jsp?pageNum=<%=pageNum%>'">
+				<input type="button" value="글목록" onclick="location.href='list.jsp?pageNum=<%=pageNum %>'">
 			</td>
 		</tr>
 	</table>

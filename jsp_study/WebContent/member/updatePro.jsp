@@ -12,15 +12,21 @@ if (id == null) {
 }
 // post 파라미터값 한글처리(post로 넘어올땐 다 꺠져서 넘어오기에..)
 request.setCharacterEncoding("utf-8");
+%>
+<jsp:useBean id="memberVo" class="com.exam.vo.MemberVo"/>
+<%
 // VO 객체준비
-MemberVo memberVo = new MemberVo();
+// MemberVo memberVo = new MemberVo();
 // 파라미터값 가져와서 VO에 저장
-memberVo.setId(request.getParameter("id"));
-memberVo.setPasswd(request.getParameter("passwd"));
-memberVo.setName(request.getParameter("name"));
-memberVo.setAge(Integer.parseInt(request.getParameter("age")));
-memberVo.setGender(request.getParameter("gender"));
-memberVo.setEmail(request.getParameter("email"));
+// memberVo.setId(request.getParameter("id"));
+// memberVo.setPasswd(request.getParameter("passwd"));
+// memberVo.setName(request.getParameter("name"));
+// memberVo.setAge(Integer.parseInt(request.getParameter("age")));
+// memberVo.setGender(request.getParameter("gender"));
+// memberVo.setEmail(request.getParameter("email"));
+%>
+<jsp:setProperty property="*" name="memberVo"/> <!-- useBean id를 name값으로 -->
+<%
 // DAO 객체 준비
 // MemberDao memberDao = new MemberDao();
 MemberDao memberDao = MemberDao.getInstance();

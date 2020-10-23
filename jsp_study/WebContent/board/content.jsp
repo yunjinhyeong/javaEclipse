@@ -7,7 +7,7 @@
 	int num = Integer.parseInt(request.getParameter("num")); // 글번호
 	String pageNum = request.getParameter("pageNum"); // 페이지번호       writePro에서받아온게 아니라 list에서 받아옴
 	// DAO 객체 준비
-	BoardDao boardDao = BoardDao.getInstance();	
+	BoardDao boardDao = BoardDao.getInstance();
 	// 조회수 1 증가하기
 	boardDao.updateReadcount(num);	
 	// 글번호에 해당하는 글 한개 가져오기
@@ -69,7 +69,7 @@ table {
 				<input type="button" value="글수정" onclick="location.href='updateForm.jsp?num=<%=num %>&pageNum=<%=pageNum %>'">
 				<input type="button" value="글삭제" onclick="location.href='deleteForm.jsp?num=<%=num %>&pageNum=<%=pageNum %>'">
 				<input type="button" value="답글쓰기" onclick="location.href='reWriteForm.jsp?reRef=<%=boardVo.getReRef() %>&reLev=<%=boardVo.getReLev() %>&reSeq=<%=boardVo.getReSeq() %>&pageNum=<%=pageNum %>'">
-				<input type="button" value="글목록" onclick="location.href='list.jsp?pageNum=<%=pageNum %>'">
+				<input type="button" value="글목록" onclick="location.href='list.jsp?pageNum=<%=(pageNum==null)?1:pageNum %>'">
 			</td>
 		</tr>
 	</table>
