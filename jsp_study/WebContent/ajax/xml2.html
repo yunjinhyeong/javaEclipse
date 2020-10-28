@@ -4,31 +4,33 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-section {
-	border: 1px solid red;
+li {
+	list-style-type : none;
 }
 </style>
 </head>
 <body>
 <div id="app">
 	<input type="button" value="버튼" id="btn">
-	<section></section>
+	<ul></ul>
 </div>
 <script src="../js/jquery-3.5.1.js"></script>
 <script>
 	function process(data) {
 		let str = '';
-		// find()는 전체문서 기준으로 person 태그요소 찾기
-		// find로 하면 person 태그 여러개가 배열리스트로 리턴됨.
-		$(data).find('person').each(function () { // find함수는 항상 테그를 찾는다			
+		// find()는 전체문서 기준으로 member 태그요소 찾기
+		// find로 하면 member 태그 여러개가 배열리스트로 리턴됨.
+		$(data).find('member').each(function () { // find함수는 항상 테그를 찾는다			
 			// this는 person 태그가 된다.
+			let id = $(this).find('id').text();
 			let name = $(this).find('name').text();
-			let gender = $(this).find('name').text();
 			let age = $(this).find('age').text();
 			
-			str += '<h2>' + name + ':' + gender + ':' + age + '</h2>';
+			str += `<li>${id} : ${name} : ${age}</li>`;
+			
+// 			str += '<h2>' + id + ':' + name + ':' + age + '</h2>';
 		});
-		$('section').html(str).bind(each);
+		$('ul').html(str).bind(each);
 		
 	} // process();
 
@@ -40,7 +42,7 @@ section {
 		// Ajax(Asynchronous Javascript and XML, JSON)
 		// 비동기이기때문에 ajax가 실행되어 늦어도 기다리지않고 다른 실행문이 실행된다.
 		$.ajax({
-			url: 'xml.jsp',
+			url: 'xml2.jsp',
 			success: function (data) {
 				console.log(typeof data); // 태그문서 DOM, Document Object Model
 				console.log(data);

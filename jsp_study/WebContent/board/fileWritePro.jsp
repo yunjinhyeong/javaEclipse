@@ -27,7 +27,8 @@ MultipartRequest multi = new MultipartRequest(
 // 기본내장객체인 request에서 파라미터값을 바로 찾을수 없음!
 // MultipartRequest 객체로부터 파라미터값을 찾아야 함! 사용방법은 동일함.
 // post 파라미터값 한글처리는 위에 생성자에서 처리하기 때문에 할필요 없음!
-
+// pageNum 파라미터값 가져오기
+String pageNum = multi.getParameter("pageNum");
 // BoardVo 객체준비
 BoardVo boardVo = new BoardVo();
 //파라미터값 가져와서 VO에 저장. MultipartRequest 로부터 찾음.
@@ -56,5 +57,5 @@ boardVo.setReSeq(0); // 주글일때는 글그룹 내에서 순번이 0(첫번�
 // 주글 등록하기
 boardDao.addBoard(boardVo);
 // 글내용 상세보기 화면 content.jsp로 이동
-response.sendRedirect("content.jsp?num="+boardVo.getNum());
+response.sendRedirect("content.jsp?num="+boardVo.getNum()+ "&pageNum=" + pageNum);
 %>

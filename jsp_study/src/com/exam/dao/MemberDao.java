@@ -173,6 +173,36 @@ public class MemberDao {
 		}
 		return memberVo;
 	} // getMemberById()
+	
+	public int getCountById(String id) {
+		int count = 0;
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String sql = "";
+
+		try {
+			con = JdbcUtils.getConnection();
+
+			sql = "SELECT COUNT(*) FROM member WHERE id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				count = rs.getInt(1); // count(*) 가 0 아니면 1일것
+			} // if
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.close(con, pstmt, rs);
+		}
+		return count;
+	} // getMemberById()
+
 
 	// 특정id에 해당하는 회원의 이름 수정하기                id에 해당되는 이름 나이 성별 이메일 수정하기
 	public void update(MemberVo memberVo) {

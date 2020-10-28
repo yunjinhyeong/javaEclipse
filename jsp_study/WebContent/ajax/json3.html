@@ -4,9 +4,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-section {
-	border: 1px solid red;
-}
+
 </style>
 </head>
 <body>
@@ -15,7 +13,7 @@ section {
 	<table border="1">
 		<thead>
 			<tr>
-				<th>이름</th><th>성별</th><th>나이</th>
+				<th>아이디</th><th>이름</th><th>나이</th>
 			</tr>
 		</thead>
 		<tbody></tbody>
@@ -27,19 +25,15 @@ section {
 		let str = '';
 		
 		$.each(list, function(index, item) {
-			str += '<tr>';
-			str += '  <td>'+item.name + '</td>';
-			str += '  <td>'+item.gender + '</td>';
-			str += '  <td>'+item.age + '</td>';
-			str += '</tr>';
+			
 			// 백틱(Backtick `)
 			str += `
 							<tr>
+								<td>${item.id}</td>
 								<td>${item.name}</td>
-								<td>${item.gender}</td>
 								<td>${item.age}</td>
 							</tr>
-						 `
+						 `;
 		});
 		$('tbody').html(str);
 	}
@@ -47,7 +41,7 @@ section {
 	$('#btn').click(function () {
 		// ajax 비동기 방식 (다음 네트워크에 영향을 안준다)
 		$.ajax({
-			url: 'json2.jsp',
+			url: 'json3.jsp',
 			success: function (data) {
 				console.log(typeof data);
 				console.log(data);
