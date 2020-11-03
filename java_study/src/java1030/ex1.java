@@ -25,7 +25,7 @@ public class ex1 {
 		// 입력스트림 준비
 		FileReader reader = null;
 		
-		// 파일 발견 못할시
+		// 파일 발견 못할시    		"C:/Users/admin/testFolder/testFile.txt"
 		try {
 			reader = new FileReader("C:/Users/admin/testFolder/testFile.txt");
 			

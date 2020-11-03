@@ -20,9 +20,7 @@
 <script>
 	function process(list) {
 		let str = '';
-		
-		for (let item of list) {
-			// 백틱(Backtick `)
+		for(let item of list) {
 			str += `
 				<tr>
 					<td>${item.id}</td>
@@ -31,22 +29,17 @@
 				</tr>
 			`;
 		} // for
-		$('tbody').html(str);
+		$('tbody').html(str);		
 	}
-
+	
 	$('#btn').click(function () {
-		// ajax 비동기 방식 (다음 네트워크에 영향을 안준다)
 		$.ajax({
 			url: 'json4.jsp',
-			success: function (data) {
-				console.log(typeof data);
-				console.log(data);
-				
+			success: function(data) {
 				process(data);
 			}
-		});
-		
-	});
+		})
+	})
 </script>
 </body>
 </html>

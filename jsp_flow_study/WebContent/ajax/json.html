@@ -10,6 +10,8 @@ section {
 </style>
 </head>
 <body>
+	
+
 <div id="app">
 	<input type="button" value="버튼" id="btn">
 	<section></section>
@@ -17,21 +19,19 @@ section {
 <script src="../js/jquery-3.5.1.js"></script>
 <script>
 	function process(data) {
-		$('section').append(data.name + ':' + data.gender + ':' + data.age);
+		$('section').append(data.name + ":" + data.gender + ':' + data.age);
 	}
-
+	
 	$('#btn').click(function () {
 		
 		$.ajax({
 			url: 'json.jsp',
 			success: function (data) {
-				console.log(typeof data);
-				console.log(data);
-				
 				process(data);
 			}
-		});		
+		});
 	});
+	
 </script>
 </body>
 </html>
