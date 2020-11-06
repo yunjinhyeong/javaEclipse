@@ -6,10 +6,10 @@
 <meta charset="utf-8">
 <title>Welcome to Fun Web</title>
 <link href="/css/default.css" rel="stylesheet" type="text/css" media="all">
-<link href="/css/front.css" rel="stylesheet" type="text/css" media="all">
 <link href="/css/print.css" rel="stylesheet" type="text/css" media="print">
 <link href="/css/iphone.css" rel="stylesheet" type="text/css" media="screen">
 
+<link href="/css/front.css" rel="stylesheet" type="text/css" media="all">
 <script type="text/javascript" src="/script/jquery-1.6.1.min.js"></script>
 <script type="text/javascript" src="/script/s3Slider.js"></script>
 <script type="text/javascript">

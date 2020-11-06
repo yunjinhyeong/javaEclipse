@@ -11,20 +11,35 @@ public class MemberVo {
 	private String gender; // 己喊
 	private String email; // 捞皋老 林家
 	private Timestamp regDate;
+	private String address;
+	private String tel;
 	
 	public MemberVo() {
 		super();
 	}
-	
-	public MemberVo(String id, String passwd, String name, Integer age, String gender, String email) {
-		super();
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
 		this.id = id;
+	}
+
+	public String getPasswd() {
+		return passwd;
+	}
+
+	public void setPasswd(String passwd) {
 		this.passwd = passwd;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
 		this.name = name;
-		this.age = age;
-		this.gender = gender;
-		this.email = email;
-		
 	}
 
 	public Integer getAge() {
@@ -51,38 +66,35 @@ public class MemberVo {
 		this.email = email;
 	}
 
-	public String getId() {
-		return id;
-	}
-	public String getPasswd() {
-		return passwd;
-	}
-	public String getName() {
-		return name;
-	}
 	public Timestamp getRegDate() {
 		return regDate;
 	}
-	public void setId(String id) {
-		this.id = id;
-	}
-	public void setPasswd(String passwd) {
-		this.passwd = passwd;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
+
 	public void setRegDate(Timestamp regDate) {
 		this.regDate = regDate;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getTel() {
+		return tel;
+	}
+
+	public void setTel(String tel) {
+		this.tel = tel;
 	}
 
 	@Override
 	public String toString() {
 		return "MemberVo [id=" + id + ", passwd=" + passwd + ", name=" + name + ", age=" + age + ", gender=" + gender
-				+ ", email=" + email + ", regDate=" + regDate + "]";
+				+ ", email=" + email + ", regDate=" + regDate + ", address=" + address + ", tel=" + tel + "]";
 	}
-	
-	
 	
 }
 
