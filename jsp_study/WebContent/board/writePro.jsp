@@ -1,20 +1,20 @@
 <%@page import="java.sql.Timestamp"%>
-<%@page import="com.exam.dao.BoardDao"%>
-<%@page import="com.exam.vo.BoardVo"%>
+<%@page import="com.exam.dao.NoticeDao"%>
+<%@page import="com.exam.vo.NoticeVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-// post 파라미터값 한글처리
+	// post 파라미터값 한글처리
 request.setCharacterEncoding("utf-8");
 // BoardVo 객체준비
-BoardVo boardVo = new BoardVo();
+NoticeVo boardVo = new NoticeVo();
 // 파라미터값 가져와 VO 에 저장
 boardVo.setName(request.getParameter("name")); // 이 jsp를 부른 wirteForm에서 "name"값 가져와 vo를 활용해 setName시킨다.
 boardVo.setPasswd(request.getParameter("passwd"));
 boardVo.setSubject(request.getParameter("subject"));
 boardVo.setContent(request.getParameter("content"));
 // insert를 위해 Dao객체준비
-BoardDao boardDao = BoardDao.getInstance();
+NoticeDao boardDao = NoticeDao.getInstance();
 // 글번호 가져오기
 int nextNum = boardDao.getNextNum();
 boardVo.setNum(nextNum);

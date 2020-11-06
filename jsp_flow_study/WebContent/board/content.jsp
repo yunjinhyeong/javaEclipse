@@ -1,13 +1,13 @@
-<%@page import="com.exam.vo.BoardVo"%>
-<%@page import="com.exam.dao.BoardDao"%>
+<%@page import="com.exam.vo.NoticeVo"%>
+<%@page import="com.exam.dao.NoticeDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-int num = Integer.parseInt(request.getParameter("num"));
+	int num = Integer.parseInt(request.getParameter("num"));
 String pageNum = request.getParameter("pageNum");
-BoardDao boardDao = BoardDao.getInstance();
+NoticeDao boardDao = NoticeDao.getInstance();
 boardDao.updateReadcount(num); // num을 증가시키는게 아니라 num으로 어느 번호 글인지 안다음 + readCount함
-BoardVo boardVo = boardDao.getBoardByNum(num);
+NoticeVo boardVo = boardDao.getBoardByNum(num);
 %>   
 <!DOCTYPE html>
 <html>

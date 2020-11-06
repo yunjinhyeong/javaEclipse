@@ -1,11 +1,11 @@
-<%@page import="com.exam.vo.BoardVo"%>
+<%@page import="com.exam.vo.NoticeVo"%>
 <%@page import="java.util.List"%>
-<%@page import="com.exam.dao.BoardDao"%>
+<%@page import="com.exam.dao.NoticeDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-// DAO 객체준비
-BoardDao boardDao = BoardDao.getInstance();
+	// DAO 객체준비
+NoticeDao boardDao = NoticeDao.getInstance();
 // 전체 글갯수 가져오기
 int count = boardDao.getCount();
 // 한페이지당 보여줄 글갯수 설정
@@ -20,7 +20,7 @@ int pageNum = Integer.parseInt(strPageNum);
 // 가져올 첫행번호 구하기
 int startRow = (pageNum - 1)*pageSize;
 // 글목록 가져오기
-List<BoardVo> boardList = null;
+List<NoticeVo> boardList = null;
 if(count>0) {
 	boardList = boardDao.getBoards(startRow, pageSize);
 }
@@ -43,7 +43,7 @@ a.active {
 </style>
 </head>
 <body>
-	<h1>글목록(전체글갯수: <%=count %>)</h1>
+	<h1>글목록(전체글갯수: <%=count%>)</h1>
 	<hr>
 	<h3><a href="writeForm.jsp">글쓰기</a></h3>
 	<h3><a href="fileWriteForm.jsp">파일 글쓰기</a></h3>
@@ -55,9 +55,9 @@ a.active {
 		</thead>
 		<tbody>
 		<%
-		if (count > 0) {
-			for (BoardVo boardVo : boardList) {
-				%>
+			if (count > 0) {
+			for (NoticeVo boardVo : boardList) {
+		%>
 				<tr>
 					<td><%=boardVo.getNum() %></td>
 					<td>

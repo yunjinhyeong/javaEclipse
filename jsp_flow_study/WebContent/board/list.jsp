@@ -1,17 +1,17 @@
-<%@page import="com.exam.vo.BoardVo"%>
+<%@page import="com.exam.vo.NoticeVo"%>
 <%@page import="java.util.List"%>
-<%@page import="com.exam.dao.BoardDao"%>
+<%@page import="com.exam.dao.NoticeDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-BoardDao boardDao = BoardDao.getInstance();
+	NoticeDao boardDao = NoticeDao.getInstance();
 int count = boardDao.getCount(); // 전체 글 갯수
 int pageSize = 10; // 한페이지당 보여줄 글갯수
 String strPageNum = request.getParameter("pageNum");
 strPageNum = (strPageNum == null)? "1" :strPageNum;
 int pageNum = Integer.parseInt(strPageNum);
 int startRow = (pageNum-1)*pageSize;
-List<BoardVo> boardList = null;
+List<NoticeVo> boardList = null;
 if(count > 0) { boardList = boardDao.getBoards(startRow, pageSize); }
 %>
 <!DOCTYPE html>
@@ -21,9 +21,9 @@ if(count > 0) { boardList = boardDao.getBoards(startRow, pageSize); }
 <title>목록</title>
 </head>
 <body>
-	<h1>글목록 전체글갯수: <%=count %></h1>
+	<h1>글목록 전체글갯수: <%=count%></h1>
 	<hr>
-	<h3><a href="writeForm.jsp?pageNum=<%=pageNum %>">글쓰기</a></h3>
+	<h3><a href="writeForm.jsp?pageNum=<%=pageNum%>">글쓰기</a></h3>
 	<table border="1">
 		<thead>
 			<tr>
@@ -37,9 +37,9 @@ if(count > 0) { boardList = boardDao.getBoards(startRow, pageSize); }
 		</thead>
 		<tbody>
 		<%
-		if(count>0) {
-			for(BoardVo boardVo : boardList) {
-				%>
+			if(count>0) {
+			for(NoticeVo boardVo : boardList) {
+		%>
 				<tr>
 					<td><%=boardVo.getNum() %></td>
 					<td>
