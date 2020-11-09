@@ -18,11 +18,23 @@ a.active {
 </style>
 </head>
 <%
+// 검색어 관련 파라미터값 가져오기. 없으면 null 리턴
+String category = request.getParameter("category"); // 검색유형
+String search = request.getParameter("search"); // 검색어
+
+// 검색어 관련 파라미터값이 null이면 빈문자열("")로 대체
+category = (category == null) ? "" : category;
+search = (search == null) ? "" : search;
+
+System.out.println("category = " + category);
+System.out.println("search = " + search);
+
 // DAO 객체 준비
 NoticeDao noticeDao = NoticeDao.getInstance();
 
 // 전체 글갯수 가져오기
-int count = noticeDao.getCountAll();
+//int count = noticeDao.getCountAll();
+int count = noticeDao.getCountBySearch(category, search); // 검색어 기준으로 글갯수 가져오기
 
 // 한페이지당 보여줄 글갯수 설정
 int pageSize = 10;
@@ -41,7 +53,8 @@ int startRow = (pageNum - 1) * pageSize;
 // 글목록 가져오기
 List<NoticeVo> noticeList = null;
 if (count > 0) {
-	noticeList = noticeDao.getNotices(startRow, pageSize);
+	//noticeList = noticeDao.getNotices(startRow, pageSize);
+	noticeList = noticeDao.getNoticesBySearch(startRow, pageSize, category, search);
 }
 %>
 <body>
@@ -104,7 +117,25 @@ if (count > 0) {
 	</table>
 
 	<div id="table_search">
-		<input name="" type="text" class="input_box"> <input type="button" value="Search" class="btn">
+		<form action="notice.jsp" method="get">
+			<select name="category">
+				<option value="subject" <%=category.equals("subject") ? "selected" : "" %>>글제목</option>
+				<option value="content" <%=category.equals("content") ? "selected" : "" %>>글내용</option>
+				<option value="id" <%=category.equals("id") ? "selected" : "" %>>작성자ID</option>
+			</select>
+			<input type="text" class="input_box" name="search" value="<%=search %>">
+			<input type="submit" value="검색" class="btn">
+			
+			<%
+			// 로그인 했을때만 [글쓰기] 버튼 보이기
+			String id = (String) session.getAttribute("id");
+			if (id != null) {
+				%>
+				<input type="button" value="글쓰기" class="btn" onclick="location.href='writeForm.jsp?pageNum=<%=pageNum %>'">
+				<%
+			}
+			%>
+		</form>
 	</div>
 	
 	<div class="clear"></div>
