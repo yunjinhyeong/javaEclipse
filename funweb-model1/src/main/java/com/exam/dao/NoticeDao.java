@@ -23,6 +23,7 @@ public class NoticeDao {
 	private NoticeDao() {}
 	
 	
+	// 주글쓰기 메서드
 	public void addNotice(NoticeVo noticeVo) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -56,7 +57,7 @@ public class NoticeDao {
 	} // addBoard()
 	
 	
-	public NoticeVo getBoardByNum(int num) {
+	public NoticeVo getNoticeByNum(int num) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -78,14 +79,12 @@ public class NoticeDao {
 				noticeVo = new NoticeVo();
 				
 				noticeVo.setNum(rs.getInt("num"));
-				noticeVo.setName(rs.getString("name"));
-				noticeVo.setPasswd(rs.getString("passwd"));
+				noticeVo.setId(rs.getString("id"));
 				noticeVo.setSubject(rs.getString("subject"));
 				noticeVo.setContent(rs.getString("content"));
 				noticeVo.setReadcount(rs.getInt("readcount"));
 				noticeVo.setRegDate(rs.getTimestamp("reg_date"));
 				noticeVo.setIp(rs.getString("ip"));
-				noticeVo.setFile(rs.getString("file"));
 				noticeVo.setReRef(rs.getInt("re_ref"));
 				noticeVo.setReLev(rs.getInt("re_lev")); 
 				noticeVo.setReSeq(rs.getInt("re_seq"));
@@ -96,7 +95,7 @@ public class NoticeDao {
 			JdbcUtils.close(con, pstmt, rs);
 		}
 		return noticeVo;
-	} // getBoardByNum()
+	} // getNoticeByNum()
 	
 	
 	public void updateReadcount(int num) {
@@ -126,7 +125,7 @@ public class NoticeDao {
 	
 	
 	// 전체글갯수 가져오기
-	public int getCount() {
+	public int getCountAll() {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -152,10 +151,10 @@ public class NoticeDao {
 			JdbcUtils.close(con, pstmt, rs);
 		}
 		return count;
-	} // getCount()
+	} // getCountAll()
 	
 	
-	public List<NoticeVo> getBoards(int startRow, int pageSize) {
+	public List<NoticeVo> getNotices(int startRow, int pageSize) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -180,16 +179,14 @@ public class NoticeDao {
 			while (rs.next()) {
 				NoticeVo noticeVo = new NoticeVo();
 				noticeVo.setNum(rs.getInt("num"));
-				noticeVo.setName(rs.getString("name"));
-				noticeVo.setPasswd(rs.getString("passwd"));
+				noticeVo.setId(rs.getString("id"));
 				noticeVo.setSubject(rs.getString("subject"));
 				noticeVo.setContent(rs.getString("content"));
 				noticeVo.setReadcount(rs.getInt("readcount"));
 				noticeVo.setRegDate(rs.getTimestamp("reg_date"));
 				noticeVo.setIp(rs.getString("ip"));
-				noticeVo.setFile(rs.getString("file"));
 				noticeVo.setReRef(rs.getInt("re_ref"));
-				noticeVo.setReLev(rs.getInt("re_lev"));
+				noticeVo.setReLev(rs.getInt("re_lev")); 
 				noticeVo.setReSeq(rs.getInt("re_seq"));
 				
 				list.add(noticeVo);
@@ -202,45 +199,6 @@ public class NoticeDao {
 		return list;
 	} // getBoards()
 	
-	// 글번호에 해당하는 패스워드 일치여부 확인하기
-	public boolean isPasswdOk(int num, String passwd) {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		boolean isPasswdOk = false;
-		String sql = "";
-		
-		try {
-			con = JdbcUtils.getConnection();
-			
-			sql  = "SELECT COUNT(*) ";
-			sql += "FROM notice ";
-			sql += "WHERE num = ? ";
-			sql += "AND passwd = ? ";
-			
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, num);
-			pstmt.setString(2, passwd);
-			
-			rs = pstmt.executeQuery();
-			
-			if (rs.next()) {
-				int count = rs.getInt(1);
-				if (count == 1) {
-					isPasswdOk = true;
-				} else {
-					isPasswdOk = false;
-				}
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			JdbcUtils.close(con, pstmt, rs);
-		}
-		return isPasswdOk;
-	} // isPasswdOk()
-	
 	
 	public void updateBoard(NoticeVo noticeVo) {
 		Connection con = null;
@@ -252,15 +210,13 @@ public class NoticeDao {
 			con = JdbcUtils.getConnection();
 			
 			sql  = "UPDATE notice ";
-			sql += "SET name = ?, subject = ?, content = ?, file = ? ";
+			sql += "SET subject = ?, content = ? ";
 			sql += "WHERE num = ? ";
 			
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, noticeVo.getName());
-			pstmt.setString(2, noticeVo.getSubject());
-			pstmt.setString(3, noticeVo.getContent());
-			pstmt.setString(4, noticeVo.getFile());
-			pstmt.setInt(5, noticeVo.getNum());
+			pstmt.setString(1, noticeVo.getSubject());
+			pstmt.setString(2, noticeVo.getContent());
+			pstmt.setInt(3, noticeVo.getNum());
 			
 			pstmt.executeUpdate();
 			
@@ -273,7 +229,7 @@ public class NoticeDao {
 	
 	
 	
-	public void deleteBoardByNum(int num) {
+	public void deleteNoticeByNum(int num) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		String sql = "";
@@ -293,10 +249,32 @@ public class NoticeDao {
 		} finally {
 			JdbcUtils.close(con, pstmt);
 		}
-	} // deleteBoard
+	} // deleteNoticeByNum
 	
 	
+	public void deleteAll() {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = "";
+		
+		try {
+			con = JdbcUtils.getConnection();
+			
+			sql = "DELETE FROM notice";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.close(con, pstmt);
+		}
+	} // deleteAll
 	
+	
+	// 답글쓰기 메서드
 	public boolean updateAndAddReply(NoticeVo noticeVo) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -320,22 +298,20 @@ public class NoticeDao {
 			// update문장을 가진 pstmt 객체 닫기
 			pstmt.close();
 			
-			sql  = "INSERT INTO notice (num, name, passwd, subject, content, readcount, reg_date, ip, file, re_ref, re_lev, re_seq) ";
-			sql += "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
+			sql  = "INSERT INTO notice (id, subject, content, readcount, reg_date, ip, re_ref, re_lev, re_seq) ";
+			sql += "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) ";
 			
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, noticeVo.getNum());
-			pstmt.setString(2, noticeVo.getName());
-			pstmt.setString(3, noticeVo.getPasswd());
-			pstmt.setString(4, noticeVo.getSubject());
-			pstmt.setString(5, noticeVo.getContent());
-			pstmt.setInt(6, noticeVo.getReadcount());
-			pstmt.setTimestamp(7, noticeVo.getRegDate());
-			pstmt.setString(8, noticeVo.getIp());
-			pstmt.setString(9, noticeVo.getFile());
-			pstmt.setInt(10, noticeVo.getReRef());     // 같은 그룹
-			pstmt.setInt(11, noticeVo.getReLev() + 1); // 답글쓰는 대상글의 들여쓰기 + 1
-			pstmt.setInt(12, noticeVo.getReSeq() + 1); // 답글쓰는 대상글의 그룹내 순번 + 1
+			pstmt.setString(1, noticeVo.getId());
+			pstmt.setString(2, noticeVo.getSubject());
+			pstmt.setString(3, noticeVo.getContent());
+			pstmt.setInt(4, noticeVo.getReadcount());
+			pstmt.setTimestamp(5, noticeVo.getRegDate());
+			pstmt.setString(6, noticeVo.getIp());
+			pstmt.setInt(7, noticeVo.getReRef());  // 같은 그룹
+			pstmt.setInt(8, noticeVo.getReLev() + 1); // 답글쓰는 대상글의 들여쓰기 + 1
+			pstmt.setInt(9, noticeVo.getReSeq() + 1); // 답글쓰는 대상글의 그룹내 순번 + 1
+
 			// insert문 실행
 			pstmt.executeUpdate();
 			
@@ -364,28 +340,30 @@ public class NoticeDao {
 	
 	public static void main(String[] args) {
 		
-		NoticeDao boardDao = NoticeDao.getInstance();
+		NoticeDao noticeDao = NoticeDao.getInstance();
 		
-		for (int i=0; i<100; i++) {
+		noticeDao.deleteAll(); // 테이블 내용 모두 삭제
+		// 주글 1000개 insert하기
+		for (int i=0; i<1000; i++) {
 			NoticeVo noticeVo = new NoticeVo();
-			
-			int num = boardDao.getNextNum();
-			noticeVo.setNum(num);
-			noticeVo.setName("홍길동" + num);
-			noticeVo.setPasswd("1234");
-			noticeVo.setSubject("글제목" + num);
-			noticeVo.setContent("글내용" + num);
+
+			noticeVo.setId("user1");
+			noticeVo.setSubject("글제목" + i);
+			noticeVo.setContent("글내용" + i);
 			noticeVo.setReadcount(0);
 			noticeVo.setRegDate(new Timestamp(System.currentTimeMillis()));
 			noticeVo.setIp("127.0.0.1");
-			noticeVo.setReRef(num);
+			noticeVo.setReRef(JdbcUtils.getNextNum("notice")); //
 			noticeVo.setReLev(0);
 			noticeVo.setReSeq(0);
 			
 			System.out.println(noticeVo);
 			
-			boardDao.addBoard(noticeVo);
+			noticeDao.addNotice(noticeVo);
 		} // for
+		
+		int count = noticeDao.getCountAll();
+		System.out.println("count = " + count);
 		
 	} // main()
 	
