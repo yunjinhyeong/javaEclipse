@@ -8,7 +8,8 @@ if (cookies != null) {
 	for (Cookie cookie : cookies) {
 		if (cookie.getName().equals("id")) {
 			String id = cookie.getValue();
-			// 로그인 인증(세션에 id값 추가)
+			
+			// 로그인 인증 처리(세션에 id값 추가)
 			session.setAttribute("id", id);
 		}
 	}

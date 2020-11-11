@@ -3,27 +3,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>Welcome to Fun Web</title>
-<link href="/css/default.css" rel="stylesheet" type="text/css" media="all">
-<link href="/css/print.css" rel="stylesheet" type="text/css" media="print">
-<link href="/css/iphone.css" rel="stylesheet" type="text/css" media="screen">
+<%-- head 컨텐트 영역 --%>
+<jsp:include page="/include/headContent.jsp" />
 
 <link href="/css/front.css" rel="stylesheet" type="text/css" media="all">
-<script type="text/javascript" src="/script/jquery-1.6.1.min.js"></script>
-<script type="text/javascript" src="/script/s3Slider.js"></script>
-<script type="text/javascript">
-$(document).ready(function() {
-   $('#s3slider').s3Slider({
-      timeOut: 4000
+
+<script src="/script/jquery-1.6.1.min.js"></script>
+<script src="/script/s3Slider.js"></script>
+<script>
+$(document).ready(function() { 
+   $('#s3slider').s3Slider({ 
+      timeOut: 4000 
    });
  });
 </script>
 </head>
+
 <body>
 <div id="wrap">
-	<%-- Header 영역 --%>
-	<jsp:include page="/include/topHeader.jsp"/>
+	<%-- header 영역 --%>
+	<jsp:include page="/include/topHeader.jsp" />
 	
     <div class="clear"></div>
     <div id="main_img">
@@ -124,9 +123,10 @@ $(document).ready(function() {
     </article>
 	
 	<div class="clear"></div>
-	<%-- Footer 영역 --%>
-	<jsp:include page="/include/bottomFooter.jsp"/>
+	<%-- footer 영역 --%>
+	<jsp:include page="/include/bottomFooter.jsp" />
 </div>
 
 </body>
 </html>
+    

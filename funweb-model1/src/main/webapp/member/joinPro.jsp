@@ -19,7 +19,7 @@ MemberDao memberDao = MemberDao.getInstance();
 // 회원가입 메서드 호출
 memberDao.addMember(memberVo);
 
-// 회원가입 후 로그인 페이지로 리다이렉트
+// 회원가입 성공 후 로그인 페이지로 리다이렉트
 //response.sendRedirect("login.jsp");
 %>
 <script>

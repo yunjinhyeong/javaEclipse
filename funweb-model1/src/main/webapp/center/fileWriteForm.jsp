@@ -102,47 +102,49 @@ span.file-delete {
 	<%-- footer 영역 --%>
 	<jsp:include page="/include/bottomFooter.jsp" />
 </div>
+
 <script src="/script/jquery-3.5.1.js"></script>
 <script>
-let fileCount = 1;
-let fileIndex = 1;
+	let fileCount = 1;
+	let fileIndex = 1;
 
-// 정적 이벤트 연결
-$('#btnAddFile').on('click', function () {
-	if (fileCount >= 5) {
-		alert('첨부파일은 최대 5개 까지만 첨부할 수 있습니다.');
-		return;
-	}
-	
-	let str = `
-		<div>
-			<input type="file" name="filename\${fileIndex}">
-			<span class="file-delete">X</span>
-		</div>
-	`;
+	// 정적 이벤트 연결
+	$('#btnAddFile').on('click', function () {
+		if (fileCount >= 5) {
+			alert('첨부파일은 최대 5개 까지만 첨부할 수 있습니다.');
+			return;
+		}
+		
+		let str = `
+			<div>
+				<input type="file" name="filename\${fileIndex}">
+				<span class="file-delete">X</span>
+			</div>
+		`;
 
-	$('#fileBox').append(str);
+		$('#fileBox').append(str);
 
-	fileCount++;
-	fileIndex++;
-});
+		fileCount++;
+		fileIndex++;
+	});
 
 
-// 동적 이벤트 연결 (이벤트 등록을 위임하는 방식)
-$('div#fileBox').on('click', 'span.file-delete', function () {
-	//alert('span X 클릭됨');
+	// 동적 이벤트 연결 (이벤트 등록을 위임하는 방식)
+	$('div#fileBox').on('click', 'span.file-delete', function () {
+		//alert('span X 클릭됨');
 
-	//$(this).closest('div').remove();
-	$(this).parent().remove();
-	
-	fileCount--;
-});
-
+		//$(this).closest('div').remove();
+		$(this).parent().remove();
+		
+		fileCount--;
+	});
 
 </script>
-
-
 </body>
 </html>   
+
+
+
+
 
     

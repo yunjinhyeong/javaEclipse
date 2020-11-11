@@ -98,7 +98,7 @@ if (count > 0) {
 							<%
 						}
 						%>
-						<a href="content.jsp?num=<%=noticeVo.getNum() %>&pageNum=<%=pageNum %>"><%=noticeVo.getSubject() %></a>
+						<a href="fileContent.jsp?num=<%=noticeVo.getNum() %>&pageNum=<%=pageNum %>"><%=noticeVo.getSubject() %></a>
 					</td>
 					<td><%=noticeVo.getId() %></td>
 					<td><%=sdf.format(noticeVo.getRegDate()) %></td>
@@ -131,7 +131,7 @@ if (count > 0) {
 			String id = (String) session.getAttribute("id");
 			if (id != null) {
 				%>
-				<input type="button" value="글쓰기" class="btn" onclick="location.href='fileWriteForm.jsp?pageNum=<%=pageNum %>'">
+				<input type="button" value="파일글쓰기" class="btn" onclick="location.href='fileWriteForm.jsp?pageNum=<%=pageNum %>'">
 				<%
 			}
 			%>
@@ -166,7 +166,7 @@ if (count > 0) {
 		// [이전]
 		if (startPage > pageBlock) {
 			%>
-			<a href="filenotice.jsp?pageNum=<%=startPage - pageBlock %>&category=<%=category %>&search=<%=search %>">[이전]</a>
+			<a href="fileNotice.jsp?pageNum=<%=startPage - pageBlock %>">[이전]</a>
 			<%
 		}
 		
@@ -174,19 +174,20 @@ if (count > 0) {
 		for (int i=startPage; i<=endPage; i++) {
 			if (i == pageNum) {
 				%>
-				<a href="filenotice.jsp?pageNum=<%=i %>&category=<%=category %>&search=<%=search %>" class="active">[<%=i %>]</a>
+				<a href="fileNotice.jsp?pageNum=<%=i %>" class="active">[<%=i %>]</a>
 				<%
 			} else {
 				%>
-				<a href="filenotice.jsp?pageNum=<%=i %>&category=<%=category %>&search=<%=search %>">[<%=i %>]</a>
+				<a href="fileNotice.jsp?pageNum=<%=i %>">[<%=i %>]</a>
 				<%
 			}
-		} // for		
+		} // for
+		
 		
 		// [다음]
 		if (endPage < pageCount) {
 			%>
-			<a href="filenotice.jsp?pageNum=<%=startPage + pageBlock %>&category=<%=category %>&search=<%=search %>">[다음]</a>
+			<a href="fileNotice.jsp?pageNum=<%=startPage + pageBlock %>">[다음]</a>
 			<%
 		}
 	}
