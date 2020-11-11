@@ -71,7 +71,7 @@ if (count > 0) {
 	
 	<article>
 		
-	<h1>텍스트 게시판 [글갯수: <%=count %>]</h1>
+	<h1>자료실 게시판 [글갯수: <%=count %>]</h1>
 		
 	<table id="notice">
 		<tr>
@@ -131,7 +131,7 @@ if (count > 0) {
 			String id = (String) session.getAttribute("id");
 			if (id != null) {
 				%>
-				<input type="button" value="글쓰기" class="btn" onclick="location.href='writeForm.jsp?pageNum=<%=pageNum %>'">
+				<input type="button" value="글쓰기" class="btn" onclick="location.href='fileWriteForm.jsp?pageNum=<%=pageNum %>'">
 				<%
 			}
 			%>
@@ -166,7 +166,7 @@ if (count > 0) {
 		// [이전]
 		if (startPage > pageBlock) {
 			%>
-			<a href="notice.jsp?pageNum=<%=startPage - pageBlock %>&category=<%=category %>&search=<%=search %>">[이전]</a>
+			<a href="filenotice.jsp?pageNum=<%=startPage - pageBlock %>&category=<%=category %>&search=<%=search %>">[이전]</a>
 			<%
 		}
 		
@@ -174,20 +174,19 @@ if (count > 0) {
 		for (int i=startPage; i<=endPage; i++) {
 			if (i == pageNum) {
 				%>
-				<a href="notice.jsp?pageNum=<%=i %>&category=<%=category %>&search=<%=search %>" class="active">[<%=i %>]</a>
+				<a href="filenotice.jsp?pageNum=<%=i %>&category=<%=category %>&search=<%=search %>" class="active">[<%=i %>]</a>
 				<%
 			} else {
 				%>
-				<a href="notice.jsp?pageNum=<%=i %>&category=<%=category %>&search=<%=search %>">[<%=i %>]</a>
+				<a href="filenotice.jsp?pageNum=<%=i %>&category=<%=category %>&search=<%=search %>">[<%=i %>]</a>
 				<%
 			}
-		} // for
-		
+		} // for		
 		
 		// [다음]
 		if (endPage < pageCount) {
 			%>
-			<a href="notice.jsp?pageNum=<%=startPage + pageBlock %>&category=<%=category %>&search=<%=search %>">[다음]</a>
+			<a href="filenotice.jsp?pageNum=<%=startPage + pageBlock %>&category=<%=category %>&search=<%=search %>">[다음]</a>
 			<%
 		}
 	}
