@@ -117,7 +117,7 @@ if (count > 0) {
 	</table>
 
 	<div id="table_search">
-		<form action="notice.jsp" method="get">
+		<form action="fileNotice.jsp" method="get">
 			<select name="category">
 				<option value="subject" <%=category.equals("subject") ? "selected" : "" %>>글제목</option>
 				<option value="content" <%=category.equals("content") ? "selected" : "" %>>글내용</option>
