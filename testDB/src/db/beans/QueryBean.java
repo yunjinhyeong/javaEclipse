@@ -101,17 +101,51 @@ public class QueryBean {
 		StringBuffer sb = new StringBuffer();
 		PreparedStatement pstmt = null;
 		
-		sb.append(" INSERT INTO ");
-		sb.append(" 	USER_INFO_SAMPLE (U_ID, U_NAME, U_PHONE, U_GRADE, WRITE_TIME) ");
-		sb.append(" VALUES ");
-		sb.append(" 	('" + id + "','"+ name + "','" + phone + "', '" + grade + "', sysdate)");
-		sb.append(" WHERE ");
+//		sb.append(" INSERT INTO ");
+//		sb.append(" 	USER_INFO_SAMPLE (U_ID, U_NAME, U_PHONE, U_GRADE, WRITE_TIME) ");
+//		sb.append(" VALUES ");
+//		sb.append(" 	('" + id + "', '"+ name + "', '" + phone + "', '" + grade + "', now())");
+		
+		sb.append(" INSERT INTO USER_INFO_SAMPLE (U_ID, U_NAME, U_PHONE, U_GRADE, WRITE_TIME) VALUES ('" + id + "', '"+ name + "', '" + phone + "', '" + grade + "', now())");
 		
 		System.out.println(sb.toString());
 		
 		try {
 			pstmt = conn.prepareStatement(sb.toString());
 			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) {
+					pstmt.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
+	
+	public int updateUserInfo(String id, String name, String phone, String grade) {
+		int result = 0;
+		
+		StringBuffer sb = new StringBuffer();
+		PreparedStatement pstmt = null;		
+		
+		sb.append(" UPDATE USER_INFO_SAMPLE ");
+		sb.append(" 	SET ");
+		sb.append(" U_NAME = '" + name + "', U_PHONE = '" + phone + "', U_GRADE = '" + grade + "' ");
+		sb.append(" 	WHERE ");
+		sb.append(" 		U_ID = '" + id + "' ");
+		
+		System.out.println(sb.toString());
+		
+		try {
+			pstmt = conn.prepareStatement(sb.toString());
+			result = pstmt.executeUpdate();
+			
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -134,11 +168,10 @@ public class QueryBean {
 		StringBuffer sb = new StringBuffer();
 		
 		sb.append(" DELETE ");
-		sb.append(" FROM ");
-		sb.append(" VALUES ");
-		sb.append(" 	USER_INFO_SAMPLE ");
-		sb.append(" WHERE ");
-		sb.append(" 	U_ID = ? ");		
+		sb.append(" 	FROM ");
+		sb.append(" 		USER_INFO_SAMPLE ");
+		sb.append(" 	WHERE ");
+		sb.append(" 		U_ID = ? ");		
 		
 		try {
 			pstmt = conn.prepareStatement(sb.toString());
