@@ -68,7 +68,7 @@ public class QueryBean {
 		return res;
 	}
 	
-	public ArrayList getUserInfo(String strUser) throws Exception {
+	public ArrayList getUserInfo(String id) throws Exception {
 		StringBuffer sb = new StringBuffer();
 		
 		sb.append(" SELECT ");
@@ -76,7 +76,7 @@ public class QueryBean {
 		sb.append(" FROM ");
 		sb.append(" 	USER_INFO_SAMPLE ");
 		sb.append(" WHERE ");
-		sb.append(" 	U_ID like '%" + strUser + "%' ");
+		sb.append(" 	U_ID like '%" + id + "%' ");
 		sb.append(" ORDER BY ");
 		sb.append(" 	WRITE_TIME ");
 		sb.append(" DESC ");

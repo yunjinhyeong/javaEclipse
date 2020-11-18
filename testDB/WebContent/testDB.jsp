@@ -11,12 +11,16 @@
 	
 	request.setCharacterEncoding("UTF-8");
 	
+	String id = request.getParameter("id") == null ? "" : request.getParameter("id").trim();
+
+	System.out.println("id: "+ id);
+	
 	QueryBean.getConnection();
 	
 	ArrayList resArr = new ArrayList();
 	
 	try {
-		resArr = QueryBean.getUserInfo();	
+		resArr = QueryBean.getUserInfo(id);	
 	} catch(Exception e) {
 		out.print(e.toString());
 	} finally {
