@@ -5,15 +5,21 @@ import java.util.Map;
 
 public class ControllerFactory {
 	
+	private static ControllerFactory instance = new ControllerFactory();
+	
+	public static ControllerFactory getInstance() {
+		return instance;
+	}
+
+	///////////////////////////////////////////////////////////
+
 	private Map<String, Controller> map = new HashMap<>();
 	
-	
-	public ControllerFactory() {
+	private ControllerFactory() {
 		// 명령어와 명령어를 처리하는 컨트롤러 객체를 쌍으로 등록함
 		map.put("/index", new IndexController());
 		
 	} // 생성자
-	
 
 	
 	public Controller getController(String command) {

@@ -9,6 +9,8 @@ public class IndexController implements Controller {
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("IndexController......");
 		
+		// DB처리를 위해 Model역할인 Dao를 사용할수 있음
+		
 		//return "redirect:/joinForm.do"; // 리다이렉트 정보
 		
 		//return "/WEB-INF/views/index.jsp";

@@ -54,7 +54,7 @@ public class FrontController extends HttpServlet {
 		
 		// 2단계) 명령어 실행하기
 		Controller controller = null;
-		ControllerFactory factory = new ControllerFactory();
+		ControllerFactory factory = ControllerFactory.getInstance();
 		String strView = null;
 		
 		// 명령어에 해당하는 컨트롤러 객체 구하기
@@ -73,8 +73,14 @@ public class FrontController extends HttpServlet {
 		
 		
 		// 3단계) 화면응답(jsp실행) 또는 리다이렉트(.do) 이동
-		if (strView.startsWith("redirect:")) {
-			
+		if (strView == null) {
+			System.out.println("이동할 화면 View 정보가 없습니다.");
+			return;
+		}
+		
+		if (strView.startsWith("redirect:")) { // .do로 끝나는 경로
+			String redirectPath = strView.substring("redirect:".length());
+			response.sendRedirect(redirectPath);
 		} else {
 			String jspPath = "/WEB-INF/views/" + strView + ".jsp";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(jspPath);
