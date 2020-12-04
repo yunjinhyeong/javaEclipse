@@ -49,8 +49,7 @@ public class FrontController extends HttpServlet {
 		// command: /index.do
 		command = command.substring(0, command.indexOf(".do"));
 		System.out.println("command: " + command);
-		// command: /index
-		
+		// command: /index		
 		
 		// 2단계) 명령어 실행하기
 		Controller controller = null;

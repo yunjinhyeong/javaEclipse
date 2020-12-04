@@ -13,7 +13,7 @@
 <script>
 $(document).ready(function() { 
    $('#s3slider').s3Slider({ 
-      timeOut: 4000
+      timeOut: 4000 
    });
  });
 </script>
