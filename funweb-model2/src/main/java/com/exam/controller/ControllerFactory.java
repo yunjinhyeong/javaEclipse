@@ -11,6 +11,7 @@ import com.exam.controller.member.MemberJoinProController;
 import com.exam.controller.member.MemberLoginController;
 import com.exam.controller.member.MemberLoginProController;
 import com.exam.controller.member.MemberLogoutController;
+import com.exam.controller.notice.NoticeController;
 
 public class ControllerFactory {
 	
@@ -41,6 +42,9 @@ public class ControllerFactory {
 		map.put("/memberLogin", new MemberLoginController());
 		map.put("/memberLoginPro", new MemberLoginProController());
 		map.put("/memberLogout", new MemberLogoutController());
+		
+		// notice 게시판
+		map.put("/notice", new NoticeController());
 		
 	} // 생성자
 	
