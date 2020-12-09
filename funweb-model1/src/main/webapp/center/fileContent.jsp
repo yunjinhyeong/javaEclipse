@@ -88,22 +88,24 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			<%
 			if (attachList != null && attachList.size() > 0) {
 				for (AttachVo attachVo : attachList) {
-					if (attachVo.getImage().equals("I")) {
-						%>
-						<p>
-							<a href="/upload/<%=attachVo.getUploadpath() %>/<%=attachVo.getFilename() %>">
-								<img src="/upload/<%=attachVo.getUploadpath() %>/<%=attachVo.getFilename() %>" width="100" height="100">
-							</a>
-						</p>
-						<%
-					} else {
-						%>
-						<p>
-							<a href="/upload/<%=attachVo.getUploadpath() %>/<%=attachVo.getFilename() %>">
-								<%=attachVo.getFilename() %>
-							</a>
-						</p>					
-						<%
+					if (attachVo.getImage() != null) {
+						if (attachVo.getImage().equals("I")) {
+							%>
+							<p>
+								<a href="/upload/<%=attachVo.getUploadpath() %>/<%=attachVo.getFilename() %>">
+									<img src="/upload/<%=attachVo.getUploadpath() %>/<%=attachVo.getFilename() %>" width="100" height="100">
+								</a>
+							</p>
+							<%
+						} else {
+							%>
+							<p>
+								<a href="/upload/<%=attachVo.getUploadpath() %>/<%=attachVo.getFilename() %>">
+									<%=attachVo.getFilename() %>
+								</a>
+							</p>					
+							<%
+						}
 					}
 				} // for
 			}
