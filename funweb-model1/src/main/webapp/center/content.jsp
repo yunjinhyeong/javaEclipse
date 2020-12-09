@@ -79,9 +79,9 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 	<div id="table_search">
 		<%
-		String id = (String)session.getAttribute("id");//아이디 값을 받아오는것?
-		if(id != null){// 로그인을 했을때
-			if(id.equals(noticeVo.getId())){//로그인 아이디와 글작성자 아이디가 같을때
+		String id = (String) session.getAttribute("id");
+		if (id != null) { // 로그인 했을때
+			if (id.equals(noticeVo.getId())) { // 로그인 아이디와 글작성자 아이디가 같을때
 				%>
 				<input type="button" value="글수정" class="btn">
 				<input type="button" value="글삭제" class="btn">
@@ -91,9 +91,7 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			<input type="button" value="답글쓰기" class="btn">
 			<%
 		}
-	
 		%>
-		
 		<input type="button" value="목록보기" class="btn" onclick="location.href = 'notice.jsp?pageNum=<%=pageNum %>'">
 	</div>
 	

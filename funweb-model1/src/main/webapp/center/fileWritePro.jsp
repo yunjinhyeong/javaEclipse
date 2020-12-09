@@ -99,7 +99,9 @@ while (enu.hasMoreElements()) {
 	attachVo.setFilename(filename); // 실제파일명을 VO에 저장
 	attachVo.setUploadpath(strDate); // "년/월/일" 경로를 저장
 	attachVo.setNoNum(nextNum);  // insert될 게시판 글번호를 저장
-	attachVo.setImage( isImage(filename) ? "I" : "O" );
+	if(filename != null){
+		attachVo.setImage( isImage(filename) ? "I" : "O" );	
+	}
 	
 	// attachVo를 attach 테이블에 insert하기
 	attachDao.insertAttach(attachVo);
@@ -119,12 +121,10 @@ noticeVo.setContent(multi.getParameter("content"));
 //글번호 가져와서 VO에 저장
 noticeVo.setNum(nextNum);
 
-
 //ip  regDate  readcount  값 저장
 noticeVo.setIp(request.getRemoteAddr());
 noticeVo.setRegDate(new Timestamp(System.currentTimeMillis()));
 noticeVo.setReadcount(0);  // 조회수
-
 
 //re_ref  re_lev  re_seq
 noticeVo.setReRef(nextNum); // 주글일때는 글번호가 그룹번호가 됨

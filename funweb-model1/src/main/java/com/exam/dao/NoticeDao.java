@@ -168,25 +168,25 @@ public class NoticeDao {
 			
 			sql = "SELECT COUNT(*) FROM notice ";
 			
-			//동적 sql 구현
-			if(category.equals("subject")) {
-				sql +="where subject like CONCAT('%', ?, '%') ";
-			}else if(category.equals("content")) {
-				sql +="where content like CONCAT('%', ?, '%') ";
-			}else if(category.equals("id")) {
-				sql +="where id like CONCAT('%', ?, '%') ";
+			// 동적 sql 구현
+			if (category.equals("subject")) {
+				sql += "WHERE subject LIKE CONCAT('%', ?, '%') ";
+			} else if (category.equals("content")) {
+				sql += "WHERE content LIKE CONCAT('%', ?, '%') ";
+			} else if (category.equals("id")) {
+				sql += "WHERE id LIKE CONCAT('%', ?, '%') ";
 			}
 			
 			pstmt = con.prepareStatement(sql);
 			
-			if(!category.equals("")) {//검색어가 있을떄
-				pstmt.setString(1, search);//물음표에 검색어 설정
+			if (!category.equals("")) { // 검색어가 있을때
+				pstmt.setString(1, search);  // 물음표에 검색어 설정
 			}
 			
 			rs = pstmt.executeQuery();
 			
 			if (rs.next()) {
-				count = rs.getInt(1); //첫번째 칼럼을 가져온다
+				count = rs.getInt(1);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -240,9 +240,9 @@ public class NoticeDao {
 			JdbcUtils.close(con, pstmt, rs);
 		}
 		return list;
-	} // getBoards()
+	} // getNotices()
 	
-	//1109추가 검색기능 구현
+	
 	public List<NoticeVo> getNoticesBySearch(int startRow, int pageSize, String category, String search) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -256,29 +256,28 @@ public class NoticeDao {
 			
 			sql  = "SELECT * ";
 			sql += "FROM notice ";
-			
-			//동적 sql 구현= 왜 동적이라 하냐? 실행시점에 사용자가 어떤 입력값을 전달하느냐에 따라서 달라지기 때문에 동적이라고 한다(유연성이 높다)
-			if(category.equals("subject")) {
-				sql +="where subject like CONCAT('%', ?, '%') ";
-			}else if(category.equals("content")) {
-				sql +="where content like CONCAT('%', ?, '%') ";
-			}else if(category.equals("id")) {
-				sql +="where id like CONCAT('%', ?, '%') ";
+			// 동적 sql 구현
+			if (category.equals("subject")) {
+				sql += "WHERE subject LIKE CONCAT('%', ?, '%') ";
+			} else if (category.equals("content")) {
+				sql += "WHERE content LIKE CONCAT('%', ?, '%') ";
+			} else if (category.equals("id")) {
+				sql += "WHERE id LIKE CONCAT('%', ?, '%') ";
 			}
-			
 			sql += "ORDER BY re_ref DESC, re_seq ASC ";
 			sql += "LIMIT ?, ? ";
 			
 			pstmt = con.prepareStatement(sql);
 			
-			if(!category.equals("")) {//검색어가 있을떄 category던 search던 둘중 아무거나 해도 상관 없다
-				pstmt.setString(1, search);//물음표에 검색어 설정
+			if (!category.equals("")) { // 검색어가 있을때
+				pstmt.setString(1, search);  // 물음표에 검색어 설정
 				pstmt.setInt(2, startRow);
 				pstmt.setInt(3, pageSize);
-			} else {//검색어가 없을떄
+			} else { // 검색어가 없을때
 				pstmt.setInt(1, startRow);
 				pstmt.setInt(2, pageSize);
 			}
+			
 			rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
@@ -303,6 +302,7 @@ public class NoticeDao {
 		}
 		return list;
 	} // getNoticesBySearch()
+	
 	
 	
 	public void updateBoard(NoticeVo noticeVo) {

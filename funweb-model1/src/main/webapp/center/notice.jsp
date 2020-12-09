@@ -116,7 +116,7 @@ if (count > 0) {
 		%>
 	</table>
 
-	<div id="table_search"><!-- 검색하는 부분 -->
+	<div id="table_search">
 		<form action="notice.jsp" method="get">
 			<select name="category">
 				<option value="subject" <%=category.equals("subject") ? "selected" : "" %>>글제목</option>
@@ -163,7 +163,7 @@ if (count > 0) {
 			endPage = pageCount;
 		}
 		
-		// [이전] 1111수정 검색어가 있을때 페이지를 넘기면 나던 버그 수정
+		// [이전]
 		if (startPage > pageBlock) {
 			%>
 			<a href="notice.jsp?pageNum=<%=startPage - pageBlock %>&category=<%=category %>&search=<%=search %>">[이전]</a>
@@ -182,6 +182,7 @@ if (count > 0) {
 				<%
 			}
 		} // for
+		
 		
 		// [다음]
 		if (endPage < pageCount) {

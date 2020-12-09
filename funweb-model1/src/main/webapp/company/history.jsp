@@ -3,19 +3,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-<jsp:include page="/include/headContent.jsp"/>
+<%-- head 컨텐트 영역 --%>
+<jsp:include page="/include/headContent.jsp" />
+
 <link href="/css/subpage.css" rel="stylesheet" type="text/css"  media="all">
 </head>
 
 <body>
 <div id="wrap">
-		<jsp:include page="/include/topHeader.jsp"/>
+	<%-- header 영역 --%>
+	<jsp:include page="/include/topHeader.jsp" />
 	
 	<div class="clear"></div>
 	<div id="sub_img"></div>
 	
 	<div class="clear"></div>
-	 <jsp:include page="/include/submenuCompany.jsp"/>
+	<%-- nav 영역 --%>
+	<jsp:include page="/include/submenuCompany.jsp" />
 	
 	<article>
 		<h1>History</h1>
@@ -84,7 +88,8 @@
 	</article>
     
 	<div class="clear"></div>
-	<jsp:include page="/include/bottomFooter.jsp"/>
+	<%-- footer 영역 --%>
+	<jsp:include page="/include/bottomFooter.jsp" />
 </div>
 
 </body>

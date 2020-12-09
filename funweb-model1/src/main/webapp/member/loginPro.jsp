@@ -45,13 +45,8 @@ if (keepLogin) { // keepLogin == true
 	Cookie cookie = new Cookie("id", id);
 	cookie.setMaxAge(60 * 10);  // 초단위 설정  10분
 	cookie.setPath("/");
-	
-	Cookie cookie2 = new Cookie("passwd", passwd);
-	cookie.setMaxAge(60 * 10);  // 초단위 설정  10분
-	cookie.setPath("/");
 
 	response.addCookie(cookie);
-	response.addCookie(cookie2);
 }
 
 // index.jsp로 리다이렉트

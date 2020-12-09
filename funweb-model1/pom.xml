@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<!-- 프로젝트 설명하는 내용 -->
+
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.exam</groupId>
 	<artifactId>funweb-model1</artifactId>
@@ -10,18 +10,12 @@
 
 	<name>funweb-model1 Maven Webapp</name>
 	<url>http://maven.apache.org</url>
-	<!-- 라이브러리 -->
+
 	<dependencies>
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.22</version>
-		</dependency>
-
-		<dependency>  <!-- javax.servlet 라이브러리 다운 상속받은 서블릿 가져오기 -->
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
-			<version>4.0.1</version> <!-- 메이븐이 사용하는거라서 이클립스는 아직 인식못함 -->
+			<version>4.0.1</version>
 			<scope>provided</scope>
 		</dependency>
 
@@ -29,6 +23,13 @@
 			<groupId>com.servlets</groupId>
 			<artifactId>cos</artifactId>
 			<version>05Nov2002</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.22</version>
 		</dependency>
 
 		<dependency>
@@ -49,9 +50,6 @@
 			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
-
-
-
 	</dependencies>
 
 	<build>
@@ -69,3 +67,7 @@
 		</plugins>
 	</build>
 </project>
+
+
+
+

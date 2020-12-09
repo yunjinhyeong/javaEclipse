@@ -128,6 +128,7 @@ span.file-delete {
 		fileIndex++;
 	});
 
+
 	// 동적 이벤트 연결 (이벤트 등록을 위임하는 방식)
 	$('div#fileBox').on('click', 'span.file-delete', function () {
 		//alert('span X 클릭됨');
