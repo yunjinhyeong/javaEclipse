@@ -99,9 +99,7 @@ while (enu.hasMoreElements()) {
 	attachVo.setFilename(filename); // 실제파일명을 VO에 저장
 	attachVo.setUploadpath(strDate); // "년/월/일" 경로를 저장
 	attachVo.setNoNum(nextNum);  // insert될 게시판 글번호를 저장
-	if(filename != null){
-		attachVo.setImage( isImage(filename) ? "I" : "O" );	
-	}
+	attachVo.setImage( isImage(filename) ? "I" : "O" );
 	
 	// attachVo를 attach 테이블에 insert하기
 	attachDao.insertAttach(attachVo);
