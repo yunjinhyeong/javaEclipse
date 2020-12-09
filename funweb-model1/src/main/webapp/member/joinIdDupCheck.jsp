@@ -44,7 +44,7 @@ if (count == 1) {
 <script>
 	$('#btnUseId').click(function () {
 		// 검색한 ID 값 -> 창을 열게해준 부모페이지인 join.jsp의 id 입력상자에 넣기
-		window.opener.document.frm.id.value = frm.id.value;
+		window.opener.document.frm.id.value = frm.id.value;/* 현재창의 id입력값을 부모창에 전달해줌 */
 		window.close(); // 현재 창 닫기
 	});
 </script>

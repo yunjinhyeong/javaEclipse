@@ -9,7 +9,8 @@ public class MemberJoinController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("MemberJoinController....");
+		System.out.println("MemberJoinController......");
+		
 		return "member/join";
 	}
 

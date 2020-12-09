@@ -2,11 +2,18 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+
 <head>
-<%-- head 컨텐트 영역 --%>
-<jsp:include page="/include/headContent.jsp" />
+<meta charset="utf-8">
+<title>Welcome to Fun Web</title>
+
+
+<%-- head 컨텐츠 영역 --%>
+<jsp:include page="/include/headContent.jsp"/>
+
 
 <link href="/css/front.css" rel="stylesheet" type="text/css" media="all">
+
 
 <script src="/script/jquery-1.6.1.min.js"></script>
 <script src="/script/s3Slider.js"></script>
@@ -21,8 +28,8 @@ $(document).ready(function() {
 
 <body>
 <div id="wrap">
-	<%-- header 영역 --%>
-	<jsp:include page="/include/topHeader.jsp" />
+<%-- header 영역 --%>
+	<jsp:include page="/include/topHeader.jsp"/>
 	
     <div class="clear"></div>
     <div id="main_img">
@@ -123,8 +130,8 @@ $(document).ready(function() {
     </article>
 	
 	<div class="clear"></div>
-	<%-- footer 영역 --%>
-	<jsp:include page="/include/bottomFooter.jsp" />
+	<%--footer --%>
+	<jsp:include page="/include/bottomFooter.jsp"/>
 </div>
 
 </body>

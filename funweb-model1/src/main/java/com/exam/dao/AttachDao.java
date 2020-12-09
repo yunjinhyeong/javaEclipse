@@ -47,8 +47,7 @@ public class AttachDao {
 	} // insertAttach
 	
 	
-	
-	public List<AttachVo> getAttachesByNoNum(int noNum) {
+	public List<AttachVo> getAttachesByNoNum(int noNum){
 		List<AttachVo> list = new ArrayList<>();
 		
 		Connection con = null;
@@ -59,14 +58,14 @@ public class AttachDao {
 		try {
 			con = JdbcUtils.getConnection();
 			
-			sql = "SELECT * FROM attach WHERE no_num = ? ";
+			sql = "SELECT * FROM attach where no_num = ? ";
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, noNum);
 			
 			rs = pstmt.executeQuery();
 			
-			while (rs.next()) {
+			while(rs.next()) {
 				AttachVo attachVo = new AttachVo();
 				attachVo.setNum(rs.getInt("num"));
 				attachVo.setFilename(rs.getString("filename"));
@@ -75,17 +74,20 @@ public class AttachDao {
 				attachVo.setNoNum(rs.getInt("no_num"));
 				
 				list.add(attachVo);
-			} // while
+			}//while
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
+		}finally {
 			JdbcUtils.close(con, pstmt, rs);
 		}
+		
+		
+		
 		return list;
-	} // getAttachesByNoNum
+		
+	}//getAttachesByNoNum
 	
-	
-	public void deleteAttachesByNoNum(int noNum) {
+	public void deleteAttachesByNoNum(int noNum){
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		String sql = "";
@@ -95,16 +97,22 @@ public class AttachDao {
 			
 			sql = "DELETE FROM attach where no_num = ? ";
 			
+			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, noNum);
 			
 			pstmt.executeUpdate();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
+		}finally {
 			JdbcUtils.close(con, pstmt);
 		}
-	} // deleteAttachesByNoNum
+		
+		
+		
+	}//deleteAttachesByNoNum
+	
 	
 }
 

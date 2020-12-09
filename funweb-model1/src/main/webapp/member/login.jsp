@@ -28,6 +28,7 @@
 	<article>
 		<h1>로그인</h1>
 		<form action="loginPro.jsp" method="post" id="join">
+		
 			<fieldset>
 				<legend>Login Info</legend>
 				

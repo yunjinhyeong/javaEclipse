@@ -229,7 +229,7 @@ public class MemberDao {
 			pstmt.setInt(2, memberVo.getAge());
 			pstmt.setString(3, memberVo.getGender());
 			pstmt.setString(4, memberVo.getEmail());
-			pstmt.setString(5, memberVo.getAddress());
+			pstmt.setString(5, memberVo.getTel());
 			pstmt.setString(6, memberVo.getTel());
 			pstmt.setString(7, memberVo.getId());
 			
@@ -296,7 +296,7 @@ public class MemberDao {
 		
 		Random random = new Random();
 		
-		memberDao.deleteAll(); // 전체삭제
+		memberDao.deleteAll();//전체 삭제
 		
 		System.out.println("======== insert 테스트 =========");
 		
@@ -306,18 +306,18 @@ public class MemberDao {
 			memberVo.setPasswd("1234");
 			memberVo.setName("유저"+i);
 			
-			// 나이값의 범위  8세이상 ~ 100세이하
-			int age = random.nextInt(93) + 8; // (0~92)+8 -> (8~100)
+			//나이값의 범위를 8세이상 ~ 100세이하
+			int age =random.nextInt(93);//(0~92)+8 -> (8~100)
 			memberVo.setAge(age);
 			
-			boolean isMale = random.nextBoolean(); // 남성 true 여성 false
-			if (isMale) {
+			boolean isMale = random.nextBoolean();//남성 true 여성 false
+			if(isMale) {
 				memberVo.setGender("남");
-			} else {
+			}else {
 				memberVo.setGender("여");
 			}
 			
-			memberVo.setEmail("user" + i + "@user.com");
+			memberVo.setEmail("user"+i + "@user.com");
 			memberVo.setRegDate(new Timestamp(System.currentTimeMillis()));
 			memberVo.setAddress("부산시");
 			memberVo.setTel("010-1234-5678");
@@ -332,7 +332,7 @@ public class MemberDao {
 		}
 		
 		System.out.println("======== getMemberById 테스트 =========");
-		
+
 		String testId = "user0";
 		
 		MemberVo memberVo = memberDao.getMemberById(testId);

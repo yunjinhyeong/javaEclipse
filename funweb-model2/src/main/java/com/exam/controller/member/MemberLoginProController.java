@@ -14,7 +14,7 @@ public class MemberLoginProController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("MemberLoginProController...");
+		System.out.println("MemberLoginProController......");
 		
 		// 파라미터 id  passwd   keepLogin  가져오기
 		String id = request.getParameter("id");
@@ -38,9 +38,9 @@ public class MemberLoginProController implements Controller {
 			out.println("	alert('아이디 또는 패스워드가 일치하지 않습니다.');");
 			out.println("	history.back();");
 			out.println("</script>");
-			out.close(); // 내부 버퍼도 비워짐(클라이언트로 보냄)  flush()써야되는데 close()쓰면 flush()써지니 그냥안씀 
-			
-			return null; // 이미 응답보냈기에 여기선 null
+			//out.flush();
+			out.close(); // 내부 버퍼도 비워짐(클라이언트로 보냄)
+			return null;
 		}
 
 		//로그인 상태유지 정보 확인하기
@@ -66,9 +66,8 @@ public class MemberLoginProController implements Controller {
 			response.addCookie(cookie);
 		}
 
-		// index.jsp로 리다이렉트
-		 return "redirect:/index.do"; // return "index"; 디스패치방식으로 하면 새로고침에서 문제발생
-//		return "member/login"; // 로그인 한 상태 또 할수있기에 안함
+		// index.do로 리다이렉트
+		return "redirect:/index.do";
 	}
 
 }

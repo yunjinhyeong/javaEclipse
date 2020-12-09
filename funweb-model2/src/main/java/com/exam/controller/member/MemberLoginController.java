@@ -9,7 +9,7 @@ public class MemberLoginController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("MemberLoginController...");
+		System.out.println("MemberLoginController......");
 		
 		return "member/login";
 	}

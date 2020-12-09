@@ -13,12 +13,12 @@ public class MemberJoinProController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("MemberJoinProController...");
+		System.out.println("MemberJoinProController......");
 		
 		// VO 객체 준비
 		MemberVo vo = new MemberVo();
 		
-		// VO 객체 파라미터값 저장
+		// VO객체에 파라미터값 저장
 		vo.setId(request.getParameter("id"));
 		vo.setPasswd(request.getParameter("passwd"));
 		vo.setName(request.getParameter("name"));
@@ -26,7 +26,8 @@ public class MemberJoinProController implements Controller {
 		vo.setAddress(request.getParameter("address"));
 		vo.setTel(request.getParameter("tel"));
 		vo.setAge(Integer.parseInt(request.getParameter("age")));
-		vo.setGender(request.getParameter("gender"));		
+		vo.setGender(request.getParameter("gender"));
+		
 		// 가입날짜 생성해서 넣기
 		vo.setRegDate(new Timestamp(System.currentTimeMillis()));
 
@@ -37,8 +38,7 @@ public class MemberJoinProController implements Controller {
 		
 		// 로그인 화면 요청경로로 리다이렉트시키기 위해서
 		// 리다이렉트 정보를 리턴함
-		return "redirect:/memberLogin.do"; // include에서 찾아 redirect는 잠시 /// login.jsp 실행하게됨
-		
+		return "redirect:/memberLogin.do";
 	}
 
 }

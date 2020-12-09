@@ -1,8 +1,8 @@
+<%@page import="com.exam.dao.BoardDao"%>
+<%@page import="com.exam.vo.BoardVo"%>
 <%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
 <%@page import="com.oreilly.servlet.MultipartRequest"%>
 <%@page import="java.sql.Timestamp"%>
-<%@page import="com.exam.dao.NoticeDao"%>
-<%@page import="com.exam.vo.NoticeVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -30,7 +30,7 @@ MultipartRequest multi = new MultipartRequest(
 // pageNum 파라미터값 가져오기
 String pageNum = multi.getParameter("pageNum");
 // BoardVo 객체준비
-NoticeVo boardVo = new NoticeVo();
+BoardVo boardVo = new BoardVo();
 //파라미터값 가져와서 VO에 저장. MultipartRequest 로부터 찾음.
 boardVo.setName(multi.getParameter("name")); // 원래는 request다 허나 enctype="multipart/form-data" 로 전송받았기에...
 boardVo.setPasswd(multi.getParameter("passwd"));
@@ -42,7 +42,7 @@ System.out.println("원본파일명 : " + multi.getOriginalFileName("filename"))
 System.out.println("실제파일명 : " + multi.getFilesystemName("filename"));
 boardVo.setFile(multi.getFilesystemName("filename"));
 // insert를 위해 Dao객체준비
-NoticeDao boardDao = NoticeDao.getInstance();
+BoardDao boardDao = BoardDao.getInstance();
 // 글번호 가져오기
 int nextNum = boardDao.getNextNum();
 boardVo.setNum(nextNum);

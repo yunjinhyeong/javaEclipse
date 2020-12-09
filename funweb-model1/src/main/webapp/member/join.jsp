@@ -67,15 +67,15 @@
 		<input type="number" name="age" min="0" max="200" class="mobile"><br>
 		
 		<label>Gender</label> 
-		<input type="radio" name="gender" value="남"> 남성
-		<input type="radio" name="gender" value="여"> 여성
+		<input type="radio" name="gender" value="남">남성
+		<input type="radio" name="gender" value="여">여성
 		<br>
 	</fieldset>
 
 	<div class="clear"></div>
 	<div id="buttons">
-		<input type="submit" value="회원가입" class="submit"> 
-		<input type="reset" value="초기화" class="cancel">
+		<input type="submit" value="회원가입" class="submit"> <!-- 감싸는 폼태그에 제출 -->
+		<input type="reset" value="초기화" class="cancel"> <!-- 폼범위의 입력값을 초기화 -->
 	</div>
 	</form> 
 	
@@ -104,7 +104,7 @@
 	});
 
 	// .pass2 요소에 포커스가 해제되면
-	$('.pass2').focusout(function () {
+	$('.pass2').keyup(function () {
 		let pass1 = $('.pass1').val();
 		let pass2 = $(this).val();
 
@@ -114,7 +114,7 @@
 			$('#msgPass').html('패스워드 불일치').css('color', 'red');
 		}
 	});
-
+	
 </script>
 </body>
 </html>   

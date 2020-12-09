@@ -9,7 +9,7 @@ public class HistoryController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("HistoryController.....");		
+		System.out.println("HistoryController.......");
 		
 		return "company/history";
 	}

@@ -11,7 +11,8 @@ public class MemberLogoutController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("MemberLogoutController...");
+		System.out.println("MemberLogoutController......");
+		
 		// 세션 객체 참조 가져오기
 		HttpSession session = request.getSession();
 		// 세션값 초기화. 로그아웃 작업
@@ -30,8 +31,9 @@ public class MemberLogoutController implements Controller {
 				}
 			}
 		}
+		
 		// index.do로 리다이렉트
-		return "redirect:index.do";
+		return "redirect:/index.do";
 	}
 
 }

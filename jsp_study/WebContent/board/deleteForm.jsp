@@ -1,5 +1,3 @@
-<%@page import="com.exam.vo.NoticeVo"%>
-<%@page import="com.exam.dao.NoticeDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <!-- 위에 코드로 인해 response charset utf-8 적용됨 그러니 setCharacterEncoding로 utf-8 해줌 -->

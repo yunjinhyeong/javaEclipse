@@ -1,6 +1,6 @@
+<%@page import="com.exam.dao.BoardDao"%>
+<%@page import="com.exam.vo.BoardVo"%>
 <%@page import="java.sql.Timestamp"%>
-<%@page import="com.exam.dao.NoticeDao"%>
-<%@page import="com.exam.vo.NoticeVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -9,7 +9,7 @@ request.setCharacterEncoding("utf-8");
 // 파라미터값 pageNum 가져오기
 String pageNum = request.getParameter("pageNum");
 // BoardVo 객체준비
-NoticeVo boardVo = new NoticeVo();
+BoardVo boardVo = new BoardVo();
 // 파라미터값 가져와 VO 에 저장
 boardVo.setName(request.getParameter("name"));
 boardVo.setPasswd(request.getParameter("passwd"));
@@ -21,7 +21,7 @@ boardVo.setReRef(Integer.parseInt(request.getParameter("reRef")));
 boardVo.setReLev(Integer.parseInt(request.getParameter("reLev")));
 boardVo.setReSeq(Integer.parseInt(request.getParameter("reSeq")));
 // insert를 위해 Dao객체준비
-NoticeDao boardDao = NoticeDao.getInstance();
+BoardDao boardDao = BoardDao.getInstance();
 // 글번호 가져오기
 int nextNum = boardDao.getNextNum();
 boardVo.setNum(nextNum);

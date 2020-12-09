@@ -9,9 +9,7 @@ public class WelcomeController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("WelcomeController.....");
-		
-		
+		System.out.println("WelcomeController......");
 		
 		return "company/welcome";
 	}

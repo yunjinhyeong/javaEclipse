@@ -119,10 +119,12 @@ noticeVo.setContent(multi.getParameter("content"));
 //글번호 가져와서 VO에 저장
 noticeVo.setNum(nextNum);
 
+
 //ip  regDate  readcount  값 저장
 noticeVo.setIp(request.getRemoteAddr());
 noticeVo.setRegDate(new Timestamp(System.currentTimeMillis()));
 noticeVo.setReadcount(0);  // 조회수
+
 
 //re_ref  re_lev  re_seq
 noticeVo.setReRef(nextNum); // 주글일때는 글번호가 그룹번호가 됨

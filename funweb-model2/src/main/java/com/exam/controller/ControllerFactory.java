@@ -5,13 +5,20 @@ import java.util.Map;
 
 import com.exam.controller.company.HistoryController;
 import com.exam.controller.company.WelcomeController;
+import com.exam.controller.filenotice.FileContentController;
+import com.exam.controller.filenotice.FileNoticeController;
+import com.exam.controller.filenotice.FileWriteFormController;
+import com.exam.controller.filenotice.FileWriteProController;
 import com.exam.controller.member.JoinIdDupCheckController;
 import com.exam.controller.member.MemberJoinController;
 import com.exam.controller.member.MemberJoinProController;
 import com.exam.controller.member.MemberLoginController;
 import com.exam.controller.member.MemberLoginProController;
 import com.exam.controller.member.MemberLogoutController;
+import com.exam.controller.notice.ContentController;
 import com.exam.controller.notice.NoticeController;
+import com.exam.controller.notice.WriteFormController;
+import com.exam.controller.notice.WriteProController;
 
 public class ControllerFactory {
 	
@@ -45,6 +52,15 @@ public class ControllerFactory {
 		
 		// notice 게시판
 		map.put("/notice", new NoticeController());
+		map.put("/writeForm", new WriteFormController());
+		map.put("/writePro", new WriteProController());
+		map.put("/content", new ContentController());
+		
+		// fileNotice 자료실 게시판
+		map.put("/fileNotice", new FileNoticeController());
+		map.put("/fileWriteForm", new FileWriteFormController());
+		map.put("/fileWritePro", new FileWriteProController());
+		map.put("/fileContent", new FileContentController());
 		
 	} // 생성자
 	
