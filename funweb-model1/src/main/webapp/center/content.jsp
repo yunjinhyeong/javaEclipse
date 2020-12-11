@@ -84,7 +84,7 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			if (id.equals(noticeVo.getId())) { // 로그인 아이디와 글작성자 아이디가 같을때
 				%>
 				<input type="button" value="글수정" class="btn">
-				<input type="button" value="글삭제" class="btn">
+				<input type="button" value="글삭제" class="btn" onclick="remove()">
 				<%
 			}
 			%>
@@ -105,6 +105,18 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	<%-- footer 영역 --%>
 	<jsp:include page="/include/bottomFooter.jsp" />
 </div>
+
+<script>
+	function remove() {
+		var result = confirm('해당 글을 정말 삭제 하시겠습니까?');
+		console.log(typeof result);
+		
+		if (result==false) {
+			return;
+		}
+		location.href = 'delete.jsp?num=<%=noticeVo.getNum() %>&pageNum=<%=pageNum %>';
+	} // remove()
+</script>
 
 </body>
 </html>   

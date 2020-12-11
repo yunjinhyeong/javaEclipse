@@ -7,7 +7,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	// 파일 업로드 위해서 cos.jar 라이브러리를 프로젝트 빌드패스에 추가.
+// 파일 업로드 위해서 cos.jar 라이브러리를 프로젝트 빌드패스에 추가.
 
 // 업로드 객체 생성할때 필요한 인자값
 // 1. request
@@ -71,11 +71,3 @@ boardDao.updateBoard(boardVo);
 // 수정한 글내용 확인하기 위해 상세보기 페이지인 content.jsp로 이동
 response.sendRedirect("content.jsp?num=" + boardVo.getNum() + "&pageNum=" + pageNum);
 %>
-
-
-
-
-
-
-
-

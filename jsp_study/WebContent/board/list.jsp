@@ -124,7 +124,7 @@ a.active {
 				%>
 				<a href="list.jsp?pageNum=<%=i%>">[<%=i %>]</a>
 				<%
-			}			
+			}
 		} // for
 		
 		// [다음]
