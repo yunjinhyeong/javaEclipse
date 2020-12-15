@@ -10,13 +10,12 @@ if (id == null) {
 }
 %>
 
-<%-- 파라미터값 reRef reLev reSeq pageNum 가져오기 --%>
+<%-- 파라미터값  reRef  reLev  reSeq  pageNum  가져오기 --%>
 <%
 String reRef = request.getParameter("reRef");
 String reLev = request.getParameter("reLev");
 String reSeq = request.getParameter("reSeq");
 String pageNum = request.getParameter("pageNum");
-
 %>
 
 <!DOCTYPE html>
@@ -41,13 +40,13 @@ String pageNum = request.getParameter("pageNum");
 	
 	<article>
 		
-	<h1>텍스트 게시판 답글글쓰기</h1>
+	<h1>텍스트 게시판 답글쓰기</h1>
 		
 	<form action="replyWritePro.jsp" method="post" name="frm">
 	<input type="hidden" name="pageNum" value="<%=pageNum %>">
 	<input type="hidden" name="reRef" value="<%=reRef %>">
 	<input type="hidden" name="reLev" value="<%=reLev %>">
-	<input type="hidden" name="reSeq" value="<%=reSeq %>">	
+	<input type="hidden" name="reSeq" value="<%=reSeq %>">
 	<table id="notice">
 		<tr>
 			<th scope="col" class="twrite">작성자</th>

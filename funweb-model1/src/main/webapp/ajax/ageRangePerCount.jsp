@@ -1,4 +1,5 @@
 <%@page import="org.json.simple.JSONArray"%>
+<%@page import="com.google.gson.Gson"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.List"%>
 <%@page import="com.exam.dao.MemberDao"%>
@@ -11,9 +12,11 @@ MemberDao memberDao = MemberDao.getInstance();
 List<Map<String, Object>> list = memberDao.getAgeRangePerCount();
 System.out.println(list);
 
+
 JSONArray jsonArray = new JSONArray();
-for(Map<String, Object> map : list) {
-	String ageRange = (String)map.get("ageRange");
+
+for (Map<String, Object> map : list) {
+	String ageRange = (String) map.get("ageRange");
 	int cnt = (int) map.get("cnt");
 	
 	JSONArray rowArray = new JSONArray();
@@ -22,13 +25,14 @@ for(Map<String, Object> map : list) {
 	
 	jsonArray.add(rowArray);
 } // for
+
 JSONArray titleArray = new JSONArray();
 titleArray.add("나이대");
 titleArray.add("회원수");
+
 jsonArray.add(0, titleArray);
 
 System.out.println(jsonArray);
 out.println(jsonArray);
 %>
-
 

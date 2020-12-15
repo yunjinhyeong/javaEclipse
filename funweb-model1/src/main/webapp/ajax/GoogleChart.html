@@ -8,6 +8,20 @@
 		float: left;
 	}
 </style>
+</head>
+<body>
+	<button id="btn">버튼</button>
+	<div id="column_chart_div1" style="width: 900px; height: 500px;"></div>
+	<div id="column_chart_div2" style="width: 900px; height: 500px;"></div>
+	<div id="stacked_column_chart_div1" style="width: 900px; height: 500px;"></div>
+	<div id="stacked_column_chart_div2" style="width: 900px; height: 500px;"></div>
+	<div id="line_chart_div1" style="width: 900px; height: 500px;"></div>
+	<div id="line_chart_div2" style="width: 900px; height: 500px;"></div>
+	<div id="scatter_chart_div1" style="width: 900px; height: 500px;"></div>
+	<div id="scatter_chart_div2" style="width: 900px; height: 500px;"></div>
+	<div id="pie_chart_div1" style="width: 900px; height: 500px;"></div>
+	
+	
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://www.gstatic.com/charts/loader.js"></script>
 <script>
@@ -273,23 +287,12 @@
 		google.visualization.events.addListener(chart, 'select', selectHandler);
 	}
 	
-	$(document).ready(function () {
+	
+// 	$(document).ready(function () {
 		$('#btn').click(function () {
 			drawChart();
 		});
-	});
+// 	});
 </script>
-</head>
-<body>
-	<button id="btn">버튼</button>
-	<div id="column_chart_div1" style="width: 900px; height: 500px;"></div>
-	<div id="column_chart_div2" style="width: 900px; height: 500px;"></div>
-	<div id="stacked_column_chart_div1" style="width: 900px; height: 500px;"></div>
-	<div id="stacked_column_chart_div2" style="width: 900px; height: 500px;"></div>
-	<div id="line_chart_div1" style="width: 900px; height: 500px;"></div>
-	<div id="line_chart_div2" style="width: 900px; height: 500px;"></div>
-	<div id="scatter_chart_div1" style="width: 900px; height: 500px;"></div>
-	<div id="scatter_chart_div2" style="width: 900px; height: 500px;"></div>
-	<div id="pie_chart_div1" style="width: 900px; height: 500px;"></div>
 </body>
 </html>

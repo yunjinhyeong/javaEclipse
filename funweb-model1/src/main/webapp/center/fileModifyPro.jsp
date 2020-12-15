@@ -11,12 +11,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-//로그인체그를 위해 세션값 가져오기
-String id = (String)session.getAttribute("id");
-//세션값 id 없으면 login.jsp로 리다이렉트 이동
+// 로그인 여부 확인
+String id = (String) session.getAttribute("id");
 if (id == null) {
-//	response.sendRedirect("../member/login.jsp"); // 상대경로
-	response.sendRedirect("/member/fileNotice.jsp");			// 절대경로
+	response.sendRedirect("/center/fileNotice.jsp");
 	return;
 }
 %>
@@ -37,7 +35,7 @@ if (!dir.exists()) {
 	dir.mkdirs();
 }
 
-//파일 업로드 하기, (신규 첨부파일을 업로드)
+//파일 업로드 하기. (신규 첨부파일을 업로드)
 MultipartRequest multi = new MultipartRequest(
 		request,
 		dir.getPath(),
@@ -45,20 +43,21 @@ MultipartRequest multi = new MultipartRequest(
 		"utf-8",
 		new DefaultFileRenamePolicy());
 
+
 // DAO 객체 준비
 NoticeDao noticeDao = NoticeDao.getInstance();
 AttachDao attachDao = AttachDao.getInstance();
 
 // 게시판 글번호
 int noNum = Integer.parseInt(multi.getParameter("num"));
+
 // 신규 첨부파일 정보를 테이블에 insert하기
-Enumeration<String> enu = multi.getFileNames();
-while(enu.hasMoreElements()) {
+Enumeration<String> enu = multi.getFileNames(); // 파일선택상자의 name속성들 가져오기
+while (enu.hasMoreElements()) {
 	String fname = enu.nextElement();
-	// 실제 업로드된 파일이름 가져온다.
 	String filename = multi.getFilesystemName(fname);
 	
-	if(filename == null){
+	if (filename == null) {
 		continue;
 	}
 	
@@ -66,12 +65,14 @@ while(enu.hasMoreElements()) {
 	AttachVo attachVo = new AttachVo();
 	attachVo.setFilename(filename);
 	attachVo.setUploadpath(strDate);
-	attachVo.setImage( isImage(filename) ? "I" : "O" );	
+	attachVo.setImage( isImage(filename) ? "I" : "O" );
 	attachVo.setNoNum(noNum);
 	
 	// 첨부파일정보 insert하기
 	attachDao.insertAttach(attachVo);
 } // while
+
+
 
 // 삭제해야 할 첨부파일들 번호 가져오기
 String[] delFileNums = multi.getParameterValues("delfile");
@@ -84,32 +85,34 @@ for (String delFileNum : delFileNums) {
 	
 	// 파일정보로 실제파일 존재여부 확인해서 삭제하기
 	File delFile = new File(realPath + "/" + attachVo.getUploadpath(), attachVo.getFilename());
-	if (delFile.exists()){
+	if (delFile.exists()) {
 		delFile.delete();
 	}
 	
-	// 첨부파일 테이블 첨부파일번호에 해당하는 레코드 한개 삭제하기
+	// 첨부파일 DB테이블에 첨부파일번호에 해당하는 레코드 한개 삭제하기
 	attachDao.deleteAttachByNum(num);
-	
 } // for
+
+
 
 // NoticeVo 객체 준비
 NoticeVo noticeVo = new NoticeVo();
+
 // 파라미터값을 NoticeVo에 저장
 noticeVo.setNum(noNum);
 noticeVo.setId(multi.getParameter("id"));
 noticeVo.setSubject(multi.getParameter("subject"));
 noticeVo.setContent(multi.getParameter("content"));
+
 // 게시판 테이블 글 update하기
 noticeDao.updateBoard(noticeVo);
+
 // pageNum 파라미터값 가져오기
 String pageNum = multi.getParameter("pageNum");
-// 상세보기 화면으로 가기
+
+// 상세보기 화면으로 이동
 response.sendRedirect("fileContent.jsp?num=" + noNum + "&pageNum=" + pageNum);
 %>
-
-
-
 
 <%!
 boolean isImage(String filename) {

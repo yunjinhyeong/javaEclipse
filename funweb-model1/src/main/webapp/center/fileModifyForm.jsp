@@ -10,7 +10,7 @@
 // 로그인 여부 확인
 String id = (String) session.getAttribute("id");
 if (id == null) {
-	response.sendRedirect("/center/notice.jsp");
+	response.sendRedirect("/center/fileNotice.jsp");
 	return;
 }
 %>
@@ -130,35 +130,33 @@ List<AttachVo> attachList = attachDao.getAttachesByNoNum(num);
 
 <script src="/script/jquery-3.5.1.js"></script>
 <script>
-const maxFileCount = 5; // 최대 첨부파일 갯수
-var fileCount = <%=attachList.size() %>; // 현재 첨부된 파일 갯수
+const maxFileCount = 5;  // 최대 첨부파일 갯수
+var fileCount = <%=attachList.size() %>;  // 현재 첨부된 파일 갯수
 var fileIndex = 0;
 
-//[첨부파일 추가] 버튼을 클릭할 때
+// [첨부파일 추가] 버튼을 클릭할 때
 $('#btnAddFile').click(function () {
 
-	if(fileCount >= maxFileCount) {
-		alert('첨부파일은 최대 5개 까지만 가능합니다.');
+	if (fileCount >= maxFileCount) {
+		alert('첨부파일은 최대 5개 까지만 가능합니다.')
 		return;
 	}
-
-	// 백틱 문자열 안에서 변수값을 표현할때는 \${}로 표현함
+	
+	// 백틱 문자열 안에서 변수값을 표현할때는
+	// \${}로 표현함
 	var str = `
 		<div>
 			<input type="file" name="filename\${ fileIndex }">
 			<span class="delete-addfile">X</span>
 		</div>
 	`;
-	$('div#newFileBox').append(str);
 
+	$('div#newFileBox').append(str);
+	
 	fileIndex++;
 	fileCount++;
 });
 
-// 정적이벤트 바인딩
-// $('span.delete-addfile').on('click', function() {
-// 	alert('aa');
-// });
 
 // 동적 이벤트 바인딩. 이벤트 바인딩 작업을 이미 존재하는 요소에게 위임하기.
 // 이미 존재하는 div#newFileBox 요소에게
@@ -169,7 +167,7 @@ $('div#newFileBox').on('click', 'span.delete-addfile', function () {
 });
 
 
-// 기존 첨부파일 삭제버튼 눌렀을때
+// 정적 이벤트 바인딩. 기존 첨부파일에 삭제버튼을 눌렀을때
 $('span.delete-oldfile').on('click', function () {
 	// 현재 클릭한 요소의 직계부모(parent)의 앞(prev) 요소 
 	$(this).parent().prev().prop('name', 'delfile');
@@ -177,7 +175,6 @@ $('span.delete-oldfile').on('click', function () {
 	$(this).parent().remove();
 	fileCount--;
 });
-
 
 </script>
 

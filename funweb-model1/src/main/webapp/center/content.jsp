@@ -106,19 +106,26 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	<jsp:include page="/include/bottomFooter.jsp" />
 </div>
 
+
 <script>
 	function remove() {
-		var result = confirm('해당 글을 정말 삭제 하시겠습니까?');
+		var result = confirm('해당 글을 정말 삭제하시겠습니까?');
 		console.log(typeof result);
 		
-		if (result==false) {
+		if (result == false) {
 			return;
 		}
+		
 		location.href = 'delete.jsp?num=<%=noticeVo.getNum() %>&pageNum=<%=pageNum %>';
-	} // remove()
+	} // remove
 </script>
 
 </body>
 </html>   
+
+
+
+
+
 
     

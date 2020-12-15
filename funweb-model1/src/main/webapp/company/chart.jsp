@@ -64,12 +64,13 @@ google.charts.setOnLoadCallback(function () {
 	
 });
 
-// 파이차트
+
+// 파이그래프 그리기
 function drawChart1(arr) {
 	var dataTable = google.visualization.arrayToDataTable(arr);
 	
 	var options = {
-			title: '성별 회원수'
+			title: '남녀 성별 회원수'
 	};
 	
 	var objDiv = document.getElementById('chart1');
@@ -77,12 +78,13 @@ function drawChart1(arr) {
 	chart.draw(dataTable, options);
 }
 
+// 막대그래프 그리기
 function drawChart2(arr) {
 	// 실 데이터를 가진 데이터테이블 객체를 반환하는 메소드
 	var dataTable = google.visualization.arrayToDataTable(arr);
 	// 옵션객체 준비
 	var options = {
-			title: '나이대별 회원수',
+			title: '나이대 별 회원수',
 			hAxis: {
 				title: '나이대',
 				titleTextStyle: {
