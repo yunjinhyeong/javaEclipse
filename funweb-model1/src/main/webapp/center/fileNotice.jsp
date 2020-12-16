@@ -117,7 +117,7 @@ if (count > 0) {
 	</table>
 
 	<div id="table_search">
-		<form action="notice.jsp" method="get">
+		<form action="fileNotice.jsp" method="get">
 			<select name="category">
 				<option value="subject" <%=category.equals("subject") ? "selected" : "" %>>글제목</option>
 				<option value="content" <%=category.equals("content") ? "selected" : "" %>>글내용</option>
@@ -174,11 +174,11 @@ if (count > 0) {
 		for (int i=startPage; i<=endPage; i++) {
 			if (i == pageNum) {
 				%>
-				<a href="fileNotice.jsp?pageNum=<%=i %>" class="active">[<%=i %>]</a>
+				<a href="fileNotice.jsp?pageNum=<%=i %>&category=<%=category %>&search=<%=search %>" class="active">[<%=i %>]</a>
 				<%
 			} else {
 				%>
-				<a href="fileNotice.jsp?pageNum=<%=i %>">[<%=i %>]</a>
+				<a href="fileNotice.jsp?pageNum=<%=i %>&category=<%=category %>&search=<%=search %>">[<%=i %>]</a>
 				<%
 			}
 		} // for

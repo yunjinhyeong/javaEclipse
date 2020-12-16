@@ -290,6 +290,7 @@ public class MemberDao {
 		}
 	} // deleteAll()
 	
+	
 	public List<Map<String, Object>> getGenderPerCount() {
 		List<Map<String, Object>> list = new ArrayList<>();
 		

@@ -16,8 +16,9 @@ public class NoticeVo {
 	private int reLev;  // 들여쓰기 레벨
 	private int reSeq;  // 그룹 내에서의 순번
 	
-	// private AttachVo attachVo; 		// Join 1 : 1 의 관계일때
-	private List<AttachVo> attachList;	// Join 1 : N 의 관계일때
+	//private AttachVo attachVo;        // JOIN에서 1:1의 관계일때
+	private List<AttachVo> attachList;  // JOIN에서 1:N의 관계일때
+
 
 	public NoticeVo() {
 	}
@@ -82,11 +83,9 @@ public class NoticeVo {
 	public void setReSeq(int reSeq) {
 		this.reSeq = reSeq;
 	}
-	
 	public List<AttachVo> getAttachList() {
 		return attachList;
 	}
-
 	public void setAttachList(List<AttachVo> attachList) {
 		this.attachList = attachList;
 	}
@@ -97,7 +96,5 @@ public class NoticeVo {
 				+ readcount + ", regDate=" + regDate + ", ip=" + ip + ", reRef=" + reRef + ", reLev=" + reLev
 				+ ", reSeq=" + reSeq + ", attachList=" + attachList + "]";
 	}
-	
-	
 
 }

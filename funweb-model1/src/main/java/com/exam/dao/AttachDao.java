@@ -47,8 +47,10 @@ public class AttachDao {
 	} // insertAttach
 	
 	
+	
 	public AttachVo getAttachByNum(int num) {
 		AttachVo attachVo = null;
+				
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -70,8 +72,8 @@ public class AttachDao {
 				attachVo.setFilename(rs.getString("filename"));
 				attachVo.setUploadpath(rs.getString("uploadpath"));
 				attachVo.setImage(rs.getString("image"));
-				attachVo.setNoNum(rs.getInt("no_num"));				
-			} // while
+				attachVo.setNoNum(rs.getInt("no_num"));
+			} // if
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -118,6 +120,8 @@ public class AttachDao {
 		return list;
 	} // getAttachesByNoNum
 	
+	
+	
 	public void deleteAttachByNum(int num) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -138,6 +142,8 @@ public class AttachDao {
 			JdbcUtils.close(con, pstmt);
 		}
 	} // deleteAttachByNum
+	
+	
 	
 	public void deleteAttachesByNoNum(int noNum) {
 		Connection con = null;
