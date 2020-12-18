@@ -101,8 +101,6 @@ public class MemberMyBatisDao {
 	}
 	
 	
-	
-	
 	public void deleteById(String id) {
 		try (SqlSession sqlSession = sqlSessionFactory.openSession(true)) {
 			MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
