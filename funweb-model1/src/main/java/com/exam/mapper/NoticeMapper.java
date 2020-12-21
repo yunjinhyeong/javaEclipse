@@ -60,7 +60,8 @@ public interface NoticeMapper {
 	
 	NoticeVo getNoticeAndAttaches(int num);
 	
-	// 매개변수 타입이 컬렉션일 때는 @Param으로 이름을 명시해야된다.
+	
+	// 매개변수 타입이 컬렉션일 때는 @Param으로 이름을 명시해야 함!
 	List<NoticeVo> getNoticesByNums(@Param("numList") List<Integer> numList);
 	
 	

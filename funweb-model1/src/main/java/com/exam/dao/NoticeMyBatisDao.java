@@ -37,6 +37,7 @@ public class NoticeMyBatisDao {
 		}
 	}
 	
+	
 	public NoticeVo getNoticeByNum(int num) {
 		try (SqlSession sqlSession = sqlSessionFactory.openSession(true)) {
 			NoticeMapper mapper = sqlSession.getMapper(NoticeMapper.class);
@@ -45,12 +46,16 @@ public class NoticeMyBatisDao {
 		}
 	}
 	
+	
+	
 	public void updateReadcount(int num) {
 		try (SqlSession sqlSession = sqlSessionFactory.openSession(true)) {
 			NoticeMapper mapper = sqlSession.getMapper(NoticeMapper.class);
 			mapper.updateReadcount(num);
 		}
 	}
+	
+	
 	
 	// 전체글갯수 가져오기
 	public int getCountAll() {
@@ -61,13 +66,15 @@ public class NoticeMyBatisDao {
 		}
 	}
 	
+	
 	public List<NoticeVo> getNotices(int startRow, int pageSize) {
 		try (SqlSession sqlSession = sqlSessionFactory.openSession(true)) {
 			NoticeMapper mapper = sqlSession.getMapper(NoticeMapper.class);
 			List<NoticeVo> list = mapper.getNotices(startRow, pageSize);
 			return list;
 		}
-	}	
+	}
+	
 	
 	public void updateBoard(NoticeVo noticeVo) {
 		try (SqlSession sqlSession = sqlSessionFactory.openSession(true)) {
@@ -117,7 +124,8 @@ public class NoticeMyBatisDao {
 		} finally {
 			sqlSession.close(); // sqlSession 닫기
 		}
-	}	
+	}
+	
 	
 	// 검색어를 적용한 글갯수 가져오기
 	public int getCountBySearch(String category, String search) {
@@ -125,14 +133,16 @@ public class NoticeMyBatisDao {
 			NoticeMapper mapper = sqlSession.getMapper(NoticeMapper.class);
 			return mapper.getCountBySearch(category, search);
 		}
-	}	
+	}
+	
 	
 	public List<NoticeVo> getNoticesBySearch(int startRow, int pageSize, String category, String search) {
 		try (SqlSession sqlSession = sqlSessionFactory.openSession(true)) {
 			NoticeMapper mapper = sqlSession.getMapper(NoticeMapper.class);
 			return mapper.getNoticesBySearch(startRow, pageSize, category, search);
 		}
-	}	
+	}
+	
 	
 	// notice 테이블과 attach 테이블 왼쪽 외부조인해서 가져오기
 	public NoticeVo getNoticeAndAttaches(int num) {
@@ -142,7 +152,7 @@ public class NoticeMyBatisDao {
 		}
 	}
 	
-//	public List<NoticeVo> getNoticesByNums(List<Integer> numList)
+	//public List<NoticeVo> getNoticesByNums(List<Integer> numList)
 	public List<NoticeVo> getNoticesByNums(Integer... numArr) {
 		List<Integer> numList = Arrays.asList(numArr);
 		
@@ -152,20 +162,23 @@ public class NoticeMyBatisDao {
 		}
 	}
 	
+	
 	public static void main(String[] args) {
 		NoticeMyBatisDao dao = NoticeMyBatisDao.getInstance();
 		
 		List<Integer> numList = new ArrayList<>();
 		numList.add(1014);
 		numList.add(1013);
-		numList.add(1011);
+		numList.add(1010);
 		
-//		List<NoticeVo> noticeList = dao.getNoticesByNums(numList)
-		List<NoticeVo> noticeList = dao.getNoticesByNums(1014, 1013, 1011);
-		for(NoticeVo noticeVo : noticeList) {
+		//List<NoticeVo> noticeList = dao.getNoticesByNums(numList);
+		List<NoticeVo> noticeList = dao.getNoticesByNums(1014, 1013, 1010);
+		for (NoticeVo noticeVo : noticeList) {
 			System.out.println(noticeVo);
 		}
+		
 	}
+	
 }
 
 
