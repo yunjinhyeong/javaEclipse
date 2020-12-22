@@ -13,19 +13,26 @@
 		<p>{{count}}회</p>
 		<button v-on:click="countUp">카운터</button>
 	</div>
+	
+	<div id="app2">
+		<p>{{count}}회</p>
+		<button v-on:click="countUp">카운터</button>
+	</div>
 
 	<script>
-		new Vue({
-			el: "#app",
+		var app = new Vue({
+			el: '#app',
+			el2: '#app2',
 			data: {
-				count:0
+				count: 0
 			},
 			methods: {
 				countUp: function() {
-					this.count++;
+					app.count++;
 				}
 			}
-		})
-		</script>
+			
+		});	
+	</script>
 </body>
 </html>
