@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+
+</style>
+</head>
+<body>
+<div id="app">
+	<div id="idInfo"></div>
+</div>
+<script src="../js/jquery-3.5.1.js"></script>
+<script>
+	function process(list) {
+		let str = '';
+			
+			str += `
+				<p>${list.id}</p>
+			`;
+	
+		$('#idInfo').html(str);
+	}
+
+	$(window).on('load', function () {
+		$.ajax({
+			url: 'ajaxTest.jsp',
+			success: function (data) {				
+				process(data);
+			}
+		});
+		
+	});
+</script>
+</body>
+</html>
