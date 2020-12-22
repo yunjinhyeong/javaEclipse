@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>vue.js sample</title>
+		
+		<link rel="stylesheet" href="style.css" >
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+
+	</head>
+	
+	<body>
+		<h2>배열에서 컴포넌트를 만들어 표시하는 예제</h2>
+		<div id="app">
+			<my-component v-for="(item, index) in myArray" v-bind:my-name="item" ></my-component>
+		</div>
+
+		<script>
+			var MyComponent = {
+				template: '<p class="my-comp">나는 {{ myName }} 입니다.</p>',
+				props: {
+					myName: String
+				},
+				created: function () {	// 인스턴스가 작성된후 실행
+					if (this.myName == null) {
+						this.myName = "이름없음";
+					}
+				}
+			}
+	
+			new Vue({
+				el: '#app',
+				data: {
+					myArray:['철수','영희','광수','병수','이슬']
+				},
+				components: {
+					'my-component': MyComponent
+				}
+			})
+		</script>
+
+		<style>
+			.my-comp {
+				width: 300px;
+				background-color: #ffffe0;
+				border: solid;
+				border-color: darkorange;
+				border-radius: 8px;
+				padding: 8px;
+			}
+		</style>
+		
+	</body>
+</html>
