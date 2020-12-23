@@ -10,8 +10,8 @@
 	<body>
 		<h2>간단한 계산기</h2>
 		<div id="app">
-			<input v-model.number="num1">
-			<input v-model.number="num2"> <br /><br />
+			<input type="number" v-model.number="num1">
+			<input type="number" v-model.number="num2"> <br /><br />
 			<button v-on:click="addcal">덧샘계산</button>
 			<button v-on:click="subcal">뺄샘계산</button>
 			<button v-on:click="multical">곱샘계산</button>

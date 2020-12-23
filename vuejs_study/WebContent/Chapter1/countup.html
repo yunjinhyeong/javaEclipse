@@ -4,35 +4,31 @@
 <meta charset="UTF-8">
 <title>Vue.js sample</title>
 <link rel="stylesheet" href="style.css">
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
 </head>
 
 <body>
 	<h2>클릭하면 카운터가 올라갑니다.</h2>
 	<div id="app">
-		<p>{{count}}회</p>
-		<button v-on:click="countUp">카운터</button>
-	</div>
-	
-	<div id="app2">
-		<p>{{count}}회</p>
+		<p>{{ count }}회</p>
 		<button v-on:click="countUp">카운터</button>
 	</div>
 
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
 	<script>
 		var app = new Vue({
 			el: '#app',
-			el2: '#app2',
 			data: {
 				count: 0
 			},
 			methods: {
-				countUp: function() {
-					app.count++;
+				countUp: function () {
+					this.count++;
 				}
 			}
-			
-		});	
+		});
 	</script>
 </body>
 </html>
+
+
+

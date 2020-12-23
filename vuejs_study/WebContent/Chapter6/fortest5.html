@@ -10,6 +10,7 @@
 	<body>
 		<h2>버튼으로 리스트에 추가/삭제 예제</h2>
 		<div id="app">
+			{{ $data }}
 			<ul>
 				<li v-for="item in myArray"> {{ item }}</li>
 			</ul>
@@ -27,7 +28,10 @@
 				},
 				methods: {
 					addLast: function(){
-						this.myArray.push("［맨 뒤에 추가］");
+						// 대입연산자로 데이터 변경 시 데이터 변경을 Vue.js가 인지 못함
+						this.myArray[5] = '［맨 뒤에 추가］';
+						// 메소드 방식으로만 배열을 제어해야 함
+						//this.myArray.push("［맨 뒤에 추가］");
 					},
 					addObj: function(index) {
 						this.myArray.splice(index, 0, '［추가］')
