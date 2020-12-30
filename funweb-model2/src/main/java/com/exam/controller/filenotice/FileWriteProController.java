@@ -51,6 +51,7 @@ public class FileWriteProController implements Controller {
 			dir.mkdirs();
 		}
 
+
 		//파일 업로드 하기
 		MultipartRequest multi = new MultipartRequest(
 				request,
@@ -68,6 +69,7 @@ public class FileWriteProController implements Controller {
 
 		//pageNum 파라미터값 가져오기
 		String pageNum = multi.getParameter("pageNum");
+
 
 		//DAO 객체 준비
 		NoticeDao noticeDao = NoticeDao.getInstance();
@@ -90,6 +92,7 @@ public class FileWriteProController implements Controller {
 			attachVo.setFilename(filename); // 실제파일명을 VO에 저장
 			attachVo.setUploadpath(strDate); // "년/월/일" 경로를 저장
 			attachVo.setNoNum(nextNum);  // insert될 게시판 글번호를 저장
+			
 			if (filename != null) {
 				attachVo.setImage( isImage(filename) ? "I" : "O" );
 			}
@@ -97,6 +100,9 @@ public class FileWriteProController implements Controller {
 			// attachVo를 attach 테이블에 insert하기
 			attachDao.insertAttach(attachVo);
 		} // while
+
+
+
 
 		//VO 객체 준비
 		NoticeVo noticeVo = new NoticeVo();
@@ -119,13 +125,18 @@ public class FileWriteProController implements Controller {
 		noticeVo.setReLev(0); // 주글일때는 들여쓰기 레벨이 0 (들여쓰기 없음)
 		noticeVo.setReSeq(0); // 주글일때는 글그룹 내에서 순번이 0 (첫번째)
 
+
 		//주글 noticeVo 등록하기
 		noticeDao.addNotice(noticeVo);
+
 
 		//글내용 상세보기 화면 fileContent.jsp로 이동
 		//response.sendRedirect("fileContent.jsp?num=" + noticeVo.getNum() + "&pageNum=" + pageNum);
 		return "redirect:/fileNotice.do";
 	}
+	
+	
+	
 	
 	private boolean isImage(String filename) {
 		boolean result = false;

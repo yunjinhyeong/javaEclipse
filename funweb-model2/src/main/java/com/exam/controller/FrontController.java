@@ -51,6 +51,7 @@ public class FrontController extends HttpServlet {
 		System.out.println("command: " + command);
 		// command: /index
 		
+		
 		// 2단계) 명령어 실행하기
 		Controller controller = null;
 		ControllerFactory factory = ControllerFactory.getInstance();

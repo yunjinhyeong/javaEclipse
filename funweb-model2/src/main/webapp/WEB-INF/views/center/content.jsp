@@ -54,15 +54,15 @@
 	</table>
 
 	<div id="table_search">
-		<c:if test="${ not empty sessionScope.id }">
-			<!-- 로그인 했을때 -->
+		<c:if test="${ not empty id }">
+			<%-- 로그인 했을때 --%>
 			<c:if test="${ id eq noticeVo.id }">
-				<!-- 로그인 아이디와 글작성자 아이디가 같을때 -->
+				<%-- 로그인 아이디와 글작성자 아이디가 같을때 --%>
 				<input type="button" value="글수정" class="btn">
 				<input type="button" value="글삭제" class="btn">
 			</c:if>
 			<input type="button" value="답글쓰기" class="btn">
-		</c:if>		
+		</c:if>
 		<input type="button" value="목록보기" class="btn" onclick="location.href = 'notice.do?pageNum=${ pageNum }'">
 	</div>
 	

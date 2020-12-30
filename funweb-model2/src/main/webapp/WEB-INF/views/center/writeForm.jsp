@@ -25,7 +25,7 @@
 	<h1>텍스트 게시판 글쓰기</h1>
 		
 	<form action="writePro.do" method="post" name="frm">
-	<input type="hidden" name="pageNum" value="${ requestScope.pageNum }">
+	<input type="hidden" name="pageNum" value="${ pageNum }">
 	<table id="notice">
 		<tr>
 			<th scope="col" class="twrite">작성자</th>
@@ -50,7 +50,7 @@
 	<div id="table_search">
 		<input type="submit" value="글쓰기" class="btn">
 		<input type="reset" value="다시쓰기" class="btn">
-		<input type="button" value="목록보기" class="btn" onclick="location.href = 'notice.do?pageNum=${ requestScope.pageNum }'">
+		<input type="button" value="목록보기" class="btn" onclick="location.href = 'notice.do?pageNum=${ pageNum }'">
 	</div>
 	</form>
 	
