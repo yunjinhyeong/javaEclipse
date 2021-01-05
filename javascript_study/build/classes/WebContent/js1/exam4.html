@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+
+	<script>
+	/* 제어문 : 조건문, 반복문
+		
+		조건문 if switch
+		*/
+		var a = 15;
+		if(a>=10){
+			console.log(a+` : 10보다 크거나 같다`);
+		}
+		a = 21;
+		switch(a){
+		case 1:
+			console.log(`월`);
+			break;
+		case 2:
+			console.log(`화`);
+			break;
+		case 3:
+			console.log(`수`);
+			break;
+		default:
+			console.log(`값없음`);
+			break;
+		}
+		/*
+		반복문 for while do-while
+		var가 for문에 있다쳐도 js에서의 var는 for문 벗어나도 존재함 ?? let은 사라짐
+		let 변수는 가장 가까운 코드블록 기준으로 수명주기가 결정됨.
+		var 변수는 가장 가까운 함수블록 기준으로 수명주기가 결정됨.
+		*/
+		for( var i=1 ; i<=5 ; i++ ){
+			
+		}
+		console.log(i);
+		// 배열
+		var arrNum = [10, 20, 30];
+		for (var i=0; i<arrNum.length ; i++){
+			console.log(arrNum[i]);
+		}
+		
+		console.log('===============');
+		
+		for(num of arrNum){ // let 안써줘도 동작 ㅇ ? 안써주면 var로 인지
+			console.log(num);
+		}
+		
+		/*
+	
+	*/
+</script>
+</body>
+</html>

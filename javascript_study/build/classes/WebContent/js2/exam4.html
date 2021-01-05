@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<input type="button" value="주소정보" onclick="func1()">
+	<input type="button" value="이동" onclick="func2()">
+	<input type="button" value="새로고침" onclick="location.reload()"> <!-- 다시 요청함 -->
+	<input type="button" value="이동2" onclick="location.replace(`exam1.html`)"> <!-- 뒤로가기버튼 없음 *href는 있음 -->
+<script>
+	// window엔 document(화면을 컨트롤하는 영역) location 이 있다.
+	// window - location 웹문서의 주소정보 저장
+	// window 생략가능
+	// 	window.location.속성		href protocol hostname port host
+	//	window.location.메소드()		reload() replace()
+	function func1() {
+		console.log(`주소 : `+location.href); // 요걸 많이씀
+		console.log(`프로토콜 : `+location.protocol);
+		console.log(`호스트주소 : `+location.hostname);
+		console.log(`포트 : `+location.port);
+		console.log(`호스트 : `+location.host);
+	}
+	function func2() {
+		alert(`다른 페이지로 이동합니다.`)
+		location.href = `exam2.html`; 
+	}
+	
+</script>
+</body>
+</html>

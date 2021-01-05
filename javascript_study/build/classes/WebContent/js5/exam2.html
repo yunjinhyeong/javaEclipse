@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	
+</style>
+</head>
+<div id="app">
+	<input type="button" value="버튼" id="btn"><br>
+	<img alt="" src="../imgs/1.jpg">
+	<img alt="" src="../imgs/2.jpg">
+	<img alt="" src="../imgs/3.png">
+	<img alt="" src="../imgs/4.jpg">
+	<img alt="" src="../imgs/5.png">
+	<img alt="" src="../imgs/6.png">
+	<img alt="" src="../imgs/7.png">
+	<img alt="" src="../imgs/8.png">
+</div>
+<script src="../js/jquery-3.5.1.js"></script>
+<script>
+	$('#btn').on('click', () => {
+		// 속성을 다루는 함수 attr() prop()
+		// attr()는 웹 디자이너 관점에서 사용 prop()는 웹프로그래머 관점에서 사용
+		let str = $('img').attr('src'); // ../imgs/1.jpg
+		console.log(str);
+		
+		str = $('img').prop('src'); // http://localhost/javascript_study/imgs/1.jpg
+		console.log(str);
+		
+// 		$('img').css('width','200px');
+// 		$('img').css('width',	(index) => {
+// 			return (index+1)*100+'px';
+// 		});
+		
+		$('img').css('width',	'200px').css('height', '300px');
+		// 옵션객체 { K:V, K:V, K:V }
+		$('img').css({
+			width:'200px',
+			height: '300px'
+		});
+		
+	});
+</script>
+</body>
+</html>

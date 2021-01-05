@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<script>
+	// 자바스크립트는 기본적으로 함수형 언어이다.
+	// 객체지원언어
+	let a = function() {
+		alert('메시지');
+	};
+	// a();
+	function func(a) {
+		console.log('------------------------------')
+		console.log(a);
+		console.log(typeof a);
+		if(typeof a == 'function') {
+			console.log('함수이다.');
+			a();
+		} else if(typeof a == 'string') {
+			console.log('문자이다.');
+		}	else if(typeof a == 'number') {
+			console.log('숫자이다.');
+		}
+	}
+	func(5);
+	func('한글');
+	func(a);
+	func(function () {
+		alert('메시지2');
+	});
+</script>
+</body>
+</html>
