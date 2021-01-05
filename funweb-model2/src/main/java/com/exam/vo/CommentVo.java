@@ -19,5 +19,8 @@ public class CommentVo {
 	private String content;
 	private Timestamp regDate;
 	private Timestamp updateDate;
+	private int reRef;
+	private int reLev;
+	private int reSeq;
 	
 }

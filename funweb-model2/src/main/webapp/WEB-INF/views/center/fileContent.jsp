@@ -9,6 +9,9 @@
 <jsp:include page="/WEB-INF/views/include/headContent.jsp" />
 
 <link href="/css/subpage.css" rel="stylesheet" type="text/css"  media="all">
+<link href="/css/bootstrap.css" rel="stylesheet" type="text/css">
+<link href="/css/bootstrap-theme.css" rel="stylesheet" type="text/css">
+<link href="/css/custom2.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div id="wrap">
@@ -101,6 +104,15 @@
 	<div class="clear"></div>
 	<div id="page_control">
 	</div>
+		
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">Pannel title</h3>
+		</div>
+		<div class="panel-body">Panel content</div>
+		<div class="panel-footer">Panel footer</div>
+	</div>
+	
 		
 	</article>
     
