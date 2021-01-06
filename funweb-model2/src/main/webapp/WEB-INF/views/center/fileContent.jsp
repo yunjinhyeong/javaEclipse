@@ -20,15 +20,15 @@
 
 	<div class="clear"></div>
 	<div id="sub_img_center"></div>
-	
+
 	<div class="clear"></div>
 	<%-- nav 영역 --%>
 	<jsp:include page="/WEB-INF/views/include/submenuBoard.jsp" />
-	
+
 	<article>
-		
+
 	<h1>자료실 게시판 상세보기</h1>
-		
+
 	<table id="notice">
 		<tr>
 			<th scope="col" class="tno">글번호</th>
@@ -57,11 +57,11 @@
 		<tr>
 			<th scope="col" class="ttitle">첨부파일</th>
 			<td class="left">
-			
+
 			<c:if test="${ not empty attachList }">
-			
+
 				<c:forEach var="attach" items="${ attachList }">
-				
+
 					<c:choose>
 					<c:when test="${ attach.image eq 'I' }">
 						<p>
@@ -78,7 +78,7 @@
 						</p>
 					</c:otherwise>
 					</c:choose>
-					
+
 				</c:forEach>
 			</c:if>
 
@@ -87,7 +87,7 @@
 	</table>
 
 	<div id="table_search">
-	
+
 		<c:if test="${ not empty id }">
 			<%-- 로그인 했을때 --%>
 			<c:if test="${ id eq noticeVo.id }">
@@ -97,41 +97,128 @@
 			</c:if>
 			<input type="button" value="답글쓰기" class="btn">
 		</c:if>
-		
+
 		<input type="button" value="목록보기" class="btn" onclick="location.href = 'fileNotice.do?pageNum=${ pageNum }'">
 	</div>
-	
+
 	<div class="clear"></div>
 	<div id="page_control">
 	</div>
-		
-	<div class="panel panel-default">
+	<!-- 댓글영역 -->
+	<div id="app" class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title">Pannel title</h3>
+		<span class="glyphicon glyphicon-comment">댓글</span> <span class="glyphicon glyphicon-refresh"></span>
 		</div>
-		<div class="panel-body">Panel content</div>
-		<div class="panel-footer">Panel footer</div>
+		<div class="panel-body">
+			<!-- 댓글리스트영역  -->
+			<ul class="media-list">
+    		   <li class="media" style="margin-left: 0px;" v-for="comment in commentList" v-bind:key="comment.cno">
+    		   
+    		   		<span class="pull-left" v-show="comment.reLev > 0">└</span>
+          			<a class="pull-left" href="#">
+            			<img alt="Generic placeholder image" src="/images/center/pic.jpg">
+          			</a>
+       				<div class="media-body">
+            			<div class="media-heading">
+            				<strong class="text-primary">{{comment.id}}</strong>
+            				<small class="pull-right text-muted">{{comment.updateDate}}</small>
+            			</div>
+            			<p>{{comment.content}}</p>
+        		</li>
+
+
+      		</ul>
+		</div>
+
+		<div class="panel-footer">
+			<textarea  rows="5" v-model="inputComment" class="form-control" placeholder="댓글을 입력하세요."></textarea>
+			<br>
+			<input type="button" v-on:click="addComment" class="btn btn-primary" value="등록 ">
+			<small class="text-muted" style="margin-left : 10px"> {{remain}} / 600</small>
+
+		</div>
+		<div id="page_control"></div>
 	</div>
-	
-		
+
+
 	</article>
-    
+
 	<div class="clear"></div>
 	<%-- footer 영역 --%>
 	<jsp:include page="/WEB-INF/views/include/bottomFooter.jsp" />
 </div>
 
-<script>
-	function remove() {
-		let isDelete = confirm('${ noticeVo.num }번 글을 정말 삭제하시겠습니까?');
-		if (isDelete) {
-			location.href = 'fileDelete.jsp?num=${ noticeVo.num }&pageNum=${ pageNum }';
+	<script src="/script/jquery-3.5.1.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+	<script>
+	//게시글 삭제함수
+		function remove() {
+			let isDelete = confirm('${ noticeVo.num }번 글을 정말 삭제하시겠습니까?');
+			if (isDelete) {
+				location.href = 'fileDelete.jsp?num=${ noticeVo.num }&pageNum=${ pageNum }';
+			}
 		}
-	}
-</script>
+	</script>
+	<script>
+		new Vue({
+			el: '#app',
+			data: {
+				commentList: [],
+				inputComment : ''
+			},
+			computed: {
+				//댓글입력 남은 글자수
+				remain: function () {
+					return 600 - this.inputComment.length;
+				}
+			},
+			watch: {
+				inputComment: function () {
+					if(this.inputComment.length > 600){
+						this.inputComment = this.inputComment.substring(0, 600)
+					}
+
+				}
+			},
+			methods: {
+				// 댓글목록 가져오기
+				getList: function() {
+					let nno = ${ noticeVo.num }; //jsp의 el언어로 게시판 글번호를 출력해서 자바 스크립트 변수에 저장
+					let vm = this; // ViewModel의 약칭, Vue객체 자기자신을 vm 변수로 저장
+
+					$.ajax({
+						url : 'http://localhost/comment' ,
+						data: 'category=list&nno=' + nno,
+						method: 'GET',
+						success: function (response) {//response가 들어가는 이유?
+							console.log(typeof response);
+							console.log(response);
+
+							if(response.isSuccess){
+								vm.commentList = response.commentList;
+							}
+						},
+						error: function(){
+							alert('댓글 리스트 가져오기 오류 발생...')
+						}
+					});
+				},//getList
+
+				addComment: function() {
+
+
+				} //addComment
+
+
+			},
+			mounted: function () {
+				this.getList();
+			}
+		});
+
+	</script>
 </body>
-</html>   
+</html>
 
 
 
-    
