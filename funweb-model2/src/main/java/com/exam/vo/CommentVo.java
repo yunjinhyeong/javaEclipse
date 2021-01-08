@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+//@Data
+
 @NoArgsConstructor
 @Getter
 @Setter
@@ -22,5 +24,7 @@ public class CommentVo {
 	private int reRef;
 	private int reLev;
 	private int reSeq;
-	
 }
+
+
+
