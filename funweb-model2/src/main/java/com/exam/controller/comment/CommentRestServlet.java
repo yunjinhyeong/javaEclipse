@@ -20,6 +20,7 @@ import org.json.simple.JSONValue;
 import com.exam.dao.CommentDao;
 import com.exam.dao.MySqlDao;
 import com.exam.vo.CommentVo;
+import com.exam.vo.Criteria;
 import com.google.gson.Gson;
 
 import lombok.extern.java.Log;
@@ -58,10 +59,16 @@ public class CommentRestServlet extends HttpServlet {
 			
 			strJson = gson.toJson(map);
 		} else if (category.equals("list")) {
-			int nno = Integer.parseInt(request.getParameter("nno"));
+			int nno = Integer.parseInt(request.getParameter("nno")); // 게시판 글번호
+			int pageNum = Integer.parseInt(request.getParameter("pageNum")); // 댓글 페이지번호
 			
-			List<CommentVo> commentList = commentDao.getComments(nno);
-			int totalCount = commentDao.getTotalCountByNno(nno);
+//			List<CommentVo> commentList = commentDao.getComments(nno);
+			
+			Criteria cri = new Criteria(pageNum, 10);
+			
+			List<CommentVo> commentList = commentDao.getCommentsWithPaging(nno, cri);
+			
+			int totalCount = commentDao.getTotalCountByNno(nno); // 총 댓글 갯수
 			
 			Map<String, Object> map = new HashMap<>();
 			map.put("commentList", commentList);
@@ -158,9 +165,13 @@ public class CommentRestServlet extends HttpServlet {
 		CommentDao commentDao = CommentDao.getInstance();
 		commentDao.update(commentVo); // DB update 처리 완료
 		
+		// 댓글수정 완료된 댓글내용 가져오기
+		CommentVo commentVoGet = commentDao.getCommentByCno(commentVo.getCno());
+		
 		// 클라이언트에게 응답을 줄 JSON 데이터 준비
 		Map<String, Object> map = new HashMap<>();
 		map.put("isSuccess", true);
+		map.put("comment", commentVoGet);
 		
 		String strJson = gson.toJson(map);
 		log.info("strJson : " + strJson);
@@ -174,6 +185,7 @@ public class CommentRestServlet extends HttpServlet {
 		log.info("doDelete 호출됨");
 		
 		int cno = Integer.parseInt(request.getParameter("cno"));
+		log.info("삭제 cno = " + cno);
 		
 		CommentDao commentDao = CommentDao.getInstance();
 		commentDao.deleteByCno(cno); // DB delete 처리 완료

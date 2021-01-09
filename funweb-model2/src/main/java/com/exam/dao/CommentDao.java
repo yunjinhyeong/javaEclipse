@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.exam.mapper.CommentMapper;
 import com.exam.vo.CommentVo;
+import com.exam.vo.Criteria;
 
 import lombok.extern.java.Log;
 
@@ -76,6 +77,16 @@ public class CommentDao {
 			return list;
 		}
 	}
+	
+	
+	public List<CommentVo> getCommentsWithPaging(int nno, Criteria cri) {
+		try (SqlSession sqlSession = sqlSessionFactory.openSession(true)) {
+			CommentMapper commentMapper = sqlSession.getMapper(CommentMapper.class);
+			List<CommentVo> list = commentMapper.getCommentsWithPaging(nno, cri);
+			return list;
+		}
+	}
+	
 	
 	// 답댓글 쓰기 메소드 (트랜잭션 처리 - 수동커밋)
 	public void addReplyComment(CommentVo commentVo) {

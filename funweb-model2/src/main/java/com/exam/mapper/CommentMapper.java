@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import com.exam.vo.CommentVo;
+import com.exam.vo.Criteria;
 
 public interface CommentMapper {
 
@@ -36,6 +37,12 @@ public interface CommentMapper {
 			+ "ORDER BY re_ref ASC, re_seq ASC ")
 	List<CommentVo> getComments(int nno);
 	
+	@Select("SELECT * "
+			+ "FROM comment "
+			+ "WHERE nno = #{nno} "
+			+ "ORDER BY re_ref ASC, re_seq ASC "
+			+ "LIMIT #{cri.startRow}, #{cri.amount} ")
+	List<CommentVo> getCommentsWithPaging(@Param("nno") int nno, @Param("cri") Criteria cri);
 	
 	@Update("UPDATE comment "
 			+ "SET re_seq = re_seq + 1 "
