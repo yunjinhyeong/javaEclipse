@@ -197,13 +197,17 @@ span.reply-toggle:hover {
 						
 						<!-- 페이지 블록 영역 -->
 						<ul v-if="totalCount > 0" class="pagination pull-right">
-							<li class="disabled"><a href="#">« 이전</a></li>
+							<li v-bind:class="{ 'disabled': !isPrevOK }">
+								<a href="#" v-on:click="setPageNo()">>« 이전</a>
+							</li>
 							
 							<li v-for="item in pageBlockList" v-bind:key="item.pageNum" v-bind:class="{ 'active': item.isCurrentPage }">
 								<a href="#" v-on:click="setPageNo(item.pageNum)">{{ item.pageNum }}</a>
 							</li>
 							
-							<li><a href="#">다음 »</a></li>
+							<li v-bind:class="{ 'disabled': !isNextOK }">
+								<a href="#" v-on:click="setPageNo()">다음 »</a>
+							</li>
 						</ul>
 					</div>
 
@@ -281,6 +285,12 @@ span.reply-toggle:hover {
 				
 				isNextOk: function () { // 다음 페이지블록 존재여부
 					return this.endPage < this.pageCount;
+				},
+				prevBlockPage: function () { // 
+					return this.startPage - this.pageBlock;
+				},
+				nextBlockPage: function () { // 
+					return this.startPage + this.pageBlock;
 				}
 			},
 			watch: {
@@ -318,6 +328,10 @@ span.reply-toggle:hover {
 				},
 
 				setPageNo: function (pageNum) {
+					if (pageNum < 1 || pageNum > this.pageCount) {
+						return;
+					}
+					
 					this.pageNo = pageNum;
 					this.getList();
 				},
@@ -328,7 +342,7 @@ span.reply-toggle:hover {
 					let vm = this; // ViewModel의 약칭. Vue객체 자기자신을 vm 변수로 저장
 					
 					$.ajax({
-						url: 'http://localhost:80/comment',
+						url: '/comment',
 						data: 'category=list&nno=' + nno + '&pageNum=' + this.pageNo,
 						method: 'GET',
 						success: function (response) {
