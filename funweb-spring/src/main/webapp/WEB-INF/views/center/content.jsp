@@ -63,7 +63,7 @@
 			</c:if>
 			<input type="button" value="답글쓰기" class="btn">
 		</c:if>
-		<input type="button" value="목록보기" class="btn" onclick="location.href = 'notice.do?pageNum=${ pageNum }'">
+		<input type="button" value="목록보기" class="btn" onclick="location.href = '/notice/list?pageNum=${ pageNum }'">
 	</div>
 	
 	<div class="clear"></div>

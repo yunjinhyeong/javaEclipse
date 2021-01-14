@@ -3,7 +3,6 @@ package com.example.service;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,10 +19,13 @@ public class MemberService {
 
 	// 스프링 빈으로 등록된 객체들 중에서
 	// 타입으로 객체의 참조를 가져와서 참조변수에 저장해줌
-	@Autowired
 	private MemberMapper memberMapper;
 	
-	
+	@Autowired
+	public void setMemberMapper(MemberMapper memberMapper) {
+		this.memberMapper = memberMapper;
+	}
+
 	public MemberVo getMemberById(String id) {
 		MemberVo memberVo = memberMapper.getMemberById(id);
 		return memberVo;
@@ -34,67 +36,53 @@ public class MemberService {
 	}
 	
 	public List<MemberVo> getAllMembers() {
-			
-			List<MemberVo> list = memberMapper.getAllMembers();
-			return list;
-		
+		List<MemberVo> list = memberMapper.getAllMembers();
+		return list;
 	}
 	
+	
 	public int userCheck(String id, String passwd) {
-		int check = -1; 
+		int check = -1;
 		
+		String dbPasswd = memberMapper.userCheck(id);
 		
-			String dbPasswd = memberMapper.userCheck(id);
-			
-			if (dbPasswd != null) {
-				if (passwd.equals(dbPasswd)) {
-					check = 1;
-				} else {
-					check = 0;
-				}
-			} else { // dbPasswd == null
-				check = -1;
+		if (dbPasswd != null) {
+			if (passwd.equals(dbPasswd)) {
+				check = 1;
+			} else {
+				check = 0;
 			}
-			return check;
-		
+		} else { // dbPasswd == null
+			check = -1;
+		}
+		return check;
 	}
 	
 	public int getCountById(String id) {
-		
-			int count = memberMapper.getCountById(id);
-			return count;
-		
+		int count = memberMapper.getCountById(id);
+		return count;
 	}
 	
 	public void update(MemberVo memberVo) {
-	
-			memberMapper.update(memberVo);
-		
+		memberMapper.update(memberVo);
 	}
-	
 	
 	public void deleteById(String id) {
-		
 		memberMapper.deleteById(id);
-		
 	}
+	
 	public void deleteAll() {
-		
 		memberMapper.deleteAll();
-		
 	}
 	
 	public List<Map<String, Object>> getGenderPerCount() {
-		
-			List<Map<String, Object>> list = memberMapper.getGenderPerCount();
-			return list;
-		}
+		List<Map<String, Object>> list = memberMapper.getGenderPerCount();
+		return list;
+	}
 	
 	public List<Map<String, Object>> getAgeRangePerCount() {
-		
-			List<Map<String, Object>> list = memberMapper.getAgeRangePerCount();
-			return list;
-		
+		List<Map<String, Object>> list = memberMapper.getAgeRangePerCount();
+		return list;
 	}
 	
 }
