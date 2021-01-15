@@ -19,6 +19,8 @@ public class MemberVo {
 		this.passwd = passwd;
 		this.name = name;
 	}
+	
+	// 추가된 필드의 getter, setter 메소드 추가하기
 
 	public String getId() {
 		return id;

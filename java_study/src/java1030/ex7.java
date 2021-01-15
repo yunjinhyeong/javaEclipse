@@ -11,12 +11,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class ex7 {
+public class Ex7 {
 
 	public static void main(String[] args) {
 		// 한글 텍스트 파일 복사하기 - InputStreamReader "utf-8"적용
-		File src = new File("C:/Users/admin/testFolder", "hobbang.png");
-		File dest = new File("C:/Users/admin/testFolder", "hobbang - 복사본.png");
+		File src = new File("E:/공유/수업내용", "hobbang.jpg");
+		File dest = new File("E:/공유/수업내용", "hobbang - 복사본.jpg");
 		
 		if (!src.exists()) {
 			System.out.println("복사할 파일 " + src.getName() + " 이 존재하지 않습니다.");

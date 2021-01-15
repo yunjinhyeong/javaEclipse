@@ -66,8 +66,8 @@ public class MultiPartEmailEx {
 		}
 		
 		long endTime = System.currentTimeMillis();
-
 		long execTime = endTime - beginTime;
+		
 		System.out.println("실행시간: " + execTime + "ms");
 		System.out.println("응답메시지: " + response);
 	} // main

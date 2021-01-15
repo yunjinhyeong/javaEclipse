@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.domain.AttachVo;
 import com.example.domain.NoticeVo;
+import com.example.mapper.AttachMapper;
 import com.example.mapper.NoticeMapper;
 
 @Service
@@ -16,6 +18,8 @@ public class NoticeService {
 	
 	@Autowired
 	private NoticeMapper noticeMapper;
+	@Autowired
+	private AttachMapper attachMapper;
 	
 	
 	// 주글쓰기
@@ -98,6 +102,18 @@ public class NoticeService {
 		List<Integer> numList = Arrays.asList(numArr);
 		
 		return noticeMapper.getNoticesByNums(numList);
+	}
+	
+	
+	@Transactional
+	public void addNoticeAndAttaches(NoticeVo noticeVo, List<AttachVo> attachList) {
+		// 게시글 등록
+		noticeMapper.addNotice(noticeVo);
+		
+		// 첨부파일정보 등록
+		for (AttachVo attachVo : attachList) {
+			attachMapper.insertAttach(attachVo);
+		}
 	}
 	
 }

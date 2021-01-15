@@ -1,5 +1,6 @@
 package java0924;
 
+
 class GoTask implements Runnable {
 	
 	@Override
@@ -50,4 +51,8 @@ public class Ex3 {
 		thread2.start();
 		
 	} // main
+	
+	
+	
+
 }

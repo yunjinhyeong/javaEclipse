@@ -1,5 +1,6 @@
 package java0922;
 
+
 abstract class Animal /* extends Object */ {
 	// 멤버변수(필드)
 	int age;
@@ -10,6 +11,8 @@ abstract class Animal /* extends Object */ {
 		this.gender = gender;
 	}
 	
+//	Animal puppy = new Puppy(10, "수컷");
+	
 	// 메소드
 	abstract void speak(); // 추상메소드
 }
@@ -17,7 +20,6 @@ abstract class Animal /* extends Object */ {
 interface Robot {
 	
 	void guardAndRecord(); // 집지키고 녹화하기 추상메소드
-	
 }
 
 
@@ -113,7 +115,8 @@ class Vet { // 수의사
 	void giveShot(Animal animal) { // 주사놓기
 		// 다형성을 적용해서 구현
 		animal.speak();
-	}
+	} // giveShot
+
 	
 }
 
@@ -125,38 +128,40 @@ public class Ex1 {
 		
 		// Puppy객체를 Puppy참조변수로 저장해서 메소드 호출시에는
 		// 정적(컴파일시간) 바인딩만 발생함.
-		Puppy puppy = new Puppy();
-		puppy.speak(); // 멍멍~!
-		
-		// Puppy객체를 Animal참조변수로 저장해서 메소드 호출시에는
-		// 정적바인딩 후 동적(실행시간) 바인딩까지 발생함.
-		Animal animal = new Puppy();
-		// ....
-		//animal = new Cat();
-	
-		animal.speak(); // 멍멍~!
-		
-		System.out.println("//////////////////////");
-		// Vet객체를 Vet참조변수로 저장해서 메소들 호출시에는
-		// 정적 바인딩만 발생함
-		Vet vet = new Vet();
-		Puppy poodle = new Puppy();
-		
-		vet.giveShot(poodle); //3살 암컷 강아지가 멍멍 짖는다
-		
-		Cat cat = new Cat();
-		vet.giveShot(cat);
-		
-		Duck duck = new Duck();
-		vet.giveShot(duck);
-		
-		// Robot 클래스에꺼만 사용가능
-		Robot puppyRobot = new Puppy();
-		puppyRobot.guardAndRecord();
-	
-		System.out.println("//////////////////////");
-		Animal ani = (Animal) puppyRobot;
-		ani.speak();
+//		Puppy puppy = new Puppy();
+//		puppy.speak(); // 멍멍~!
+//		
+//		// Puppy객체를 Animal참조변수로 저장해서 메소드 호출시에는
+//		// 정적바인딩 후 동적(실행시간) 바인딩까지 발생함.
+//		Animal animal = new Puppy();
+//		// ....
+//		//animal = new Cat();
+//	
+//		animal.speak(); // 멍멍~!
+//		
+//		System.out.println("//////////////////////");
+//		
+//		Vet vet = new Vet();
+//		Puppy poodle = new Puppy();
+//		
+//		vet.giveShot(poodle);
+//		
+//		Cat cat = new Cat();
+//		vet.giveShot(cat);
+//		
+//		Duck duck = new Duck();
+//		vet.giveShot(duck);
+//		
+//		///////
+//		
+//		Robot puppyRobot = new Puppy();
+//		puppyRobot.guardAndRecord();
+//		
+//		Animal ani = (Animal) puppyRobot;
+//		ani.speak();
+		Puppy puppy = new Puppy(10, "수컷");
+		puppy.speak();
+		System.out.println(puppy.toString());
 		
 	} // main
 

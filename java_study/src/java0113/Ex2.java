@@ -1,72 +1,74 @@
 package java0113;
 
-// ¿ä¸®»ç 
+
+// ìš”ë¦¬ì‚¬
 interface Chef {
-   void cook();
+	void cook();
 }
 
 class ChineseChef implements Chef {
-   
-   @Override
-   public void cook() {
-      System.out.println("Áß½Ä¿ä¸®");
-      
-   }
+	@Override
+	public void cook() {
+		System.out.println("ì¤‘ì‹ ìš”ë¦¬í•˜ê¸°");
+	}
 }
 
-class JapaneseChef implements Chef{
-      
-   @Override
-   public void cook() {
-      System.out.println("ÀÏ½Ä¿ä¸®");
-      
-   }
+class JapaneseChef implements Chef  {
+	@Override
+	public void cook() {
+		System.out.println("ì¼ì‹ ìš”ë¦¬í•˜ê¸°");
+	}
+	
 }
 
-class KoreanChef implements Chef{
-   
-   @Override
-   public void cook() {
-      System.out.println("ÇÑ½Ä¿ä¸®");
-      
-   }
+class KoreanChef implements Chef  {
+	@Override
+	public void cook() {
+		System.out.println("í•œì‹ ìš”ë¦¬í•˜ê¸°");
+	}
+	
 }
-   
-// ½Ä´ç
+
+// ì‹ë‹¹
 class Restaurant {
+	
+	private Chef chef;
+	
+	// í¬í•¨ê´€ê³„ë¡œ í•„ìš”í•œ ê°ì²´ë¥¼ ì™¸ë¶€ì—ì„œ ì „ë‹¬ë°›ëŠ” ë°©ë²• 2ê°€ì§€ : ìƒì„±ì, setter	
+	
+	public Restaurant(Chef chef) {
+		this.chef = chef;
+	}
 
-   private Chef chef;
-   
-   // Æ÷ÇÔ°ü°è·Î ÇÊ¿äÇÑ °´Ã¼¸¦ ¿ÜºÎ¿¡¼­ Àü´Ş¹Ş´Â ¹æ¹ı 2°¡Áö : »ı¼ºÀÚ, setter
-   
-   public Restaurant(Chef chef) {
-      this.chef = chef;
-   }
-   
-   public void setChef (Chef chef) {
-      this.chef = chef;
-   }
-   
-   
-   // ¿ä¸®»ç °´Ã¼¸¦ ÀÌ¿ëÇØ¼­ ½Ä´ç ¸Ş¼Òµå ±¸Çö...
+	public void setChef(Chef chef) {
+		this.chef = chef;
+		
+		// instanceof ì—°ì‚°ì: ì‹¤ì œ ê°ì²´ì˜ íƒ€ì…ì´ 
+		// ì˜¤ë¥¸ìª½ì— ëª…ì‹œí•œ íƒ€ì…ê³¼ ì¼ì¹˜í•˜ë©´ true, ì•„ë‹ˆë©´ false
+		if (chef instanceof JapaneseChef) {
+			
+		}
+		
+	}
+	
+	// ìš”ë¦¬ì‚¬ ê°ì²´ë¥¼ ì´ìš©í•´ì„œ ì‹ë‹¹ ë©”ì†Œë“œ êµ¬í˜„...
 }
-
-
 
 
 
 public class Ex2 {
 
-   public static void main(String[] args) {
-      // °´Ã¼ Á¶¸³±âÀÇ ¿ªÇÒ : ÀÌ ¿ªÇÒÀ» ½ºÇÁ¸µÀÌ ´ë½Å ÇØÁÜ
-      
-      JapaneseChef japaneseChef = new JapaneseChef();
-      
-      Restaurant rest = new Restaurant(japaneseChef);
-      
-      KoreanChef koreanChef = new KoreanChef();
-      
-      rest.setChef(koreanChef);
-   }
+	public static void main(String[] args) {
+		// ê°ì²´ ì¡°ë¦½ê¸°ì˜ ì—­í•  : ì´ ì—­í• ì„ ìŠ¤í”„ë§ì´ ëŒ€ì‹  í•´ì¤Œ.
+		// ìŠ¤í”„ë§ DI(Dependency Injection) ì˜ì¡´ê´€ê³„ ì£¼ì….
+		
+		JapaneseChef japaneseChef = new JapaneseChef();
+		
+		Restaurant rest = new Restaurant(japaneseChef);
+		
+		KoreanChef koreanChef = new KoreanChef();
+		
+		rest.setChef(koreanChef);
+	}
 
 }

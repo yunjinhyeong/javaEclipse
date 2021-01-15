@@ -25,10 +25,10 @@ public class MemberLoginCheckInterceptor implements HandlerInterceptor {
 		
 		if (id == null) {
 			response.sendRedirect("/member/login");
-			return false;
+			return false; // false를 리턴하면 컨트롤러 메소드 실행 안함
 		}
 		
-		return true;
+		return true; // true를 리턴하면 컨트롤러 메소드 실행함
 	}
 
 	@Override

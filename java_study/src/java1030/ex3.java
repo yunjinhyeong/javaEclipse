@@ -4,7 +4,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class ex3 {
+public class Ex3 {
 
 	public static void main(String[] args) {
 		// 키보드 입력을 파일로 저장하기
@@ -16,7 +16,7 @@ public class ex3 {
 		FileWriter writer = null;
 		
 		try {
-			writer = new FileWriter("C:/Users/admin/testFolder/testWrite.txt", true);
+			writer = new FileWriter("E:/공유/수업내용/test.txt", true);
 			
 			System.out.println("키보드로 문자를 입력하세요.");
 			
@@ -29,13 +29,14 @@ public class ex3 {
 				
 				writer.write(line + "\n"); //출력스트림 객체는 기본적으로 버퍼를 가짐.
 			} // while
-			writer.flush(); // 버퍼 비우기
+			
+			writer.flush(); // 버퍼 비우기해서 파일에 쓰기
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			scanner.close();
 			try {
-				writer.close();
+				writer.close(); // close()로 닫으면 내부적으로 flush() 호출해서 버퍼 비우기 해줌
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

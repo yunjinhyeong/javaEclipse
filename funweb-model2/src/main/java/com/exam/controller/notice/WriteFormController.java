@@ -12,19 +12,19 @@ public class WriteFormController implements Controller {
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("WriteFormController......");
 		
-		// session °´Ã¼ ÂüÁ¶ °¡Á®¿À±â
-		HttpSession session = request.getSession();
+		// session ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+//		HttpSession session = request.getSession();
+//		
+//		// ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
+//		String id = (String) session.getAttribute("id");
+//		if (id == null) {
+//			return "redirect:/notice.do";
+//		}
 		
-		// ·Î±×ÀÎ ¿©ºÎ È®ÀÎ
-		String id = (String) session.getAttribute("id");
-		if (id == null) {
-			return "redirect:/notice.do";
-		}
-		
-		// ÆÄ¶ó¹ÌÅÍ°ª  pageNum  °¡Á®¿À±â
+		// ï¿½Ä¶ï¿½ï¿½ï¿½Í°ï¿½  pageNum  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		String pageNum = request.getParameter("pageNum");
 		
-		// ºä(jsp)¿¡¼­ ÇÊ¿äÇÑ µ¥ÀÌÅÍ¸¦ request ¿µ¿ª°´Ã¼¿¡ ÀúÀå
+		// ï¿½ï¿½(jsp)ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ request ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		request.setAttribute("pageNum", pageNum);
 		
 		return "center/writeForm";

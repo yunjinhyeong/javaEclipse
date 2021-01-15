@@ -5,24 +5,24 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class ex2 {
+public class Ex2 {
 
 	public static void main(String[] args) {
-	// InputStreamReader로 한글 텍스트 파일 읽기
-	
+		// InputStreamReader로 한글 텍스트 파일 읽기
+		
 		InputStreamReader reader = null;
 		FileInputStream fis = null;
 		
 		try {
-			fis = new FileInputStream("C:/Users/admin/testFolder/testFile.txt");
-			// InputStreamReader 받아와서 그걸 한글로 변환
-			reader = new InputStreamReader(fis,"utf-8");
+			fis = new FileInputStream("E:/공유/수업내용/웹프로그래밍_학습.txt");
+			reader = new InputStreamReader(fis, "utf-8");
 			
 			int c;
 			
 			while ((c = reader.read()) != -1) {
-				System.out.print((char)c);
+				System.out.print((char) c);
 			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -33,7 +33,8 @@ public class ex2 {
 				e.printStackTrace();
 			}
 		}
+		
 
-	}
+	} // main
 
 }

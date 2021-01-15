@@ -22,7 +22,7 @@ public class MemberStayLoggedInInterceptor implements HandlerInterceptor {
 		HttpSession session = request.getSession();
 		
 		// 세션에 로그인 아이디가 이미 있으면
-		// 로그인 상태유지용 쿠키객체 찾는작업은 안하기
+		// 로그인 상태유지용 쿠키객체 찾는작업 안하고 종료
 		String id = (String) session.getAttribute("id");
 		if (id != null) {
 			return true;

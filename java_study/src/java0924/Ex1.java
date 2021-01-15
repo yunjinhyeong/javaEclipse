@@ -1,5 +1,6 @@
 package java0924;
 
+
 class Go {
 	
 	void go() {
@@ -25,13 +26,14 @@ public class Ex1 {
 		// 멀티태스킹 : 한번에 여러개의 작업을 수행하는것.
 		
 		// 프로세스 : 실행중인 프로그램 한개
-		// 스레드 : 프로그램 한개 안에서 실행되는 흐름 단위 한개.
+		// 스레드 : 프로그램 한개 안에서 실행흐름 한개 단위.
 		
 		Go g = new Go();
 		Come c = new Come();
 		
 		g.go();
 		c.come();
-	}
+		
+	} // main
 
 }

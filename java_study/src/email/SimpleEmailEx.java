@@ -30,7 +30,7 @@ public class SimpleEmailEx {
 		email.setSmtpPort(465);
 		email.setAuthentication("zencoding", "******");
 		
-		// 보안연결 SSL, TLS 설정
+		// 보안연결 SSL, TLS 사용 설정
 		email.setSSLOnConnect(true);
 		email.setStartTLSEnabled(true);
 		
@@ -64,8 +64,8 @@ public class SimpleEmailEx {
 		}
 		
 		long endTime = System.currentTimeMillis();
-		
 		long execTime = endTime - beginTime;
+		
 		System.out.println("실행시간: " + execTime + "ms");
 		System.out.println("응답메시지: " + response);
 	}// main
