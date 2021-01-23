@@ -3,9 +3,15 @@ package com.exam.vo;
 import java.sql.Timestamp;
 import java.util.List;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
-@Data
+@Setter
+@Getter
+@ToString
+@NoArgsConstructor
 public class NoticeVo {
 	
 	private int num;    // 게시판 글번호
@@ -21,6 +27,5 @@ public class NoticeVo {
 	
 	//private AttachVo attachVo;        // JOIN에서 1:1의 관계일때
 	private List<AttachVo> attachList;  // JOIN에서 1:N의 관계일때
-
 
 }

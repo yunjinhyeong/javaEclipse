@@ -12,7 +12,7 @@ import java.util.List;
 import com.exam.vo.AttachVo;
 import com.exam.vo.NoticeVo;
 
-public class NoticeDao {
+public final class NoticeDao {
 	// 싱글톤
 	private static NoticeDao instance = new NoticeDao();
 	
@@ -149,7 +149,7 @@ public class NoticeDao {
 			noticeVo.setReSeq(rs.getInt("re_seq"));
 			noticeVo.setAttachList(attachList); // 첨부파일 리스트 저장
 			
-			System.out.println("조인결과 : \n" + noticeVo);
+//			System.out.println("조인결과 : \n" + noticeVo);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -527,13 +527,13 @@ public class NoticeDao {
 			noticeVo.setReLev(0);
 			noticeVo.setReSeq(0);
 			
-			System.out.println(noticeVo);
+//			System.out.println(noticeVo);
 			
 			noticeDao.addNotice(noticeVo);
 		} // for
 		
 		int count = noticeDao.getCountAll();
-		System.out.println("count = " + count);
+//		System.out.println("count = " + count);
 		
 	} // main()
 	

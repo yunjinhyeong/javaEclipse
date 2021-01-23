@@ -8,7 +8,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Data
+@Setter
+@Getter
+@ToString
+@NoArgsConstructor
+//@Data
 public class MemberVo {
 	
 	private String id;
@@ -20,7 +24,6 @@ public class MemberVo {
 	private Timestamp regDate;
 	private String address;
 	private String tel;
-	
 }
 
 

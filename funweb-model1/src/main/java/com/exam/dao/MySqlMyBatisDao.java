@@ -10,7 +10,7 @@ import com.exam.mapper.MySqlMapper;
 import com.exam.mapper.NoticeMapper;
 import com.exam.vo.NoticeVo;
 
-public class MySqlMyBatisDao {
+public final class MySqlMyBatisDao {
 
 	private static MySqlMyBatisDao instance = new MySqlMyBatisDao();
 	

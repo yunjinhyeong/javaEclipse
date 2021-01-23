@@ -9,7 +9,7 @@ import com.exam.mapper.AttachMapper;
 import com.exam.mapper.NoticeMapper;
 import com.exam.vo.AttachVo;
 
-public class AttachMyBatisDao {
+public final class AttachMyBatisDao {
 
 	private static AttachMyBatisDao instance = new AttachMyBatisDao();
 	

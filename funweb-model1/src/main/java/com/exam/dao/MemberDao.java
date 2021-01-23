@@ -14,7 +14,7 @@ import java.util.Random;
 
 import com.exam.vo.MemberVo;
 
-public class MemberDao {
+public final class MemberDao {
 	
 	// 싱글톤 패턴 설계
 	private static MemberDao instance = new MemberDao();
@@ -383,7 +383,7 @@ public class MemberDao {
 		
 		memberDao.deleteAll(); // 전체삭제
 		
-		System.out.println("======== insert 테스트 =========");
+//		System.out.println("======== insert 테스트 =========");
 		
 		for (int i=0; i<1000; i++) {
 			MemberVo memberVo = new MemberVo();
@@ -408,35 +408,35 @@ public class MemberDao {
 			memberVo.setTel("010-1234-5678");
 			
 			memberDao.addMember(memberVo);
-			System.out.println("insert 성공!");
+//			System.out.println("insert 성공!");
 		}
 		
 		List<MemberVo> list = memberDao.getAllMembers();
 		for (MemberVo memberVo : list) {
-			System.out.println(memberVo);
+//			System.out.println(memberVo);
 		}
 		
-		System.out.println("======== getMemberById 테스트 =========");
+//		System.out.println("======== getMemberById 테스트 =========");
 		
 		String testId = "user0";
 		
 		MemberVo memberVo = memberDao.getMemberById(testId);
-		System.out.println(memberVo);
+//		System.out.println(memberVo);
 		
-		System.out.println("======== update 테스트 =========");
+//		System.out.println("======== update 테스트 =========");
 		
 		memberVo.setName("이순신"); // 수정될 이름값 설정
 		memberDao.update(memberVo);
 		
 		MemberVo getMemberVo = memberDao.getMemberById(testId);
-		System.out.println(getMemberVo);
+//		System.out.println(getMemberVo);
 		
-		System.out.println("======== deleteById 테스트 =========");
+//		System.out.println("======== deleteById 테스트 =========");
 		
 		memberDao.deleteById(testId);
 		
 		MemberVo getMemberVo2 = memberDao.getMemberById(testId);
-		System.out.println(getMemberVo2);
+//		System.out.println(getMemberVo2);
 		
 	} // main
 	

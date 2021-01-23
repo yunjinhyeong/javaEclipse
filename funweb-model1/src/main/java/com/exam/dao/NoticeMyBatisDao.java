@@ -12,7 +12,7 @@ import com.exam.mapper.MemberMapper;
 import com.exam.mapper.NoticeMapper;
 import com.exam.vo.NoticeVo;
 
-public class NoticeMyBatisDao {
+public final class NoticeMyBatisDao {
 
 	private static NoticeMyBatisDao instance = new NoticeMyBatisDao();
 	
@@ -164,18 +164,18 @@ public class NoticeMyBatisDao {
 	
 	
 	public static void main(String[] args) {
-		NoticeMyBatisDao dao = NoticeMyBatisDao.getInstance();
+//		NoticeMyBatisDao dao = NoticeMyBatisDao.getInstance();
 		
-		List<Integer> numList = new ArrayList<>();
-		numList.add(1014);
-		numList.add(1013);
-		numList.add(1010);
+//		List<Integer> numList = new ArrayList<>();
+//		numList.add(1014);
+//		numList.add(1013);
+//		numList.add(1010);
 		
 		//List<NoticeVo> noticeList = dao.getNoticesByNums(numList);
-		List<NoticeVo> noticeList = dao.getNoticesByNums(1014, 1013, 1010);
-		for (NoticeVo noticeVo : noticeList) {
-			System.out.println(noticeVo);
-		}
+//		List<NoticeVo> noticeList = dao.getNoticesByNums(1014, 1013, 1010);
+//		for (NoticeVo noticeVo : noticeList) {
+//			System.out.println(noticeVo);
+//		}
 		
 	}
 	

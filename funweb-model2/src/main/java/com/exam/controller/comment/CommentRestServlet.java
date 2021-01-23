@@ -32,7 +32,7 @@ public class CommentRestServlet extends HttpServlet {
 	private Gson gson = new Gson();
 
 	private void sendResponse(String strJson, HttpServletResponse response) throws ServletException, IOException {
-		// Å¬¶óÀÌ¾ðÆ®¿¡°Ô ÀÀ´ä ÁÖ±â
+		// Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö±ï¿½
 		response.setContentType("application/json; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		out.println(strJson);
@@ -40,9 +40,9 @@ public class CommentRestServlet extends HttpServlet {
 		out.close();
 	}
 	
-	// SQL SELECT¹® ¿äÃ» Ã³¸®
+	// SQL SELECTï¿½ï¿½ ï¿½ï¿½Ã» Ã³ï¿½ï¿½
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		log.info("doGet È£ÃâµÊ");
+		log.info("doGet È£ï¿½ï¿½ï¿½");
 		
 		CommentDao commentDao = CommentDao.getInstance();
 		
@@ -59,9 +59,9 @@ public class CommentRestServlet extends HttpServlet {
 			
 			strJson = gson.toJson(map);
 		} else if (category.equals("list")) {
-			int nno = Integer.parseInt(request.getParameter("nno")); // °Ô½ÃÆÇ ±Û¹øÈ£
-			int pageNum = Integer.parseInt(request.getParameter("pageNum")); // ´ñ±Û ÆäÀÌÁö¹øÈ£
-			int numOfRows = Integer.parseInt(request.getParameter("numOfRows")); // ÇÑ°³ÀÇ ´ñ±ÛÆäÀÌÁö´ç ´ñ±Û°¹¼ö
+			int nno = Integer.parseInt(request.getParameter("nno")); // ï¿½Ô½ï¿½ï¿½ï¿½ ï¿½Û¹ï¿½È£
+			int pageNum = Integer.parseInt(request.getParameter("pageNum")); // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£
+			int numOfRows = Integer.parseInt(request.getParameter("numOfRows")); // ï¿½Ñ°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Û°ï¿½ï¿½ï¿½
 			
 //			List<CommentVo> commentList = commentDao.getComments(nno);
 			
@@ -69,7 +69,7 @@ public class CommentRestServlet extends HttpServlet {
 			
 			List<CommentVo> commentList = commentDao.getCommentsWithPaging(nno, cri);
 			
-			int totalCount = commentDao.getTotalCountByNno(nno); // ÃÑ ´ñ±Û °¹¼ö
+			int totalCount = commentDao.getTotalCountByNno(nno); // ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			
 			Map<String, Object> map = new HashMap<>();
 			map.put("commentList", commentList);
@@ -79,22 +79,22 @@ public class CommentRestServlet extends HttpServlet {
 			strJson = gson.toJson(map);
 		}
 		
-		// Å¬¶óÀÌ¾ðÆ®¿¡°Ô ÀÀ´ä ÁÖ±â
+		// Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö±ï¿½
 		sendResponse(strJson, response);
 	} // doGet
 
-	// SQL INSERT¹® ¿äÃ» Ã³¸®
+	// SQL INSERTï¿½ï¿½ ï¿½ï¿½Ã» Ã³ï¿½ï¿½
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		log.info("doPost È£ÃâµÊ");
+		log.info("doPost È£ï¿½ï¿½ï¿½");
 		
-		// ÇÑ±ÛÃ³¸®
+		// ï¿½Ñ±ï¿½Ã³ï¿½ï¿½
 		request.setCharacterEncoding("utf-8");
 		
-		// ·Î±×ÀÎ È®ÀÎ ¼¼¼ÇÁ¡°Ë
+		// ï¿½Î±ï¿½ï¿½ï¿½ È®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
 		if (id == null) {
-			// Å¬¶óÀÌ¾ðÆ®¿¡°Ô ÀÀ´äÀ» ÁÙ JSON µ¥ÀÌÅÍ ÁØºñ
+			// Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ JSON ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Øºï¿½
 			Map<String, Object> map = new HashMap<>();
 			map.put("isSuccess", false);
 			map.put("description", "not login");
@@ -102,7 +102,7 @@ public class CommentRestServlet extends HttpServlet {
 			String strJson = gson.toJson(map);
 			log.info("strJson : " + strJson);
 			
-			// Å¬¶óÀÌ¾ðÆ®¿¡°Ô ÀÀ´ä ÁÖ±â
+			// Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö±ï¿½
 			sendResponse(strJson, response);
 			return;
 		}
@@ -114,31 +114,31 @@ public class CommentRestServlet extends HttpServlet {
 		String category = request.getParameter("category");
 		log.info(category);
 		
-		BufferedReader reader = request.getReader(); // http¸Þ½ÃÁö body¿¡¼­ JSON ¹®ÀÚ¿­ °¡Á®¿À±â
+		BufferedReader reader = request.getReader(); // httpï¿½Þ½ï¿½ï¿½ï¿½ bodyï¿½ï¿½ï¿½ï¿½ JSON ï¿½ï¿½ï¿½Ú¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		CommentVo commentVo = gson.fromJson(reader, CommentVo.class);
-		reader.close();  // ÀÔÃâ·Â °´Ã¼ ´Ý±â
+		reader.close();  // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½Ý±ï¿½
 		
-		if (category.equals("main")) { // ÁÖ´ñ±Û µî·ÏÇÏ±â
+		if (category.equals("main")) { // ï¿½Ö´ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 			int cno = mySqlDao.getNextNum("comment");
-			commentVo.setCno(cno);  // ´ñ±Û ¹øÈ£
-			commentVo.setReRef(cno); // ÁÖ´ñ±ÛÀÏ¶§´Â ±Û¹øÈ£°¡ ±Û±×·ì¹øÈ£¿Í µ¿ÀÏÇÔ
+			commentVo.setCno(cno);  // ï¿½ï¿½ï¿½ ï¿½ï¿½È£
+			commentVo.setReRef(cno); // ï¿½Ö´ï¿½ï¿½ï¿½Ï¶ï¿½ï¿½ï¿½ ï¿½Û¹ï¿½È£ï¿½ï¿½ ï¿½Û±×·ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			commentVo.setReLev(0);
 			commentVo.setReSeq(0);
-			commentVo.setId(id); // ·Î±×ÀÎ ¾ÆÀÌµð°¡ ´ñ±ÛÀÛ¼ºÀÚ ¾ÆÀÌµð°¡ µÊ
+			commentVo.setId(id); // ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½Û¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½
 			log.info("commentVo : " + commentVo);
 			
-			commentDao.addComment(commentVo); // ÁÖ´ñ±Û µî·ÏÇÏ±â ¸Þ¼Òµå È£Ãâ
+			commentDao.addComment(commentVo); // ï¿½Ö´ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½Þ¼Òµï¿½ È£ï¿½ï¿½
 			
-		} else if (category.equals("reply")) { // ´ä´ñ±Û µî·ÏÇÏ±â
+		} else if (category.equals("reply")) { // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 			int cno = mySqlDao.getNextNum("comment");
-			commentVo.setCno(cno);  // ´ñ±Û ¹øÈ£
+			commentVo.setCno(cno);  // ï¿½ï¿½ï¿½ ï¿½ï¿½È£
 			commentVo.setId(id);
-			log.info("´ä´ñ±Û : " + commentVo.toString());
+			log.info("ï¿½ï¿½ï¿½ï¿½ : " + commentVo.toString());
 			
-			commentDao.addReplyComment(commentVo); // ´ä´ñ±Û µî·ÏÇÏ±â ¸Þ¼Òµå È£Ãâ
+			commentDao.addReplyComment(commentVo); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½Þ¼Òµï¿½ È£ï¿½ï¿½
 		}
 		
-		// Å¬¶óÀÌ¾ðÆ®¿¡°Ô ÀÀ´äÀ» ÁÙ JSON µ¥ÀÌÅÍ ÁØºñ
+		// Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ JSON ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Øºï¿½
 		Map<String, Object> map = new HashMap<>();
 		map.put("isSuccess", true);
 		map.put("comment", commentVo);
@@ -146,15 +146,15 @@ public class CommentRestServlet extends HttpServlet {
 		String strJson = gson.toJson(map);
 		log.info("strJson : " + strJson);
 		
-		// Å¬¶óÀÌ¾ðÆ®¿¡°Ô ÀÀ´ä ÁÖ±â
+		// Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö±ï¿½
 		sendResponse(strJson, response);
 	}
 
-	// SQL UPDATE¹® ¿äÃ» Ã³¸®
+	// SQL UPDATEï¿½ï¿½ ï¿½ï¿½Ã» Ã³ï¿½ï¿½
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		log.info("doPut È£ÃâµÊ");
+		log.info("doPut È£ï¿½ï¿½ï¿½");
 		
-		// ÇÑ±ÛÃ³¸®
+		// ï¿½Ñ±ï¿½Ã³ï¿½ï¿½
 		request.setCharacterEncoding("utf-8");
 		
 		BufferedReader reader = request.getReader();
@@ -164,12 +164,12 @@ public class CommentRestServlet extends HttpServlet {
 		log.info("commentVo : " + commentVo);
 		
 		CommentDao commentDao = CommentDao.getInstance();
-		commentDao.update(commentVo); // DB update Ã³¸® ¿Ï·á
+		commentDao.update(commentVo); // DB update Ã³ï¿½ï¿½ ï¿½Ï·ï¿½
 		
-		// ´ñ±Û¼öÁ¤ ¿Ï·áµÈ ´ñ±Û³»¿ë °¡Á®¿À±â
+		// ï¿½ï¿½Û¼ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½ï¿½ ï¿½ï¿½Û³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		CommentVo commentVoGet = commentDao.getCommentByCno(commentVo.getCno());
 		
-		// Å¬¶óÀÌ¾ðÆ®¿¡°Ô ÀÀ´äÀ» ÁÙ JSON µ¥ÀÌÅÍ ÁØºñ
+		// Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ JSON ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Øºï¿½
 		Map<String, Object> map = new HashMap<>();
 		map.put("isSuccess", true);
 		map.put("comment", commentVoGet);
@@ -177,26 +177,26 @@ public class CommentRestServlet extends HttpServlet {
 		String strJson = gson.toJson(map);
 		log.info("strJson : " + strJson);
 		
-		// Å¬¶óÀÌ¾ðÆ®¿¡°Ô ÀÀ´ä ÁÖ±â
+		// Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö±ï¿½
 		sendResponse(strJson, response);
 	}
 
-	// SQL DELETE¹® ¿äÃ» Ã³¸®
+	// SQL DELETEï¿½ï¿½ ï¿½ï¿½Ã» Ã³ï¿½ï¿½
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		log.info("doDelete È£ÃâµÊ");
+		log.info("doDelete È£ï¿½ï¿½ï¿½");
 		
 		int cno = Integer.parseInt(request.getParameter("cno"));
-		log.info("»èÁ¦ cno = " + cno);
+		log.info("ï¿½ï¿½ï¿½ï¿½ cno = " + cno);
 		
 		CommentDao commentDao = CommentDao.getInstance();
-		commentDao.deleteByCno(cno); // DB delete Ã³¸® ¿Ï·á
+		commentDao.deleteByCno(cno); // DB delete Ã³ï¿½ï¿½ ï¿½Ï·ï¿½
 		
 		Map<String, Object> map = new HashMap<>();
 		map.put("isSuccess", true);
 		
 		String strJson = gson.toJson(map);
 		
-		// Å¬¶óÀÌ¾ðÆ®¿¡°Ô ÀÀ´ä ÁÖ±â
+		// Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö±ï¿½
 		sendResponse(strJson, response);
 	}
 

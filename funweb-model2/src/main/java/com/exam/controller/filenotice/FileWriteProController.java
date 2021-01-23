@@ -25,21 +25,21 @@ public class FileWriteProController implements Controller {
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("FileWriteProController......");
 		
-		// ÆÄÀÏ ¾÷·Îµå À§ÇØ¼­ cos.jar ¶óÀÌºê·¯¸®¸¦ ÇÁ·ÎÁ§Æ® ºôµåÆĞ½º¿¡ Ãß°¡.
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ cos.jar ï¿½ï¿½ï¿½Ìºê·¯ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½Ğ½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½.
 
-		//¾÷·Îµå °´Ã¼ »ı¼ºÇÒ¶§ ÇÊ¿äÇÑ ÀÎÀÚ°ª
+		//ï¿½ï¿½ï¿½Îµï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½Ò¶ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú°ï¿½
 		//1. request
-		//2. ¾÷·Îµå ÇÒ Æú´õÀÇ ¹°¸®Àû °æ·Î
-		//3. ¾÷·Îµå ÃÖ´ë Å©±â Á¦ÇÑ
-		//4. ÆÄÀÏ¸í ÇÑ±ÛÃ³¸® utf-8
-		//5. ÆÄÀÏ¸í Áßº¹µÉ¶§ ÀÌ¸§º¯°æ±ÔÄ¢ °¡Áø °´Ã¼¸¦ Àü´Ş
+		//2. ï¿½ï¿½ï¿½Îµï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+		//3. ï¿½ï¿½ï¿½Îµï¿½ ï¿½Ö´ï¿½ Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		//4. ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½Ñ±ï¿½Ã³ï¿½ï¿½ utf-8
+		//5. ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ßºï¿½ï¿½É¶ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¢ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-		//¾÷·Îµå ÇÒ ½ÇÁ¦ ¹°¸®Àû °æ·Î ±¸ÇÏ±â
-		ServletContext application = request.getServletContext(); // application °´Ã¼ ÂüÁ¶ ±¸ÇÏ±â
+		//ï¿½ï¿½ï¿½Îµï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½
+		ServletContext application = request.getServletContext(); // application ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½
 		String realPath = application.getRealPath("/upload");
 		System.out.println("realPath : " + realPath);
 
-		// ¿À´Ã³¯Â¥ ³â¿ùÀÏ Æú´õ°¡ Á¸ÀçÇÏ´ÂÁö È®ÀÎÇØ¼­ ¾øÀ¸¸é »ı¼ºÇÏ±â
+		// ï¿½ï¿½ï¿½Ã³ï¿½Â¥ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 		String strDate = sdf.format(date); // "2020/11/11"
@@ -52,85 +52,85 @@ public class FileWriteProController implements Controller {
 		}
 
 
-		//ÆÄÀÏ ¾÷·Îµå ÇÏ±â
+		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½ ï¿½Ï±ï¿½
 		MultipartRequest multi = new MultipartRequest(
 				request,
-				dir.getPath(),
-				1024 * 1024 * 100, // ÃÖ´ë ¾÷·Îµå 100MB·Î Á¦ÇÑ
-				"utf-8",
-				new DefaultFileRenamePolicy());
+				dir.getPath(),     // íŒŒì¼ ì €ì¥ ê²½ë¡œ
+				1024 * 1024 * 100, // íŒŒì¼ì—…ë¡œë“œ ìµœëŒ€í¬ê¸°(ë°”ì´íŠ¸ ë‹¨ìœ„) 100MB
+				"utf-8",           // ì¸ì½”ë”© ìœ í˜•
+				new DefaultFileRenamePolicy()); // íŒŒì¼ëª… ë³€ê²½ ì •ì±…
 
-		//enctype="multipart/form-data" ·Î Àü¼Û¹ŞÀ¸¸é
-		//±âº»³»Àå°´Ã¼ÀÎ request¿¡¼­ ÆÄ¶ó¹ÌÅÍ°ªÀ» ¹Ù·Î Ã£À»¼ö ¾øÀ½!
-		//MultipartRequest °´Ã¼·ÎºÎÅÍ ÆÄ¶ó¹ÌÅÍ°ªÀ» Ã£¾Æ¾ß ÇÔ! »ç¿ë¹æ¹ıÀº µ¿ÀÏÇÔ.
+		//enctype="multipart/form-data" ï¿½ï¿½ ï¿½ï¿½ï¿½Û¹ï¿½ï¿½ï¿½ï¿½ï¿½
+		//ï¿½âº»ï¿½ï¿½ï¿½å°´Ã¼ï¿½ï¿½ requestï¿½ï¿½ï¿½ï¿½ ï¿½Ä¶ï¿½ï¿½ï¿½Í°ï¿½ï¿½ï¿½ ï¿½Ù·ï¿½ Ã£ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!
+		//MultipartRequest ï¿½ï¿½Ã¼ï¿½Îºï¿½ï¿½ï¿½ ï¿½Ä¶ï¿½ï¿½ï¿½Í°ï¿½ï¿½ï¿½ Ã£ï¿½Æ¾ï¿½ ï¿½ï¿½! ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 
-		//post ÆÄ¶ó¹ÌÅÍ°ª ÇÑ±ÛÃ³¸®´Â À§¿¡ »ı¼ºÀÚ¿¡¼­ Ã³¸®ÇÏ±â ¶§¹®¿¡ ÇÒÇÊ¿ä ¾øÀ½!
+		//post ï¿½Ä¶ï¿½ï¿½ï¿½Í°ï¿½ ï¿½Ñ±ï¿½Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ê¿ï¿½ ï¿½ï¿½ï¿½ï¿½!
 		//request.setCharacterEncoding("utf-8");
 
-		//pageNum ÆÄ¶ó¹ÌÅÍ°ª °¡Á®¿À±â
+		//pageNum ï¿½Ä¶ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		String pageNum = multi.getParameter("pageNum");
 
 
-		//DAO °´Ã¼ ÁØºñ
+		//DAO ï¿½ï¿½Ã¼ ï¿½Øºï¿½
 		NoticeDao noticeDao = NoticeDao.getInstance();
 		AttachDao attachDao = AttachDao.getInstance();
 
 		int nextNum = JdbcUtils.getNextNum("notice");
 
-		//EnumerationÀº ¹İº¹ÀÚ °´Ã¼. fileÀÇ name¼Ó¼ºµéÀ» °¡Áö°í ÀÖÀ½
+		//Enumerationï¿½ï¿½ ï¿½İºï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼. fileï¿½ï¿½ nameï¿½Ó¼ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		Enumeration<String> enu = multi.getFileNames();
 
 		while (enu.hasMoreElements()) {
-			// AttachVo °´Ã¼ ÁØºñ
+			// AttachVo ï¿½ï¿½Ã¼ ï¿½Øºï¿½
 			AttachVo attachVo = new AttachVo();
 			
 			String fname = enu.nextElement();
-			// ½ÇÁ¦ ¾÷·ÎµåµÈ ÆÄÀÏ¸í °¡Á®¿À±â
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			String filename = multi.getFilesystemName(fname);
-			System.out.println("½ÇÁ¦ÆÄÀÏ¸í : " + filename);
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ : " + filename);
 			
-			attachVo.setFilename(filename); // ½ÇÁ¦ÆÄÀÏ¸íÀ» VO¿¡ ÀúÀå
-			attachVo.setUploadpath(strDate); // "³â/¿ù/ÀÏ" °æ·Î¸¦ ÀúÀå
-			attachVo.setNoNum(nextNum);  // insertµÉ °Ô½ÃÆÇ ±Û¹øÈ£¸¦ ÀúÀå
+			attachVo.setFilename(filename); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½ï¿½ VOï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+			attachVo.setUploadpath(strDate); // "ï¿½ï¿½/ï¿½ï¿½/ï¿½ï¿½" ï¿½ï¿½Î¸ï¿½ ï¿½ï¿½ï¿½ï¿½
+			attachVo.setNoNum(nextNum);  // insertï¿½ï¿½ ï¿½Ô½ï¿½ï¿½ï¿½ ï¿½Û¹ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			
 			if (filename != null) {
 				attachVo.setImage( isImage(filename) ? "I" : "O" );
 			}
 			
-			// attachVo¸¦ attach Å×ÀÌºí¿¡ insertÇÏ±â
+			// attachVoï¿½ï¿½ attach ï¿½ï¿½ï¿½Ìºï¿½ insertï¿½Ï±ï¿½
 			attachDao.insertAttach(attachVo);
 		} // while
 
 
 
 
-		//VO °´Ã¼ ÁØºñ
+		//VO ï¿½ï¿½Ã¼ ï¿½Øºï¿½
 		NoticeVo noticeVo = new NoticeVo();
 
-		//ÆÄ¶ó¹ÌÅÍ°ª °¡Á®¿Í¼­ VO¿¡ ÀúÀå. MultipartRequest ·ÎºÎÅÍ Ã£À½.
+		//ï¿½Ä¶ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ VOï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. MultipartRequest ï¿½Îºï¿½ï¿½ï¿½ Ã£ï¿½ï¿½.
 		noticeVo.setId(multi.getParameter("id"));
 		noticeVo.setSubject(multi.getParameter("subject"));
 		noticeVo.setContent(multi.getParameter("content"));
 
-		//±Û¹øÈ£ °¡Á®¿Í¼­ VO¿¡ ÀúÀå
+		//ï¿½Û¹ï¿½È£ ï¿½ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ VOï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		noticeVo.setNum(nextNum);
 
-		//ip  regDate  readcount  °ª ÀúÀå
+		//ip  regDate  readcount  ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		noticeVo.setIp(request.getRemoteAddr());
 		noticeVo.setRegDate(new Timestamp(System.currentTimeMillis()));
-		noticeVo.setReadcount(0);  // Á¶È¸¼ö
+		noticeVo.setReadcount(0);  // ï¿½ï¿½È¸ï¿½ï¿½
 
 		//re_ref  re_lev  re_seq
-		noticeVo.setReRef(nextNum); // ÁÖ±ÛÀÏ¶§´Â ±Û¹øÈ£°¡ ±×·ì¹øÈ£°¡ µÊ
-		noticeVo.setReLev(0); // ÁÖ±ÛÀÏ¶§´Â µé¿©¾²±â ·¹º§ÀÌ 0 (µé¿©¾²±â ¾øÀ½)
-		noticeVo.setReSeq(0); // ÁÖ±ÛÀÏ¶§´Â ±Û±×·ì ³»¿¡¼­ ¼ø¹øÀÌ 0 (Ã¹¹øÂ°)
+		noticeVo.setReRef(nextNum); // ï¿½Ö±ï¿½ï¿½Ï¶ï¿½ï¿½ï¿½ ï¿½Û¹ï¿½È£ï¿½ï¿½ ï¿½×·ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½
+		noticeVo.setReLev(0); // ï¿½Ö±ï¿½ï¿½Ï¶ï¿½ï¿½ï¿½ ï¿½é¿©ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 0 (ï¿½é¿©ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
+		noticeVo.setReSeq(0); // ï¿½Ö±ï¿½ï¿½Ï¶ï¿½ï¿½ï¿½ ï¿½Û±×·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 0 (Ã¹ï¿½ï¿½Â°)
 
 
-		//ÁÖ±Û noticeVo µî·ÏÇÏ±â
+		//ï¿½Ö±ï¿½ noticeVo ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 		noticeDao.addNotice(noticeVo);
 
 
-		//±Û³»¿ë »ó¼¼º¸±â È­¸é fileContent.jsp·Î ÀÌµ¿
+		//ï¿½Û³ï¿½ï¿½ï¿½ ï¿½ó¼¼ºï¿½ï¿½ï¿½ È­ï¿½ï¿½ fileContent.jspï¿½ï¿½ ï¿½Ìµï¿½
 		//response.sendRedirect("fileContent.jsp?num=" + noticeVo.getNum() + "&pageNum=" + pageNum);
 		return "redirect:/fileNotice.do";
 	}
@@ -140,10 +140,10 @@ public class FileWriteProController implements Controller {
 	
 	private boolean isImage(String filename) {
 		boolean result = false;
-		// ÆÄÀÏ È®ÀåÀÚ ¹®ÀÚ¿­ ÃßÃâÇÏ±â
+		// ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 		// aaaa.bbb.ccc.ddd
 		int index = filename.lastIndexOf(".");
-		String ext = filename.substring(index + 1); // ÆÄÀÏ È®ÀåÀÚ ¹®ÀÚ¿­
+		String ext = filename.substring(index + 1); // ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½
 		
 		if (ext.equalsIgnoreCase("jpg") 
 				|| ext.equalsIgnoreCase("jpeg")

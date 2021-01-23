@@ -14,6 +14,7 @@ request.setCharacterEncoding("utf-8");
 <%
 // 가입날짜 생성해서 넣기
 memberVo.setRegDate(new Timestamp(System.currentTimeMillis()));
+
 // DAO 객체 준비
 //MemberDao memberDao = MemberDao.getInstance();
 MemberMyBatisDao memberDao = MemberMyBatisDao.getInstance();

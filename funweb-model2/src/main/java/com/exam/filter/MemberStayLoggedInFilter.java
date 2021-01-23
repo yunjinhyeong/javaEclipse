@@ -25,8 +25,7 @@ public class MemberStayLoggedInFilter implements Filter {
 		// 요청 사용자의 세션 가져오기
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpSession session = req.getSession();
-		// 세션에 로그인 아이디가 이미 있으면
-		// 로그인 상태유지용 쿠키객체 찾는작업 안하고 종료
+		// 세션에 로그인 아이디가 없으면 쿠키에서 아이디 찾아서 세션에 저장하고 다음 필터를 호출함
 		String id = (String) session.getAttribute("id");
 		if (id == null) {
 			// 로그인 상태유지 쿠키정보 가져오기
@@ -43,11 +42,9 @@ public class MemberStayLoggedInFilter implements Filter {
 				}
 			}
 		}
-		// 다음 필터로 실행을 넘기는 작업을 수행함
+		// 세션에 로그인 아이디가 이미 있으면 바로 다음 필터를 호출함
 		chain.doFilter(request, response);
-	}
+	} // doFilter
 
-	public void destroy() {
-	}
-
+	public void destroy() {}
 }
