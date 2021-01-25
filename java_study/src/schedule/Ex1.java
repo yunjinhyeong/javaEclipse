@@ -42,7 +42,7 @@ public class Ex1 {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-//		System.out.println("=== 메인(주)스레드를 10초 대기 종료됨 ===");
+//		System.out.println("=== 메인(주)스레드를 10초 대기 후 종료됨 ===");
 		
 		
 //		task.cancel();  // 특정 작업 한개만 작업 취소함.
