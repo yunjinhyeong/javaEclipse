@@ -1,5 +1,7 @@
 package com.exam.vo;
 
+import java.sql.SQLException;
+
 public class Hello {
 
 	public static String helloWorld() {
@@ -12,7 +14,9 @@ public class Hello {
 	
 	public static void receivePositiveNumber(int num) throws Exception {
 		if (num < 0) {
-			throw new Exception("Negative number is not possible");
+			throw new SQLException("Negative number is not possible");
+			
+			// 굳이 해결할 필요 없음
 		}
 	}
 }
