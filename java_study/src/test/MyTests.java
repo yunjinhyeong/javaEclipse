@@ -50,7 +50,7 @@ public class MyTests {
 		assertFalse(person.isMarried());
 	}
 	
-	@Disabled
+	//@Disabled
 	@Test  // 테스트케이스 메소드
 	void testHelloWorld() {
 		log.info("@Test - testHelloWorld() 호출됨");
